@@ -295,7 +295,7 @@ export default function LandingPage() {
               position: 'absolute', inset: 0,
               backgroundImage: "url('/hero.jpg')",
               backgroundSize: 'cover',
-              backgroundPosition: 'center 15%',
+              backgroundPosition: 'center 35%',
               backgroundRepeat: 'no-repeat',
               filter: 'brightness(0.75)',
             }}
