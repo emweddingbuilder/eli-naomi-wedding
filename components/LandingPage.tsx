@@ -293,7 +293,8 @@ export default function LandingPage() {
             style={{
               position: 'absolute', inset: 0, zIndex: 1,
               backgroundImage: "url('/hero.jpg')",
-              backgroundSize: '45%',
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center center',
               filter: 'brightness(0.85)',
             }}
