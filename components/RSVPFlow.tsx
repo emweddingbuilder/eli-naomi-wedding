@@ -382,9 +382,12 @@ export default function RSVPFlow() {
           ))}
 
           <div className="mt-12">
-            <p className="font-display" style={{ fontSize: '1.2rem', color: 'var(--charcoal)', marginBottom: '0.5rem' }}>
+            <p className="font-display" style={{ fontSize: '1.2rem', color: 'var(--charcoal)', marginBottom: '1.5rem' }}>
               {anyAttending ? 'Thank you! We can\'t wait to celebrate with you.' : 'We\'ll miss you — thank you for letting us know.'}
             </p>
+            <a href="/" className="btn-dark">
+              Back to Our Website
+            </a>
           </div>
         </div>
       )}
