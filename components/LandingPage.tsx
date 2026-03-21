@@ -288,14 +288,14 @@ export default function LandingPage() {
           ══════════════════════════════════════════════════════════════ */}
       <section id="home">
         {/* Full-bleed photo with overlay */}
-        <div style={{ width: '100%', height: '80vh', minHeight: '500px', position: 'relative', overflow: 'hidden', marginTop: '56px' }}>
+        <div style={{ width: '100%', height: '95vh', minHeight: '600px', position: 'relative', overflow: 'hidden', marginTop: '56px' }}>
           {/* Photo */}
           <div
             style={{
               position: 'absolute', inset: 0,
               backgroundImage: "url('/hero.jpg')",
               backgroundSize: 'cover',
-              backgroundPosition: 'center 20%',
+              backgroundPosition: 'center 15%',
               backgroundRepeat: 'no-repeat',
               filter: 'brightness(0.75)',
             }}
