@@ -287,40 +287,45 @@ export default function LandingPage() {
           HERO
           ══════════════════════════════════════════════════════════════ */}
       <section id="home">
-        {/* Photo */}
-        <div style={{ width: '100%', height: '70vh', minHeight: '400px', position: 'relative', overflow: 'hidden', marginTop: '56px' }}>
+        {/* Full-bleed photo with overlay */}
+        <div style={{ width: '100%', height: '80vh', minHeight: '500px', position: 'relative', overflow: 'hidden', marginTop: '56px' }}>
+          {/* Photo */}
           <div
             style={{
-              position: 'absolute', inset: 0, zIndex: 1,
+              position: 'absolute', inset: 0,
               backgroundImage: "url('/hero.jpg')",
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
               backgroundPosition: 'center center',
-              filter: 'brightness(0.85)',
+              backgroundRepeat: 'no-repeat',
+              filter: 'brightness(0.75)',
             }}
           />
-          {/* Gradient fallback — behind the photo */}
-          <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: `radial-gradient(ellipse at 50% 40%, ${C.darkGrey} 0%, ${C.black} 70%)` }} />
-          {/* Monogram watermark */}
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
-            <div style={{ fontFamily: fonts.serif, fontSize: 'clamp(60px, 14vw, 120px)', fontWeight: 300, color: 'rgba(255,255,255,0.1)', letterSpacing: '12px' }}>
-              E <span style={{ fontStyle: 'italic', color: 'rgba(201,169,110,0.12)' }}>&</span> N
+          {/* Subtle dark overlay for readability */}
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
+          {/* Fade to black at bottom */}
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%', background: `linear-gradient(transparent, ${C.black})` }} />
+
+          {/* Monogram overlaid on photo */}
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2, gap: '0' }}>
+            <div style={{ fontFamily: fonts.serif, fontSize: 'clamp(80px, 18vw, 160px)', fontWeight: 300, color: 'rgba(255,255,255,0.18)', letterSpacing: '8px', lineHeight: 1 }}>
+              E <span style={{ fontStyle: 'italic', color: `rgba(201,169,110,0.22)` }}>&</span> N
             </div>
           </div>
-          {/* Fade to black */}
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%', background: `linear-gradient(transparent, ${C.black})`, zIndex: 1 }} />
+
+          {/* Names + date at bottom of photo */}
+          <div style={{ position: 'absolute', bottom: '48px', left: 0, right: 0, textAlign: 'center', zIndex: 3 }}>
+            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)', marginBottom: '6px' }}>
+              Eli Minsky
+            </p>
+            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(14px, 2.5vw, 18px)', fontWeight: 300, fontStyle: 'italic', color: C.gold, margin: '4px 0' }}>&</p>
+            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)' }}>
+              Naomi Alsberg
+            </p>
+          </div>
         </div>
 
-        {/* Names + date + countdown + RSVP */}
+        {/* Date + countdown + RSVP below photo */}
         <div style={{ textAlign: 'center', padding: '48px 24px 72px' }}>
-          <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(14px, 3vw, 18px)', fontWeight: 300, letterSpacing: 'clamp(8px, 2vw, 16px)', textTransform: 'uppercase', color: C.textLight, marginBottom: '8px' }}>
-            Eli Minsky
-          </p>
-          <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(16px, 3vw, 22px)', fontWeight: 300, fontStyle: 'italic', color: C.gold, margin: '6px 0' }}>&</p>
-          <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(14px, 3vw, 18px)', fontWeight: 300, letterSpacing: 'clamp(8px, 2vw, 16px)', textTransform: 'uppercase', color: C.textLight, marginBottom: '32px' }}>
-            Naomi Alsberg
-          </p>
-
           <GoldDivider />
 
           <p style={{ fontFamily: fonts.sans, fontSize: 'clamp(10px, 2vw, 12px)', fontWeight: 400, letterSpacing: '3px', textTransform: 'uppercase', color: C.textMuted, marginTop: '28px', lineHeight: 2.4 }}>
