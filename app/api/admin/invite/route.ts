@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  const rsvpUrl = `${baseUrl}/rsvp`;
+  const rsvpUrl = `${baseUrl}/invite?guestId=${guestId}`;
   const guestName = `${guest.first_name} ${guest.last_name}`;
 
   try {

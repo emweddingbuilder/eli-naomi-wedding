@@ -146,7 +146,7 @@ export async function sendInviteEmail({
   `;
 
   return resend.emails.send({
-    from: 'Eli & Naomi <wedding@eliandnaomi.com>',
+    from: 'Eli & Naomi <hello@elinaomi.love>',
     to,
     subject: `You're invited — Eli & Naomi's Wedding`,
     html,
