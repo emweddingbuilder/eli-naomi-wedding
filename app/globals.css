@@ -1,26 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400;500&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap');
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes countPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --cream: #F8F5F0;
+  --cream-dark: #F0EBE3;
+  --charcoal: #1C1C1C;
+  --gold: #C9A96E;
+  --gold-dark: #A8893A;
+  --muted: #6B6560;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.font-display {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-display-sc {
+  font-family: 'Cormorant SC', serif;
+}
+
+.font-script {
+  font-family: 'Great Vibes', cursive;
+}
+
+/* Invitation card border */
+.invitation-border {
+  border: 1.5px solid var(--charcoal);
+  position: relative;
+}
+
+.invitation-border::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 0.5px solid var(--charcoal);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Letter-spaced small caps */
+.eyebrow {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/* Divider */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--charcoal);
+  margin: 0 auto;
+}
+
+/* Gold button */
+.btn-gold {
+  background: transparent;
+  border: 1px solid var(--charcoal);
+  color: var(--charcoal);
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.75rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.btn-gold:hover {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+
+.btn-dark {
+  background: var(--charcoal);
+  border: 1px solid var(--charcoal);
+  color: var(--cream);
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.85rem 3rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.btn-dark:hover {
+  background: transparent;
+  color: var(--charcoal);
 }
