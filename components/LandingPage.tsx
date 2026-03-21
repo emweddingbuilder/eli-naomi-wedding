@@ -305,13 +305,6 @@ export default function LandingPage() {
           {/* Fade to black at bottom */}
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%', background: `linear-gradient(transparent, ${C.black})` }} />
 
-          {/* Monogram overlaid on photo */}
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2, gap: '0' }}>
-            <div style={{ fontFamily: fonts.serif, fontSize: 'clamp(80px, 18vw, 160px)', fontWeight: 300, color: 'rgba(255,255,255,0.18)', letterSpacing: '8px', lineHeight: 1 }}>
-              E <span style={{ fontStyle: 'italic', color: `rgba(201,169,110,0.22)` }}>&</span> N
-            </div>
-          </div>
-
           {/* Names + date at bottom of photo */}
           <div style={{ position: 'absolute', bottom: '48px', left: 0, right: 0, textAlign: 'center', zIndex: 3 }}>
             <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)', marginBottom: '6px' }}>
