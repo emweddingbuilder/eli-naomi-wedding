@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 import type { RSVPSubmission } from '@/lib/types';
 
 export async function POST(request: NextRequest) {
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     submitted_at: new Date().toISOString(),
   }));
 
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('rsvp_responses')
     .upsert(records, { onConflict: 'guest_id,event' });
 

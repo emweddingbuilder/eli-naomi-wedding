@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendInviteEmail } from '@/lib/email';
 import { cookies } from 'next/headers';
 
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
   const { guestId } = await request.json();
   if (!guestId) return NextResponse.json({ error: 'No guestId' }, { status: 400 });
 
-  const { data: guest, error } = await supabaseAdmin
+  const { data: guest, error } = await getSupabaseAdmin()
     .from('guests')
     .select('*')
     .eq('id', guestId)
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
   try {
     await sendInviteEmail({ to: guest.email, guestName, rsvpUrl });
 
-    await supabaseAdmin
+    await getSupabaseAdmin()
       .from('guests')
       .update({ invited_at: new Date().toISOString() })
       .eq('id', guestId);

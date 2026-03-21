@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { cookies } from 'next/headers';
 
 async function isAuthed() {
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
   for (const [partyName, members] of partyMap) {
     // Upsert party
-    const { data: party, error: partyErr } = await supabaseAdmin
+    const { data: party, error: partyErr } = await getSupabaseAdmin()
       .from('parties')
       .upsert({ name: partyName, max_guests: members.length }, { onConflict: 'name' })
       .select()
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       phone: m.phone || null,
     }));
 
-    const { error: guestErr } = await supabaseAdmin
+    const { error: guestErr } = await getSupabaseAdmin()
       .from('guests')
       .upsert(guestRecords, { onConflict: 'first_name,last_name' });
 

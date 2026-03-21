@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 
 export async function GET(request: NextRequest) {
   const q = request.nextUrl.searchParams.get('q')?.trim();
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
   const tokens = q.toLowerCase().split(/\s+/);
 
   // Search guests whose first or last name match any token
-  const { data: guests, error } = await supabase
+  const { data: guests, error } = await getSupabase()
     .from('guests')
     .select('*, party:parties(*)')
     .or(

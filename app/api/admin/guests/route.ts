@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { cookies } from 'next/headers';
 
 async function isAuthed() {
@@ -13,7 +13,7 @@ export async function GET() {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { data: guests, error } = await supabaseAdmin
+  const { data: guests, error } = await getSupabaseAdmin()
     .from('guests')
     .select('*, party:parties(name, invited_events), rsvps:rsvp_responses(event, attending, dietary_restrictions, song_request, message)')
     .order('last_name');
