@@ -71,10 +71,9 @@ export async function POST(request: NextRequest) {
   }
 
   let totalGuests = 0;
+  const errors: string[] = [];
 
   for (const [partyName, members] of partyMap) {
-    // Upsert party
-    // Parse invited_events from first member (same for whole party)
     const rawEvents = members[0]?.invited_events || 'ceremony';
     const invitedEvents = rawEvents.split(',').map((e: string) => e.trim()).filter(Boolean);
 
@@ -85,11 +84,10 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (partyErr || !party) {
-      console.error('Party error:', partyErr);
+      errors.push(`Party "${partyName}": ${partyErr?.message || 'unknown error'}`);
       continue;
     }
 
-    // Upsert guests
     const guestRecords = members.map((m) => ({
       party_id: party.id,
       first_name: m.first_name,
@@ -103,12 +101,12 @@ export async function POST(request: NextRequest) {
       .upsert(guestRecords, { onConflict: 'first_name,last_name' });
 
     if (guestErr) {
-      console.error('Guest error:', guestErr);
+      errors.push(`Guests for "${partyName}": ${guestErr.message}`);
       continue;
     }
 
     totalGuests += members.length;
   }
 
-  return NextResponse.json({ success: true, count: totalGuests });
+  return NextResponse.json({ success: true, count: totalGuests, errors });
 }

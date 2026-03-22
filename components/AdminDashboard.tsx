@@ -67,7 +67,8 @@ export default function AdminDashboard() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
-      setUploadStatus(`✓ Uploaded ${data.count} guests successfully.`);
+      const errorMsg = data.errors?.length ? ` Errors: ${data.errors.join('; ')}` : '';
+      setUploadStatus(`✓ Uploaded ${data.count} guests successfully.${errorMsg}`);
       setCsvText('');
       // Refresh
       const r2 = await fetch('/api/admin/guests');
