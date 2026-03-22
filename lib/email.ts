@@ -28,7 +28,7 @@ export async function sendInviteEmail({
           <!-- Monogram + Header -->
           <tr>
             <td align="center" style="padding:50px 40px 24px;">
-              <p style="margin:0 0 24px;font-size:48px;line-height:1;color:#C9A96E;font-family:'Georgia',serif;">N</p>
+              <p style="margin:0 0 24px;font-size:48px;line-height:1;color:#C9A96E;font-family:'Georgia',serif;">M</p>
               <h1 style="margin:0;font-size:22px;font-weight:400;letter-spacing:0.08em;color:#1C1C1C;font-family:'Georgia',serif;text-transform:none;">
                 Eli and Naomi's Wedding
               </h1>
