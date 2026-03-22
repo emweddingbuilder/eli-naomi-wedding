@@ -147,8 +147,9 @@ export async function sendInviteEmail({
 
   return resend.emails.send({
     from: 'Eli & Naomi <hello@elinaomi.love>',
+    replyTo: 'eli.naomi.gettingmarried@gmail.com',
     to,
-    subject: `You're invited — Eli & Naomi's Wedding`,
+    subject: `Eli & Naomi — October 19, 2026`,
     html,
   });
 }
