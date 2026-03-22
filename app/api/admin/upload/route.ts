@@ -54,9 +54,13 @@ export async function POST(request: NextRequest) {
 
   for (const [partyName, members] of partyMap) {
     // Upsert party
+    // Parse invited_events from first member (same for whole party)
+    const rawEvents = members[0]?.invited_events || 'ceremony';
+    const invitedEvents = rawEvents.split(',').map((e: string) => e.trim()).filter(Boolean);
+
     const { data: party, error: partyErr } = await getSupabaseAdmin()
       .from('parties')
-      .upsert({ name: partyName, max_guests: members.length }, { onConflict: 'name' })
+      .upsert({ name: partyName, max_guests: members.length, invited_events: invitedEvents }, { onConflict: 'name' })
       .select()
       .single();
 

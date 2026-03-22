@@ -250,41 +250,81 @@ export default function AdminDashboard() {
               Upload Guest List
             </p>
             <p className="font-display mb-6" style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>
-              Paste a CSV with columns: <code style={{ background: 'rgba(0,0,0,0.06)', padding: '0.1rem 0.3rem', borderRadius: '3px', fontSize: '0.8rem' }}>party_name, first_name, last_name, email, phone</code>
+              CSV columns: <code style={{ background: 'rgba(0,0,0,0.06)', padding: '0.1rem 0.3rem', borderRadius: '3px', fontSize: '0.8rem' }}>party_name, first_name, last_name, email, invited_events</code>
             </p>
 
-            <div className="mb-4 p-4 rounded" style={{ background: 'rgba(0,0,0,0.04)', fontSize: '0.8rem', fontFamily: 'monospace', color: 'var(--muted)' }}>
-              party_name,first_name,last_name,email,phone<br />
-              Minsky Family,Eli,Minsky,eli@example.com,+1234567890<br />
-              Minsky Family,Naomi,Alsberg,naomi@example.com,<br />
-              Cohen Family,David,Cohen,david@example.com,
+            <div className="mb-6 p-4 rounded" style={{ background: 'rgba(0,0,0,0.04)', fontSize: '0.8rem', fontFamily: 'monospace', color: 'var(--muted)' }}>
+              party_name,first_name,last_name,email,invited_events<br />
+              Eli & Naomi,Eli,Minsky,eli@example.com,rehearsal,ceremony<br />
+              Eli & Naomi,Naomi,Alsberg,,rehearsal,ceremony<br />
+              Cohen Family,David,Cohen,david@example.com,ceremony
             </div>
 
-            <textarea
-              value={csvText}
-              onChange={(e) => setCsvText(e.target.value)}
-              placeholder="Paste your CSV here..."
-              rows={10}
-              className="w-full px-4 py-3 bg-white border border-gray-200 rounded font-mono resize-none"
-              style={{ fontSize: '0.8rem', color: 'var(--charcoal)', outline: 'none' }}
-            />
+            {/* File upload */}
+            <label
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '12px',
+                border: '2px dashed rgba(0,0,0,0.15)',
+                borderRadius: '6px',
+                padding: '40px 24px',
+                cursor: 'pointer',
+                background: csvText ? 'rgba(45,122,79,0.04)' : 'white',
+                transition: 'background 0.2s',
+              }}
+            >
+              <input
+                type="file"
+                accept=".csv"
+                style={{ display: 'none' }}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  const reader = new FileReader();
+                  reader.onload = (ev) => setCsvText(ev.target?.result as string);
+                  reader.readAsText(file);
+                }}
+              />
+              {csvText ? (
+                <p className="font-display" style={{ color: '#2d7a4f', fontSize: '0.95rem' }}>✓ File loaded — ready to upload</p>
+              ) : (
+                <>
+                  <p className="font-display" style={{ color: 'var(--charcoal)', fontSize: '0.95rem' }}>Click to select your CSV file</p>
+                  <p className="eyebrow" style={{ color: 'var(--muted)', fontSize: '0.55rem' }}>or drag and drop</p>
+                </>
+              )}
+            </label>
 
             {uploadStatus && (
               <p
-                className="font-display mt-3"
+                className="font-display mt-4"
                 style={{ fontSize: '0.9rem', color: uploadStatus.startsWith('✓') ? '#2d7a4f' : '#c0392b' }}
               >
                 {uploadStatus}
               </p>
             )}
 
-            <button
-              onClick={handleUpload}
-              className="btn-dark mt-4"
-              disabled={uploading || !csvText.trim()}
-            >
-              {uploading ? 'Uploading...' : 'Upload Guests'}
-            </button>
+            <div className="flex gap-3 mt-4">
+              <button
+                onClick={handleUpload}
+                className="btn-dark"
+                disabled={uploading || !csvText.trim()}
+              >
+                {uploading ? 'Uploading...' : 'Upload Guests'}
+              </button>
+              {csvText && (
+                <button
+                  onClick={() => { setCsvText(''); setUploadStatus(''); }}
+                  className="eyebrow"
+                  style={{ color: 'var(--muted)', background: 'none', border: '1px solid rgba(0,0,0,0.15)', padding: '0 1.5rem', cursor: 'pointer', fontSize: '0.6rem' }}
+                >
+                  Clear
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
