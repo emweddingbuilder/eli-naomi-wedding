@@ -40,8 +40,8 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
                 border: '1px solid rgba(201,169,110,0.25)',
                 position: 'relative',
               }}>
-                {/* Guest name centered */}
-                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 40px' }}>
+                {/* Guest name centered — positioned in lower half so flap doesn't cover it */}
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '55%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 40px' }}>
                   <p style={{
                     fontFamily: "'Great Vibes', cursive",
                     fontSize: '34px',
