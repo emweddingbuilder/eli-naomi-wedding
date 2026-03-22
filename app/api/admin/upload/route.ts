@@ -8,18 +8,38 @@ async function isAuthed() {
   return cookie?.value === process.env.ADMIN_PASSWORD;
 }
 
+function splitCSVLine(line: string): string[] {
+  const result: string[] = [];
+  let current = '';
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      if (inQuotes && line[i + 1] === '"') { current += '"'; i++; }
+      else { inQuotes = !inQuotes; }
+    } else if (char === ',' && !inQuotes) {
+      result.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current.trim());
+  return result;
+}
+
 function parseCSV(text: string) {
   const lines = text.trim().split('\n').map((l) => l.trim()).filter(Boolean);
   if (lines.length < 2) throw new Error('CSV must have a header row and at least one data row');
 
-  const headers = lines[0].toLowerCase().split(',').map((h) => h.trim().replace(/['"]/g, ''));
+  const headers = splitCSVLine(lines[0]).map((h) => h.toLowerCase().replace(/['"]/g, '').trim());
   const required = ['party_name', 'first_name', 'last_name'];
   for (const r of required) {
     if (!headers.includes(r)) throw new Error(`Missing required column: ${r}`);
   }
 
   return lines.slice(1).map((line) => {
-    const vals = line.split(',').map((v) => v.trim().replace(/^["']|["']$/g, ''));
+    const vals = splitCSVLine(line);
     const row: Record<string, string> = {};
     headers.forEach((h, i) => { row[h] = vals[i] || ''; });
     return row;
