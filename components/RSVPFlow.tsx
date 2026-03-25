@@ -385,6 +385,14 @@ export default function RSVPFlow() {
             <p className="font-display" style={{ fontSize: '1.2rem', color: 'var(--charcoal)', marginBottom: '1.5rem' }}>
               {anyAttending ? 'Thank you! We can\'t wait to celebrate with you.' : 'We\'ll miss you — thank you for letting us know.'}
             </p>
+            {!anyAttending && (
+              <p className="eyebrow mb-6" style={{ color: 'var(--muted)', fontSize: '0.6rem', lineHeight: 1.8 }}>
+                If you'd still like to celebrate with us from afar,<br />
+                <a href="/registry" style={{ color: 'var(--charcoal)', borderBottom: '1px solid currentColor', textDecoration: 'none' }}>
+                  our registry
+                </a>{' '}is always open.
+              </p>
+            )}
             <a href="/" className="btn-dark">
               Back to Our Website
             </a>

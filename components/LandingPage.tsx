@@ -66,6 +66,7 @@ const GoldDot = () => (
 const NAV_ITEMS = [
   { label: 'Our Story', href: '#our-story' },
   { label: 'Events', href: '#events' },
+  { label: 'Registry', href: '/registry' },
   { label: 'Travel', href: '#travel' },
   { label: 'Things to Do', href: '/things-to-do' },
   { label: 'Gallery', href: '/gallery' },
@@ -407,6 +408,38 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          REGISTRY
+          ══════════════════════════════════════════════════════════════ */}
+      <section id="registry" style={{ padding: '100px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
+        <FadeIn>
+          <div style={{ maxWidth: '560px', margin: '0 auto' }}>
+            <p style={sectionLabel}>Registry</p>
+            <h2 style={{ ...sectionHeading, marginBottom: '20px' }}>Gifts & Celebrations</h2>
+            <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9, marginBottom: '36px' }}>
+              Your presence is the greatest gift. If you'd like to celebrate with something more, we've put together a few ideas.
+            </p>
+            <Link
+              href="/registry"
+              style={{
+                display: 'inline-block',
+                fontFamily: fonts.sans,
+                fontSize: '9px',
+                fontWeight: 500,
+                letterSpacing: '3px',
+                textTransform: 'uppercase',
+                color: C.gold,
+                border: `1px solid ${C.gold}`,
+                padding: '12px 32px',
+                textDecoration: 'none',
+              }}
+            >
+              View Registry
+            </Link>
+          </div>
+        </FadeIn>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
