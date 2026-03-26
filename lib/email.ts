@@ -20,6 +20,12 @@ export async function sendInviteEmail({
   <title>Eli & Naomi's Wedding</title>
 </head>
 <body style="margin:0;padding:0;background:#F0EBE3;font-family:'Georgia',serif;">
+
+  <!-- Preheader: controls the preview snippet in Gmail/Apple Mail -->
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
+    ${guestName} is warmly invited · Eli &amp; Naomi's Wedding · October 19, 2026&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+  </div>
+
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#F0EBE3;padding:40px 20px;">
     <tr>
       <td align="center">
@@ -34,11 +40,11 @@ export async function sendInviteEmail({
             </td>
           </tr>
 
-          <!-- Envelope hero — square -->
+          <!-- Envelope hero — landscape -->
           <tr>
-            <td style="background:#1C1C1C;padding:0;height:560px;vertical-align:top;">
+            <td style="background:#1C1C1C;padding:0;height:320px;vertical-align:top;">
 
-              <table width="100%" cellpadding="0" cellspacing="0" style="height:560px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="height:320px;">
 
                 <!-- Stamp row -->
                 <tr style="vertical-align:top;">
@@ -74,7 +80,7 @@ export async function sendInviteEmail({
                 </tr>
 
                 <!-- Bottom spacer to push name to center -->
-                <tr><td style="height:80px;"></td></tr>
+                <tr><td style="height:40px;"></td></tr>
 
               </table>
             </td>
