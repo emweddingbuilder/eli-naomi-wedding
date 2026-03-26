@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { colors, fonts } from '@/lib/tokens';
+import SiteNav from './SiteNav';
 
 const C = colors;
 
@@ -110,14 +110,9 @@ export default function ThingsToDoPage() {
   return (
     <div style={{ background: C.black, minHeight: '100vh', color: C.textLight, fontFamily: fonts.sans }}>
 
-      {/* Nav back */}
-      <div style={{ padding: '24px 32px' }}>
-        <Link href="/" style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2.5px', textTransform: 'uppercase', color: C.textMuted, textDecoration: 'none' }}>
-          ← Back to Site
-        </Link>
-      </div>
+      <SiteNav />
 
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 24px 100px' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '100px 24px 100px' }}>
 
         {/* Header */}
         <FadeIn>
