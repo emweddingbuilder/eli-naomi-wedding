@@ -80,7 +80,7 @@ export async function sendInviteEmail({
                 </tr>
 
                 <!-- Bottom spacer to push name to center -->
-                <tr><td style="height:40px;"></td></tr>
+                <tr><td style="height:80px;"></td></tr>
 
               </table>
             </td>
