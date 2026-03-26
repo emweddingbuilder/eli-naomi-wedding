@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: 'Travel', href: '/#travel' },
   { label: 'Things to Do', href: '/things-to-do' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'FAQ', href: '/#faq' },
+  { label: 'FAQ', href: '/faq' },
   { label: 'RSVP', href: '/rsvp', accent: true },
 ];
 

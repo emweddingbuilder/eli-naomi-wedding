@@ -70,7 +70,7 @@ const NAV_ITEMS = [
   { label: 'Travel', href: '#travel' },
   { label: 'Things to Do', href: '/things-to-do' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'FAQ', href: '/faq' },
   { label: 'RSVP', href: '/rsvp', accent: true },
 ];
 
@@ -420,33 +420,6 @@ export default function LandingPage() {
             </Link>
           </div>
         </FadeIn>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
-          FAQ
-          ══════════════════════════════════════════════════════════════ */}
-      <section id="faq" style={{ padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
-          <FadeIn>
-            <p style={sectionLabel}>FAQ</p>
-            <h2 style={sectionHeading}>Good to Know</h2>
-          </FadeIn>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: C.border }}>
-            {FAQ_ITEMS.map((item, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <div style={{ background: C.charcoal, padding: '32px' }}>
-                  <p style={{ fontFamily: fonts.serif, fontSize: '18px', fontWeight: 400, color: C.champagne, marginBottom: '10px' }}>
-                    {item.q}
-                  </p>
-                  <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.8 }}>
-                    {item.a}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
