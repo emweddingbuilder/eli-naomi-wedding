@@ -117,3 +117,33 @@ body {
   background: transparent;
   color: var(--charcoal);
 }
+
+/* ── Mobile utilities ────────────────────────────────────────── */
+
+/* Nav: hide desktop links / show hamburger on mobile */
+.nav-desktop { display: flex; }
+.nav-hamburger { display: none; }
+
+@media (max-width: 768px) {
+  .nav-desktop { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+}
+
+/* Cards: stack vertically on mobile */
+.card-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+@media (max-width: 600px) {
+  .card-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card-arrow { display: none !important; }
+  .card-padding { padding: 20px 20px !important; }
+  .section-padding { padding-left: 16px !important; padding-right: 16px !important; }
+  .event-card-padding { padding: 24px 20px !important; }
+}

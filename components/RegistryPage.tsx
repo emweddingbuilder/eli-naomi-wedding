@@ -75,6 +75,7 @@ export default function RegistryPage() {
                   href={ZOLA_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="card-padding"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -84,6 +85,7 @@ export default function RegistryPage() {
                     textDecoration: 'none',
                     transition: 'background 0.2s',
                     gap: '24px',
+                    flexWrap: 'wrap',
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.background = '#2a2a2a')}
                   onMouseLeave={(e) => (e.currentTarget.style.background = C.charcoal)}
@@ -99,7 +101,7 @@ export default function RegistryPage() {
                       </p>
                     </div>
                   </div>
-                  <span style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, whiteSpace: 'nowrap' }}>
+                  <span className="card-arrow" style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, whiteSpace: 'nowrap' }}>
                     Contribute →
                   </span>
                 </a>

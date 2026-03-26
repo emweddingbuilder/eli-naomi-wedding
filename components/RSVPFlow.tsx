@@ -252,7 +252,7 @@ export default function RSVPFlow() {
                       <p className="eyebrow mb-4" style={{ color: 'var(--muted)', fontSize: '0.6rem' }}>
                         {evt?.date} · {evt?.time} · {evt?.venue}
                       </p>
-                      <div className="flex gap-3">
+                      <div className="flex flex-wrap gap-3">
                         <button
                           type="button"
                           onClick={() => updateEventResponse(i, eventKey, true)}

@@ -56,5 +56,5 @@ export const wedding = {
       note: 'Fun Black Tie. Dancing shoes encouraged.',
     },
   ],
-  rsvpDeadline: 'September 15, 2026',
+  rsvpDeadline: 'August 1, 2026',
 } as const;

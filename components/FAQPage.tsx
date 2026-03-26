@@ -57,7 +57,7 @@ export default function FAQPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: C.border }}>
           {FAQ_ITEMS.map((item, i) => (
             <FadeIn key={i} delay={i * 0.1}>
-              <div style={{ background: C.charcoal, padding: '32px' }}>
+              <div className="card-padding" style={{ background: C.charcoal, padding: '32px' }}>
                 <p style={{ fontFamily: fonts.serif, fontSize: '19px', fontWeight: 400, color: C.champagne, marginBottom: '10px' }}>
                   {item.q}
                 </p>

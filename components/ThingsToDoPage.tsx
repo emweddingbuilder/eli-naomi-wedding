@@ -157,6 +157,7 @@ export default function ThingsToDoPage() {
                     href={`https://maps.google.com/?q=${encodeURIComponent(item.mapsQuery)}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="card-padding"
                     style={{
                       display: 'flex',
                       alignItems: 'flex-start',
@@ -166,6 +167,7 @@ export default function ThingsToDoPage() {
                       textDecoration: 'none',
                       transition: 'background 0.2s',
                       gap: '24px',
+                      flexWrap: 'wrap',
                     }}
                     onMouseEnter={(e) => (e.currentTarget.style.background = '#2a2a2a')}
                     onMouseLeave={(e) => (e.currentTarget.style.background = C.charcoal)}
@@ -192,7 +194,7 @@ export default function ThingsToDoPage() {
                         ))}
                       </div>
                     </div>
-                    <span style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, whiteSpace: 'nowrap', paddingTop: '4px' }}>
+                    <span className="card-arrow" style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, whiteSpace: 'nowrap', paddingTop: '4px' }}>
                       View Map →
                     </span>
                   </a>
