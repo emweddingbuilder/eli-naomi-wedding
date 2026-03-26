@@ -96,100 +96,88 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
             transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
           >
             {/* Card */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 24px 0' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 24px 0' }}>
               <div
                 className="invitation-border"
-                style={{ width: '100%', maxWidth: '400px', background: 'white', padding: '24px 36px', textAlign: 'center' }}
+                style={{ width: '100%', maxWidth: '480px', background: 'white', padding: '20px 52px', textAlign: 'center' }}
               >
                 {/* Monogram */}
-                <div style={{ marginBottom: '10px' }}>
-                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '52px', fontWeight: 400, color: '#1C1C1C', lineHeight: 1 }}>
+                <div style={{ marginBottom: '6px' }}>
+                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '56px', fontWeight: 400, color: '#1C1C1C', lineHeight: 1 }}>
                     E
                   </span>
-                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '32px', fontWeight: 400, color: '#C9A96E', lineHeight: 1, margin: '0 4px' }}>
+                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '34px', fontWeight: 400, color: '#C9A96E', lineHeight: 1, margin: '0 4px' }}>
                     &
                   </span>
-                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '52px', fontWeight: 400, color: '#1C1C1C', lineHeight: 1 }}>
+                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '56px', fontWeight: 400, color: '#1C1C1C', lineHeight: 1 }}>
                     N
                   </span>
                 </div>
 
                 {/* Parents */}
-                <p className="eyebrow" style={{ color: '#1C1C1C', fontSize: '0.55rem', marginBottom: '2px' }}>
+                <p className="eyebrow" style={{ color: '#1C1C1C', fontSize: '0.6rem', marginBottom: '2px' }}>
                   Cliff and Laurie Alsberg
                 </p>
-                <p className="eyebrow" style={{ color: '#1C1C1C', fontSize: '0.55rem', marginBottom: '10px' }}>
+                <p className="eyebrow" style={{ color: '#1C1C1C', fontSize: '0.6rem', marginBottom: '6px' }}>
                   Jayson Minsky and Jolene Risch
                 </p>
 
-                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.55rem', lineHeight: 1.8, marginBottom: '10px' }}>
+                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.6rem', lineHeight: 1.7, marginBottom: '7px' }}>
                   request the honour of your presence<br />
                   at the marriage of their children
                 </p>
 
-                <div className="divider" style={{ marginBottom: '10px' }} />
+                <div className="divider" style={{ marginBottom: '7px' }} />
 
                 {/* Naomi */}
-                <div style={{ fontFamily: "'Great Vibes', cursive", fontSize: '44px', color: '#1C1C1C', lineHeight: 1.1, marginBottom: '2px' }}>
+                <div style={{ fontFamily: "'Great Vibes', cursive", fontSize: '46px', color: '#1C1C1C', lineHeight: 1.05, marginBottom: '2px' }}>
                   Naomi
                 </div>
-                <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '13px', color: '#6B6560', letterSpacing: '2px', marginBottom: '8px', direction: 'rtl' }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '13px', color: '#6B6560', letterSpacing: '2px', marginBottom: '4px', direction: 'rtl' }}>
                   נעמי אלסברג
                 </p>
 
-                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.5rem', letterSpacing: '0.4em', marginBottom: '8px' }}>and</p>
+                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.55rem', letterSpacing: '0.4em', marginBottom: '4px' }}>and</p>
 
                 {/* Eli */}
-                <div style={{ fontFamily: "'Great Vibes', cursive", fontSize: '44px', color: '#1C1C1C', lineHeight: 1.1, marginBottom: '2px' }}>
+                <div style={{ fontFamily: "'Great Vibes', cursive", fontSize: '46px', color: '#1C1C1C', lineHeight: 1.05, marginBottom: '2px' }}>
                   Eli
                 </div>
-                <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '13px', color: '#6B6560', letterSpacing: '2px', marginBottom: '10px', direction: 'rtl' }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: '13px', color: '#6B6560', letterSpacing: '2px', marginBottom: '7px', direction: 'rtl' }}>
                   שמואל מינסקי
                 </p>
 
-                <div className="divider" style={{ marginBottom: '10px' }} />
+                <div className="divider" style={{ marginBottom: '7px' }} />
 
                 {/* Date */}
-                <p className="eyebrow" style={{ color: '#1C1C1C', fontSize: '0.55rem', lineHeight: 1.9, marginBottom: '10px' }}>
+                <p className="eyebrow" style={{ color: '#1C1C1C', fontSize: '0.6rem', lineHeight: 1.7, marginBottom: '7px' }}>
                   Monday, the nineteenth of October<br />
                   two thousand and twenty-six<br />
                   the ceremony will begin at four o&apos;clock in the evening
                 </p>
 
-                <div className="divider" style={{ marginBottom: '10px' }} />
+                <div className="divider" style={{ marginBottom: '7px' }} />
 
                 {/* Venue */}
-                <div style={{ fontFamily: "'Great Vibes', cursive", fontSize: '28px', color: '#1C1C1C', lineHeight: 1.2, marginBottom: '2px' }}>
+                <div style={{ fontFamily: "'Great Vibes', cursive", fontSize: '30px', color: '#1C1C1C', lineHeight: 1.2, marginBottom: '2px' }}>
                   Consul House
                 </div>
-                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.55rem', marginBottom: '10px' }}>
+                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.6rem', marginBottom: '7px' }}>
                   Tel Aviv-Yafo, Israel
                 </p>
 
-                <div className="divider" style={{ marginBottom: '10px' }} />
+                <div className="divider" style={{ marginBottom: '7px' }} />
 
                 {/* Dress code */}
-                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.58rem' }}>
-                  Fun Black Tie
+                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.6rem' }}>
+                  Fun Formal
                 </p>
               </div>
 
-              {/* ── Below card section (image 3) ── */}
-              <div style={{ width: '100%', maxWidth: '800px', textAlign: 'center', padding: '80px 24px 40px' }}>
-                <h1 style={{
-                  fontFamily: "'Cormorant SC', serif",
-                  fontSize: 'clamp(28px, 6vw, 56px)',
-                  fontWeight: 300,
-                  color: '#1C1C1C',
-                  letterSpacing: '0.12em',
-                  lineHeight: 1.2,
-                  marginBottom: '24px',
-                }}>
-                  Eli and Naomi&apos;s Wedding
-                </h1>
-
+              {/* ── Below card section ── */}
+              <div style={{ width: '100%', maxWidth: '800px', textAlign: 'center', padding: '16px 24px 20px' }}>
                 {guestName && (
-                  <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.65rem', marginBottom: '48px' }}>
+                  <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.65rem', marginBottom: '12px' }}>
                     To: {guestName}
                   </p>
                 )}
@@ -199,14 +187,14 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'flex-start',
-                  gap: '60px',
-                  marginBottom: '60px',
+                  gap: '48px',
+                  marginBottom: '16px',
                   flexWrap: 'wrap',
                 }}>
                   <div>
-                    <p className="eyebrow" style={{ color: '#C9A96E', fontSize: '0.55rem', marginBottom: '10px' }}>Date & Time</p>
-                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', color: '#1C1C1C', marginBottom: '4px' }}>Monday, October 19, 2026</p>
-                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '15px', color: '#6B6560', marginBottom: '12px' }}>4:00 PM</p>
+                    <p className="eyebrow" style={{ color: '#C9A96E', fontSize: '0.55rem', marginBottom: '6px' }}>Date & Time</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '16px', color: '#1C1C1C', marginBottom: '2px' }}>Monday, October 19, 2026</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '14px', color: '#6B6560', marginBottom: '8px' }}>4:00 PM</p>
                     <a
                       href="https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T140000Z/20261020T000000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
                       target="_blank"
@@ -221,9 +209,9 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
                   <div style={{ width: '1px', background: 'rgba(0,0,0,0.12)', alignSelf: 'stretch', minHeight: '60px' }} />
 
                   <div>
-                    <p className="eyebrow" style={{ color: '#C9A96E', fontSize: '0.55rem', marginBottom: '10px' }}>Venue</p>
-                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', color: '#1C1C1C', marginBottom: '4px' }}>Consul House</p>
-                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '15px', color: '#6B6560', marginBottom: '12px' }}>Tel Aviv-Yafo, Israel</p>
+                    <p className="eyebrow" style={{ color: '#C9A96E', fontSize: '0.55rem', marginBottom: '6px' }}>Venue</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '16px', color: '#1C1C1C', marginBottom: '2px' }}>Consul House</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '14px', color: '#6B6560', marginBottom: '8px' }}>Tel Aviv-Yafo, Israel</p>
                     <a
                       href="https://maps.google.com/?q=Consul+House+HaTsorfim+St+15+Tel+Aviv"
                       target="_blank"
@@ -236,7 +224,7 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
                   </div>
                 </div>
 
-                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.65rem', marginBottom: '20px' }}>
+                <p className="eyebrow" style={{ color: '#6B6560', fontSize: '0.65rem', marginBottom: '10px' }}>
                   Please RSVP here
                 </p>
                 <Link href="/rsvp" className="btn-dark">
