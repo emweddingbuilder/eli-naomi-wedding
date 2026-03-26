@@ -125,36 +125,16 @@ const TRAVEL_CARDS = [
 
 const FAQ_ITEMS = [
   {
-    q: 'What is the wedding attire?',
-    a: 'Fun Black Tie — tuxedos, evening gowns, cocktail dresses. Think elegant with personality. Dancing shoes encouraged.',
+    q: 'What is the dress code?',
+    a: 'Fun Formal — suits and nice gowns. Think elegant with personality. Dancing shoes encouraged.',
   },
   {
-    q: 'What is the closest airport?',
-    a: 'Ben Gurion International Airport (TLV). About 20 minutes from central Tel Aviv by taxi or Gett.',
-  },
-  {
-    q: 'How do I get around Tel Aviv?',
-    a: "Gett (Israeli rideshare) and taxis are easy and affordable. The city is also very walkable, especially along the coast. We'll share a getting-around guide closer to the date.",
+    q: 'Is there a hotel block?',
+    a: "We're securing a room block near the venue and will share details soon. Stay tuned — we'll update this page as soon as it's confirmed.",
   },
   {
     q: "What's the weather like in October?",
-    a: 'Warm and sunny — expect highs in the mid-70s°F (~24°C) with pleasant evenings. Light layers for any outdoor portions.',
-  },
-  {
-    q: 'Can I bring a plus one?',
-    a: "We can only accommodate guests named on the invitation. If you've been given a plus one, it will be noted on your RSVP.",
-  },
-  {
-    q: 'Will there be transportation to the venue?',
-    a: "We're arranging shuttles between the hotel block and Consul House. Details will be shared closer to the wedding.",
-  },
-  {
-    q: 'Do I need a visa to enter Israel?',
-    a: "US citizens do not need a visa for stays under 90 days. Check with your country's foreign affairs office if you hold a different passport.",
-  },
-  {
-    q: 'What should I do with extra days in Tel Aviv?',
-    a: "We'll have a full Tel Aviv guide on the Things to Do page — beaches, restaurants, neighborhoods, day trips to Jerusalem. You won't be bored.",
+    a: 'Expect warm, sunny days and pleasant evenings. October in Tel Aviv is beautiful — highs around 80°F (27°C) with low humidity and virtually no rain. Evenings cool down slightly, so a light layer for any outdoor moments is a good idea. It\'s one of the best times of year to be in the city.',
   },
 ];
 
@@ -440,6 +420,33 @@ export default function LandingPage() {
             </Link>
           </div>
         </FadeIn>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════
+          FAQ
+          ══════════════════════════════════════════════════════════════ */}
+      <section id="faq" style={{ padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
+          <FadeIn>
+            <p style={sectionLabel}>FAQ</p>
+            <h2 style={sectionHeading}>Good to Know</h2>
+          </FadeIn>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: C.border }}>
+            {FAQ_ITEMS.map((item, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div style={{ background: C.charcoal, padding: '32px' }}>
+                  <p style={{ fontFamily: fonts.serif, fontSize: '18px', fontWeight: 400, color: C.champagne, marginBottom: '10px' }}>
+                    {item.q}
+                  </p>
+                  <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.8 }}>
+                    {item.a}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
