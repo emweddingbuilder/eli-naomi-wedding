@@ -1,0 +1,223 @@
+'use client';
+
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { colors, fonts } from '@/lib/tokens';
+
+const C = colors;
+
+const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] }}
+  >
+    {children}
+  </motion.div>
+);
+
+// ── Data ──────────────────────────────────────────────────────────────────
+
+const SECTIONS = [
+  {
+    label: 'Places to Eat',
+    heading: 'Restaurants We Love',
+    description: 'Some of our favorite spots to sit down, eat well, and enjoy Tel Aviv.',
+    items: [
+      {
+        name: 'EatMeat',
+        description: 'Exceptional cuts and a lively atmosphere — a go-to for a serious dinner out.',
+        tags: ['Meat', 'Steakhouse'],
+        mapsQuery: 'EatMeat Tel Aviv',
+      },
+      {
+        name: 'Jazminos',
+        description: 'Warm hospitality and bold flavors in a beautiful setting.',
+        tags: ['Mediterranean', 'Dinner'],
+        mapsQuery: 'Jazminos Tel Aviv',
+      },
+      {
+        name: 'Benz Brothers',
+        description: 'A Tel Aviv staple — great food, great vibe, reliably excellent.',
+        tags: ['Israeli', 'Casual Fine Dining'],
+        mapsQuery: 'Benz Brothers Tel Aviv',
+      },
+    ],
+  },
+  {
+    label: 'Cafes We Love',
+    heading: 'Coffee & Morning Hours',
+    description: 'Start your day right. Tel Aviv does café culture as well as anyone.',
+    items: [
+      {
+        name: 'Buckee',
+        description: 'A neighborhood gem — great coffee, relaxed energy, perfect for a slow morning.',
+        tags: ['Coffee', 'Breakfast'],
+        mapsQuery: 'Buckee cafe Tel Aviv',
+      },
+      {
+        name: 'Bialik Square Café',
+        description: 'Sitting in Bialik Square with a coffee in hand is one of the great Tel Aviv pleasures.',
+        tags: ['Coffee', 'Outdoor Seating'],
+        mapsQuery: 'Bialik Square Tel Aviv',
+      },
+    ],
+  },
+  {
+    label: 'Our Top Spots',
+    heading: 'Places Worth Visiting',
+    description: 'Beyond the tourist trail — the spots we actually spend time in.',
+    items: [
+      {
+        name: 'Bialik Square',
+        description: 'One of the most beautiful squares in the city. Eclectic Bauhaus architecture, shaded benches, good coffee nearby.',
+        tags: ['Neighborhood', 'Architecture'],
+        mapsQuery: 'Bialik Square Tel Aviv',
+      },
+      {
+        name: 'Old Jaffa',
+        description: "Ancient port city right next to Tel Aviv — galleries, flea market, stunning views of the coastline. Don't miss the flea market on a Friday.",
+        tags: ['History', 'Culture', 'Views'],
+        mapsQuery: 'Old Jaffa Tel Aviv',
+      },
+      {
+        name: 'Dizengoff Square',
+        description: 'The beating heart of Tel Aviv — great people watching, surrounded by cafés and boutiques.',
+        tags: ['City Life', 'Shopping'],
+        mapsQuery: 'Dizengoff Square Tel Aviv',
+      },
+      {
+        name: 'Gan Meir',
+        description: 'A lovely park in the center of the city, great for a morning walk or afternoon with a book.',
+        tags: ['Park', 'Relaxed'],
+        mapsQuery: 'Gan Meir Park Tel Aviv',
+      },
+      {
+        name: 'Frischman Beach',
+        description: 'Our neighborhood beach — look for the blue umbrellas. One of the most central stretches of coastline, and endlessly beautiful.',
+        tags: ['Beach', 'Our Neighborhood'],
+        mapsQuery: 'Frischman Beach Tel Aviv',
+        highlight: true,
+      },
+    ],
+  },
+];
+
+// ── Component ─────────────────────────────────────────────────────────────
+
+export default function ThingsToDoPage() {
+  return (
+    <div style={{ background: C.black, minHeight: '100vh', color: C.textLight, fontFamily: fonts.sans }}>
+
+      {/* Nav back */}
+      <div style={{ padding: '24px 32px' }}>
+        <Link href="/" style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2.5px', textTransform: 'uppercase', color: C.textMuted, textDecoration: 'none' }}>
+          ← Back to Site
+        </Link>
+      </div>
+
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 24px 100px' }}>
+
+        {/* Header */}
+        <FadeIn>
+          <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+            <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: C.textMuted, marginBottom: '16px' }}>
+              Tel Aviv
+            </p>
+            <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 6vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: C.champagne, marginBottom: '24px' }}>
+              Things to Do
+            </h1>
+            <div style={{ width: '40px', height: '1px', background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, margin: '0 auto 24px' }} />
+            <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9, maxWidth: '480px', margin: '0 auto' }}>
+              We've spent a lot of time in Tel Aviv — here are the places we keep coming back to.
+              We'll keep adding to this as we get closer to the wedding.
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* Sections */}
+        {SECTIONS.map((section, si) => (
+          <FadeIn key={section.label} delay={si * 0.1}>
+            <div style={{ marginBottom: '80px' }}>
+
+              {/* Section header */}
+              <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+                <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: C.gold, marginBottom: '10px' }}>
+                  {section.label}
+                </p>
+                <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4vw, 30px)', fontWeight: 300, fontStyle: 'italic', color: C.champagne, marginBottom: '12px' }}>
+                  {section.heading}
+                </h2>
+                <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.8 }}>
+                  {section.description}
+                </p>
+              </div>
+
+              {/* Items */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: C.border }}>
+                {section.items.map((item) => (
+                  <a
+                    key={item.name}
+                    href={`https://maps.google.com/?q=${encodeURIComponent(item.mapsQuery)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      justifyContent: 'space-between',
+                      padding: '28px 32px',
+                      background: C.charcoal,
+                      textDecoration: 'none',
+                      transition: 'background 0.2s',
+                      gap: '24px',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = '#2a2a2a')}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = C.charcoal)}
+                  >
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px', flexWrap: 'wrap' }}>
+                        <p style={{ fontFamily: fonts.serif, fontSize: '19px', fontWeight: 400, color: C.champagne }}>
+                          {item.name}
+                        </p>
+                        {'highlight' in item && item.highlight && (
+                          <span style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, border: `1px solid ${C.gold}`, padding: '2px 8px' }}>
+                            Our Neighborhood
+                          </span>
+                        )}
+                      </div>
+                      <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.7, marginBottom: '10px' }}>
+                        {item.description}
+                      </p>
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                        {item.tags.map((tag) => (
+                          <span key={tag} style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: C.textMuted, background: 'rgba(255,255,255,0.04)', padding: '3px 8px' }}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <span style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, whiteSpace: 'nowrap', paddingTop: '4px' }}>
+                      View Map →
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        ))}
+
+        {/* Footer note */}
+        <FadeIn delay={0.3}>
+          <div style={{ textAlign: 'center', paddingTop: '20px' }}>
+            <div style={{ width: '40px', height: '1px', background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, margin: '0 auto 24px' }} />
+            <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9 }}>
+              More recommendations coming soon — we'll keep updating this before October.
+            </p>
+          </div>
+        </FadeIn>
+
+      </div>
+    </div>
+  );
+}
