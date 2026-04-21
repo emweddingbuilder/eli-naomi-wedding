@@ -304,36 +304,32 @@ export default function RSVPFlow() {
                         style={{ fontSize: '0.95rem', color: 'var(--charcoal)', outline: 'none' }}
                       />
                     </div>
-                    {i === 0 && (
-                      <>
-                        <div>
-                          <label className="eyebrow block mb-1" style={{ color: 'var(--muted)', fontSize: '0.6rem' }}>
-                            Song Request (optional)
-                          </label>
-                          <input
-                            type="text"
-                            value={guestForm.songRequest}
-                            onChange={(e) => updateGuestField(i, 'songRequest', e.target.value)}
-                            placeholder="What song will get you on the dance floor?"
-                            className="w-full max-w-md px-3 py-2 bg-white border border-gray-200 rounded font-display"
-                            style={{ fontSize: '0.95rem', color: 'var(--charcoal)', outline: 'none' }}
-                          />
-                        </div>
-                        <div>
-                          <label className="eyebrow block mb-1" style={{ color: 'var(--muted)', fontSize: '0.6rem' }}>
-                            Message to Eli & Naomi (optional)
-                          </label>
-                          <textarea
-                            value={guestForm.message}
-                            onChange={(e) => updateGuestField(i, 'message', e.target.value)}
-                            placeholder="Share your wishes..."
-                            rows={3}
-                            className="w-full max-w-md px-3 py-2 bg-white border border-gray-200 rounded font-display resize-none"
-                            style={{ fontSize: '0.95rem', color: 'var(--charcoal)', outline: 'none' }}
-                          />
-                        </div>
-                      </>
-                    )}
+                    <div>
+                      <label className="eyebrow block mb-1" style={{ color: 'var(--muted)', fontSize: '0.6rem' }}>
+                        Song Request (optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={guestForm.songRequest}
+                        onChange={(e) => updateGuestField(i, 'songRequest', e.target.value)}
+                        placeholder="What song will get you on the dance floor?"
+                        className="w-full max-w-md px-3 py-2 bg-white border border-gray-200 rounded font-display"
+                        style={{ fontSize: '0.95rem', color: 'var(--charcoal)', outline: 'none' }}
+                      />
+                    </div>
+                    <div>
+                      <label className="eyebrow block mb-1" style={{ color: 'var(--muted)', fontSize: '0.6rem' }}>
+                        Message to Eli & Naomi (optional)
+                      </label>
+                      <textarea
+                        value={guestForm.message}
+                        onChange={(e) => updateGuestField(i, 'message', e.target.value)}
+                        placeholder="Share your wishes..."
+                        rows={3}
+                        className="w-full max-w-md px-3 py-2 bg-white border border-gray-200 rounded font-display resize-none"
+                        style={{ fontSize: '0.95rem', color: 'var(--charcoal)', outline: 'none' }}
+                      />
+                    </div>
                   </div>
                 )}
               </div>

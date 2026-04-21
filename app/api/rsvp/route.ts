@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase';
+import { sendRSVPConfirmation } from '@/lib/email';
 import type { RSVPSubmission } from '@/lib/types';
 
 export async function POST(request: NextRequest) {
@@ -35,6 +36,29 @@ export async function POST(request: NextRequest) {
   if (error) {
     console.error('RSVP error:', error);
     return NextResponse.json({ error: 'Failed to save RSVP' }, { status: 500 });
+  }
+
+  // Send confirmation emails (one per guest who has an email on file)
+  const guestIds = [...new Set(submissions.map((s) => s.guestId))];
+  const { data: guests } = await getSupabase()
+    .from('guests')
+    .select('id, first_name, last_name, email')
+    .in('id', guestIds);
+
+  if (guests) {
+    await Promise.allSettled(
+      guests
+        .filter((g) => g.email)
+        .map((g) => {
+          const guestSubmissions = submissions.filter((s) => s.guestId === g.id);
+          const attending = guestSubmissions.some((s) => s.attending);
+          return sendRSVPConfirmation({
+            to: g.email!,
+            guestName: `${g.first_name} ${g.last_name}`,
+            attending,
+          });
+        })
+    );
   }
 
   return NextResponse.json({ success: true });

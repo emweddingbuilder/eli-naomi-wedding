@@ -2,6 +2,92 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+export async function sendRSVPConfirmation({
+  to,
+  guestName,
+  attending,
+}: {
+  to: string;
+  guestName: string;
+  attending: boolean;
+}) {
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RSVP Confirmed — Eli & Naomi</title>
+</head>
+<body style="margin:0;padding:0;background:#F0EBE3;font-family:'Georgia',serif;">
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
+    Your RSVP has been received · Eli &amp; Naomi's Wedding · October 19, 2026&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+  </div>
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#F0EBE3;padding:40px 20px;">
+    <tr>
+      <td align="center">
+        <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
+
+          <tr>
+            <td align="center" style="padding:0 0 24px;">
+              <p style="margin:0;font-size:11px;letter-spacing:0.35em;text-transform:uppercase;color:#6B6560;font-family:'Georgia',serif;">
+                Eli &amp; Naomi
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background:#FAF8F5;padding:48px 40px;text-align:center;">
+              <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#6B6560;font-family:'Georgia',serif;">
+                RSVP Received
+              </p>
+              <p style="margin:0 0 24px;font-size:28px;color:#1C1C1C;font-family:'Georgia',serif;font-style:italic;font-weight:300;">
+                ${guestName}
+              </p>
+              <p style="margin:0 0 32px;font-size:14px;color:#6B6560;font-family:'Georgia',serif;line-height:1.7;">
+                ${attending
+                  ? "We're so happy you'll be joining us. We can't wait to celebrate with you on October 19th in Tel Aviv-Yafo."
+                  : "We're sorry you won't be able to make it, but we're grateful you let us know. You'll be missed."}
+              </p>
+              <table cellpadding="0" cellspacing="0" style="margin:0 auto 32px;">
+                <tr>
+                  <td style="border:1px solid rgba(0,0,0,0.12);padding:16px 24px;text-align:center;">
+                    <p style="margin:0 0 2px;font-size:14px;color:#1C1C1C;font-family:'Georgia',serif;">Monday, October 19, 2026</p>
+                    <p style="margin:0;font-size:12px;color:#6B6560;font-family:'Georgia',serif;">4:00 PM &nbsp;·&nbsp; Consul House, Tel Aviv-Yafo</p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0;font-size:12px;color:#B0A89F;font-family:'Georgia',serif;">
+                If you need to update your RSVP, visit <a href="https://elinaomi.love/rsvp" style="color:#1C1C1C;">elinaomi.love/rsvp</a>
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding:20px 40px 8px;">
+              <p style="margin:0;font-size:10px;color:#B0A89F;letter-spacing:0.1em;font-family:'Georgia',serif;">
+                With love, Eli &amp; Naomi
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `;
+
+  return resend.emails.send({
+    from: 'Eli & Naomi <hello@elinaomi.love>',
+    replyTo: 'eli.naomi.gettingmarried@gmail.com',
+    to,
+    subject: `Your RSVP is confirmed — Eli & Naomi, October 19`,
+    html,
+  });
+}
+
 export async function sendInviteEmail({
   to,
   guestName,
