@@ -7,156 +7,163 @@ import { motion, AnimatePresence } from 'framer-motion';
 type Phase = 'envelope' | 'opening' | 'card';
 
 const INK = '#2C2825';
-const INK_MID = 'rgba(44,40,37,0.42)';
-const INK_LIGHT = 'rgba(44,40,37,0.2)';
-const INK_WARM = 'rgba(44,40,37,0.1)';
+const INK_MID = 'rgba(44,40,37,0.36)';
+const INK_LIGHT = 'rgba(44,40,37,0.15)';
+const INK_FAINT = 'rgba(44,40,37,0.07)';
 
-// ── Consul House architectural sketch ────────────────────────────────────────
+// ── Arch geometry ─────────────────────────────────────────────────────────────
+const G = 200;           // ground y
+const OA = 46;           // outer apex y
+const IA = 64;           // inner apex y
+
+// Three arches: outer x1/x2, inner ix1/ix2, center cx
+const ARCHES = [
+  { cx: 66,  x1: 16,  x2: 116, ix1: 27,  ix2: 105 },
+  { cx: 178, x1: 128, x2: 228, ix1: 139, ix2: 217 },
+  { cx: 290, x1: 240, x2: 340, ix1: 251, ix2: 329 },
+] as const;
+
+// Cubic-bezier pointed arch — straight sides, gentle curve at crown
+function archPath(x1: number, x2: number, cx: number, apexY: number): string {
+  const c1y = G - 32;          // ctrl 1: close to foot → near-vertical start
+  const c2y = apexY + 11;      // ctrl 2: just below apex → tight point
+  return (
+    `M ${x1},${G} ` +
+    `C ${x1},${c1y} ${cx},${c2y} ${cx},${apexY} ` +
+    `C ${cx},${c2y} ${x2},${c1y} ${x2},${G}`
+  );
+}
+
+// ── Consul House SVG ──────────────────────────────────────────────────────────
 function ConsulHouseSketch() {
   return (
     <svg
-      viewBox="0 0 300 205"
-      style={{ width: '100%', maxWidth: '290px', display: 'block', margin: '0 auto' }}
+      viewBox="0 0 380 248"
+      style={{ width: '100%', maxWidth: '320px', display: 'block', margin: '0 auto' }}
       strokeLinecap="round"
       strokeLinejoin="round"
     >
+      {/* ── Warm interior fills ── */}
+      {ARCHES.map(({ cx, ix1, ix2 }, i) => (
+        <path
+          key={`fill-${i}`}
+          d={archPath(ix1, ix2, cx, IA) + ' Z'}
+          fill={i === 1 ? 'rgba(255,198,105,0.16)' : 'rgba(255,198,105,0.11)'}
+          stroke="none"
+        />
+      ))}
 
-      {/* ── FOLIAGE ── */}
-      {/* Left cluster */}
+      {/* ── Outer stone arch surrounds ── */}
+      {ARCHES.map(({ cx, x1, x2 }, i) => (
+        <path
+          key={`outer-${i}`}
+          d={archPath(x1, x2, cx, OA)}
+          fill="none" stroke={INK} strokeWidth="2.1"
+        />
+      ))}
+
+      {/* ── Inner arch openings ── */}
+      {ARCHES.map(({ cx, ix1, ix2 }, i) => (
+        <path
+          key={`inner-${i}`}
+          d={archPath(ix1, ix2, cx, IA)}
+          fill="none" stroke={INK} strokeWidth="0.85" opacity="0.6"
+        />
+      ))}
+
+      {/* ── Cornice band above arches ── */}
+      <path d={`M 0,${OA + 7} L 380,${OA + 7}`} stroke={INK} strokeWidth="0.8" fill="none" opacity="0.42" />
+      <path d={`M 0,${OA + 14} L 380,${OA + 14}`} stroke={INK_LIGHT} strokeWidth="0.4" fill="none" />
+
+      {/* ── Stone coursing — piers & end walls ── */}
+      {[94, 110, 126, 142, 158, 174, 190].map(y => (
+        <g key={`h-${y}`}>
+          <path d={`M 0,${y} L 16,${y}`}   stroke={INK_MID} strokeWidth="0.4" fill="none" />
+          <path d={`M 116,${y} L 128,${y}`} stroke={INK_MID} strokeWidth="0.4" fill="none" />
+          <path d={`M 228,${y} L 240,${y}`} stroke={INK_MID} strokeWidth="0.4" fill="none" />
+          <path d={`M 340,${y} L 380,${y}`} stroke={INK_MID} strokeWidth="0.4" fill="none" />
+        </g>
+      ))}
+
+      {/* Pier vertical center joints */}
+      <path d={`M 122,${OA + 7} L 122,${G}`} stroke={INK_LIGHT} strokeWidth="0.3" fill="none" />
+      <path d={`M 234,${OA + 7} L 234,${G}`} stroke={INK_LIGHT} strokeWidth="0.3" fill="none" />
+
+      {/* ── Interior: bar shelf (center arch) ── */}
+      <path d="M 148,170 L 208,170" stroke={INK_LIGHT} strokeWidth="0.9" fill="none" />
+      <path d="M 148,162 L 208,162" stroke={INK_FAINT} strokeWidth="0.5" fill="none" />
+      {[155, 163, 171, 179, 187, 195, 203].map(x => (
+        <path key={`bot-${x}`} d={`M ${x},162 L ${x},149`} stroke={INK_FAINT} strokeWidth="1.1" fill="none" />
+      ))}
+
+      {/* Interior: table line (side arches) */}
+      <path d="M 34,186 L 98,186"  stroke={INK_FAINT} strokeWidth="0.8" fill="none" />
+      <path d="M 258,186 L 322,186" stroke={INK_FAINT} strokeWidth="0.8" fill="none" />
+
+      {/* ── Ground line ── */}
+      <path d={`M 0,${G} L 380,${G}`} stroke={INK} strokeWidth="1.9" fill="none" opacity="0.78" />
+
+      {/* Shallow step / platform */}
+      <rect x="16" y={G} width="348" height="7" fill="rgba(44,40,37,0.04)" stroke={INK_MID} strokeWidth="0.45" />
+
+      {/* ── Foreground plants ── */}
+      {[
+        { x: 56, h: 36, op: 0.25 }, { x: 63, h: 43, op: 0.23 },
+        { x: 174, h: 31, op: 0.21 },
+        { x: 280, h: 36, op: 0.25 }, { x: 287, h: 43, op: 0.23 },
+      ].map(({ x, h, op }, i) => (
+        <path
+          key={`pl-${i}`}
+          d={`M ${x},${G} C ${x - 2},${G - h * 0.38} ${x - 2},${G - h * 0.72} ${x},${G - h} C ${x + 2},${G - h * 0.72} ${x + 2},${G - h * 0.38} ${x},${G}`}
+          fill={INK} opacity={op}
+        />
+      ))}
+
+      {/* ── FOLIAGE — drawn last, appears in front ── */}
+
+      {/* Left main mass */}
       <path
-        d="M 0,44 C 0,28 10,16 24,20 C 20,8 34,2 44,10 C 44,2 56,0 60,10 C 70,4 76,14 70,22 C 80,20 84,30 76,38 C 80,46 72,54 62,50 C 60,58 48,60 42,52 C 34,58 22,54 16,46 C 8,50 0,46 0,44 Z"
-        fill={INK} opacity="0.72"
+        d="M -4,54 C -4,28 16,6 38,14 C 32,-4 54,-12 68,6 C 70,-8 86,-10 92,8 C 106,-2 114,20 102,34 C 116,30 120,52 108,60 C 112,74 96,84 82,74 C 78,88 60,90 50,78 C 40,86 22,80 14,68 C 2,74 -4,58 -4,54 Z"
+        fill={INK} opacity="0.70"
       />
       {/* Left trailing vines */}
-      <path d="M 14,50 C 10,62 6,76 4,92" fill="none" stroke={INK} strokeWidth="0.8" opacity="0.45"/>
-      <path d="M 22,54 C 20,66 18,80 20,94" fill="none" stroke={INK} strokeWidth="0.7" opacity="0.38"/>
-      {/* Small left leaves on vine */}
-      <ellipse cx="10" cy="72" rx="5" ry="3" fill={INK} opacity="0.35" transform="rotate(-30 10 72)"/>
-      <ellipse cx="6" cy="88" rx="4" ry="2.5" fill={INK} opacity="0.30" transform="rotate(20 6 88)"/>
+      <path d="M 8,64 C 4,84 2,106 6,128 C 2,148 0,168 4,184" stroke={INK} strokeWidth="0.95" fill="none" opacity="0.34" />
+      <path d="M 18,72 C 14,92 14,114 16,136" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.26" />
+      <ellipse cx="5" cy="92"  rx="7" ry="4"   fill={INK} opacity="0.22" transform="rotate(-28 5 92)" />
+      <ellipse cx="3" cy="120" rx="6" ry="3.5" fill={INK} opacity="0.19" transform="rotate(22 3 120)" />
+      <ellipse cx="4" cy="154" rx="5.5" ry="3" fill={INK} opacity="0.15" transform="rotate(-16 4 154)" />
 
-      {/* Center-left cluster */}
+      {/* Left-center mass */}
       <path
-        d="M 76,50 C 78,36 90,26 102,30 C 98,18 112,12 120,20 C 118,10 130,8 136,16 C 146,10 152,20 146,28 C 156,26 160,36 152,44 C 156,52 148,60 138,56 C 136,64 124,66 118,58 C 110,64 100,60 98,52 C 90,54 80,52 76,50 Z"
-        fill={INK} opacity="0.60"
+        d="M 94,44 C 94,22 112,4 132,14 C 128,-4 146,-12 160,4 C 162,-8 178,-10 184,6 C 198,-2 206,18 194,30 C 208,26 212,48 200,56 C 204,70 188,80 176,68 C 172,82 156,84 146,72 C 136,80 120,72 116,58 C 106,64 94,48 94,44 Z"
+        fill={INK} opacity="0.50"
       />
-      <path d="M 96,54 C 92,66 90,78 92,90" fill="none" stroke={INK} strokeWidth="0.7" opacity="0.38"/>
+      <path d="M 112,56 C 108,76 106,98 110,118" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.24" />
 
-      {/* Center cluster */}
+      {/* Right-center mass */}
       <path
-        d="M 128,48 C 130,34 142,24 154,28 C 152,16 166,10 174,18 C 180,10 192,14 190,24 C 200,22 204,32 196,40 C 200,48 192,56 182,52 C 180,60 168,62 162,54 C 154,60 144,56 140,48 C 134,52 128,50 128,48 Z"
-        fill={INK} opacity="0.55"
+        d="M 230,42 C 230,20 248,2 268,12 C 264,-6 282,-14 296,4 C 298,-8 314,-10 320,6 C 334,-2 342,18 330,30 C 344,26 348,48 336,56 C 340,70 324,80 312,68 C 308,82 292,84 282,72 C 272,80 256,72 252,56 C 242,62 230,46 230,42 Z"
+        fill={INK} opacity="0.52"
       />
+      <path d="M 250,56 C 246,76 244,98 248,118" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.24" />
 
-      {/* Right cluster */}
+      {/* Right main mass */}
       <path
-        d="M 196,46 C 196,30 208,18 222,22 C 218,10 232,4 242,12 C 242,4 254,2 258,12 C 268,6 274,16 268,24 C 278,22 282,32 274,40 C 278,48 270,56 260,52 C 258,60 246,62 240,54 C 230,60 218,56 212,48 C 204,52 196,48 196,46 Z"
-        fill={INK} opacity="0.68"
+        d="M 320,52 C 320,28 336,8 356,16 C 352,-2 370,-12 384,6 C 386,-6 384,10 384,20 L 384,32 C 394,30 396,50 386,58 C 390,72 376,80 364,70 C 360,84 344,86 336,74 C 326,82 316,72 316,60 C 308,68 320,56 320,52 Z"
+        fill={INK} opacity="0.65"
       />
       {/* Right trailing vines */}
-      <path d="M 270,52 C 274,64 278,78 276,92" fill="none" stroke={INK} strokeWidth="0.8" opacity="0.42"/>
-      <path d="M 284,46 C 288,60 292,74 290,88" fill="none" stroke={INK} strokeWidth="0.7" opacity="0.35"/>
-      <ellipse cx="278" cy="72" rx="5" ry="3" fill={INK} opacity="0.32" transform="rotate(25 278 72)"/>
-
-      {/* Far right wisp */}
-      <path
-        d="M 268,44 C 278,36 290,34 298,40 C 296,30 298,20 296,12 C 294,22 290,32 286,40 C 290,32 292,22 290,14 C 286,24 284,36 284,44 Z"
-        fill={INK} opacity="0.42"
-      />
-
-      {/* ── TERRACE EDGE ── */}
-      <path d="M 0,56 C 30,52 80,58 140,54 C 200,50 250,56 300,54"
-        fill="none" stroke={INK} strokeWidth="1.4" opacity="0.7"/>
-      <path d="M 0,60 L 300,60"
-        fill="none" stroke={INK} strokeWidth="0.6" opacity="0.3"/>
-
-      {/* ── STONE WALL (above arches) ── */}
-      <path d="M 0,66 L 300,66" fill="none" stroke={INK_MID} strokeWidth="0.6"/>
-      <path d="M 0,74 L 300,74" fill="none" stroke={INK_MID} strokeWidth="0.4"/>
-      {/* Block joints */}
-      {[32,68,94,106,145,194,206,245,278].map(x => (
-        <path key={x} d={`M ${x},60 L ${x},76`} fill="none" stroke={INK_MID} strokeWidth="0.4"/>
-      ))}
-
-      {/* ── ARCH INTERIORS (warm glow) ── */}
-      {/* Left */}
-      <path d="M 13,172 L 13,88 C 13,48 50,38 50,38 C 50,38 87,48 87,88 L 87,172 Z"
-        fill="rgba(255,210,140,0.11)" stroke="none"/>
-      {/* Center */}
-      <path d="M 113,172 L 113,88 C 113,48 150,38 150,38 C 150,38 187,48 187,88 L 187,172 Z"
-        fill="rgba(255,210,140,0.14)" stroke="none"/>
-      {/* Right */}
-      <path d="M 213,172 L 213,88 C 213,48 250,38 250,38 C 250,38 287,48 287,88 L 287,172 Z"
-        fill="rgba(255,210,140,0.11)" stroke="none"/>
-
-      {/* ── STONE ARCH SURROUNDS (outer) ── */}
-      <path d="M 5,172 L 5,82 C 5,36 50,26 50,26 C 50,26 95,36 95,82 L 95,172"
-        fill="none" stroke={INK} strokeWidth="1.4"/>
-      <path d="M 105,172 L 105,82 C 105,36 150,26 150,26 C 150,26 195,36 195,82 L 195,172"
-        fill="none" stroke={INK} strokeWidth="1.4"/>
-      <path d="M 205,172 L 205,82 C 205,36 250,26 250,26 C 250,26 295,36 295,82 L 295,172"
-        fill="none" stroke={INK} strokeWidth="1.4"/>
-
-      {/* ── ARCH INNER OPENINGS ── */}
-      <path d="M 13,172 L 13,88 C 13,48 50,38 50,38 C 50,38 87,48 87,88 L 87,172"
-        fill="none" stroke={INK} strokeWidth="0.9" opacity="0.75"/>
-      <path d="M 113,172 L 113,88 C 113,48 150,38 150,38 C 150,38 187,48 187,88 L 187,172"
-        fill="none" stroke={INK} strokeWidth="0.9" opacity="0.75"/>
-      <path d="M 213,172 L 213,88 C 213,48 250,38 250,38 C 250,38 287,48 287,88 L 287,172"
-        fill="none" stroke={INK} strokeWidth="0.9" opacity="0.75"/>
-
-      {/* ── STONE TEXTURE on piers ── */}
-      {[88,100,112,124,136,148,160].map(y => (
-        <path key={y} d={`M 95,${y} L 105,${y}`} fill="none" stroke={INK_MID} strokeWidth="0.5"/>
-      ))}
-      {[88,100,112,124,136,148,160].map(y => (
-        <path key={y} d={`M 195,${y} L 205,${y}`} fill="none" stroke={INK_MID} strokeWidth="0.5"/>
-      ))}
-      {/* Side wall texture */}
-      {[88,100,112,124,136].map(y => (
-        <path key={y} d={`M 0,${y} L 5,${y}`} fill="none" stroke={INK_MID} strokeWidth="0.5"/>
-      ))}
-      {[88,100,112,124,136].map(y => (
-        <path key={y} d={`M 295,${y} L 300,${y}`} fill="none" stroke={INK_MID} strokeWidth="0.5"/>
-      ))}
-
-      {/* ── INTERIOR DETAILS (center arch = bar) ── */}
-      <path d="M 118,155 L 182,155" fill="none" stroke={INK_LIGHT} strokeWidth="1"/>
-      <path d="M 118,145 L 182,145" fill="none" stroke={INK_WARM} strokeWidth="0.6"/>
-      {[122,126,130,134,138,142,146,150,154,158,162,166,170,174,178].map(x => (
-        <path key={x} d={`M ${x},155 L ${x},143`} fill="none" stroke={INK_WARM} strokeWidth="0.8"/>
-      ))}
-      {/* Tables suggestion in side arches */}
-      <path d="M 20,165 L 80,165" fill="none" stroke={INK_WARM} strokeWidth="0.8"/>
-      <path d="M 220,165 L 280,165" fill="none" stroke={INK_WARM} strokeWidth="0.8"/>
-
-      {/* ── GROUND LINE ── */}
-      <path d="M 0,172 L 300,172" fill="none" stroke={INK} strokeWidth="1.6" opacity="0.8"/>
-
-      {/* ── LOWER STONE ARCHES ── */}
-      <path d="M 0,200 C 16,172 38,172 50,172 C 62,172 84,172 100,200"
-        fill="none" stroke={INK} strokeWidth="0.9" opacity="0.38"/>
-      <path d="M 100,200 C 116,172 138,172 150,172 C 162,172 184,172 200,200"
-        fill="none" stroke={INK} strokeWidth="0.9" opacity="0.38"/>
-      <path d="M 200,200 C 216,172 238,172 250,172 C 262,172 284,172 300,200"
-        fill="none" stroke={INK} strokeWidth="0.9" opacity="0.38"/>
-
-      {/* ── RAILING / TERRACE ── */}
-      <path d="M 0,178 L 300,178" fill="none" stroke={INK} strokeWidth="0.8" opacity="0.35"/>
-      {[8,18,28,38,48,58,68,78,88,100,110,120,130,140,150,160,170,180,190,202,212,222,232,242,252,262,272,282,292].map(x => (
-        <path key={x} d={`M ${x},172 L ${x},182`} fill="none" stroke={INK} strokeWidth="0.5" opacity="0.25"/>
-      ))}
-
-      {/* Small plants in front of arches */}
-      <path d="M 44,172 C 44,162 46,154 44,148 C 42,154 42,162 44,172 Z" fill={INK} opacity="0.28"/>
-      <path d="M 50,172 C 52,160 56,152 54,144 C 52,152 48,160 50,172 Z" fill={INK} opacity="0.28"/>
-      <path d="M 155,172 C 156,162 158,152 156,145 C 154,152 153,162 155,172 Z" fill={INK} opacity="0.28"/>
-      <path d="M 250,172 C 250,162 252,154 250,148 C 248,154 248,162 250,172 Z" fill={INK} opacity="0.25"/>
+      <path d="M 382,58 C 384,80 386,102 382,124 C 384,146 386,166 382,184" stroke={INK} strokeWidth="0.95" fill="none" opacity="0.32" />
+      <path d="M 370,66 C 372,88 372,110 370,132" stroke={INK} strokeWidth="0.7" fill="none" opacity="0.24" />
+      <ellipse cx="383" cy="88"  rx="7" ry="4"   fill={INK} opacity="0.21" transform="rotate(28 383 88)" />
+      <ellipse cx="381" cy="118" rx="6" ry="3.5" fill={INK} opacity="0.17" transform="rotate(-22 381 118)" />
+      <ellipse cx="382" cy="152" rx="5.5" ry="3" fill={INK} opacity="0.14" transform="rotate(16 382 152)" />
 
     </svg>
   );
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
+// ── Main component ─────────────────────────────────────────────────────────────
 export default function InvitationCard({ guestName }: { guestName?: string }) {
   const [phase, setPhase] = useState<Phase>('envelope');
 
@@ -167,7 +174,7 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
   }, []);
 
   return (
-    <div style={{ background: '#F5F2EE', minHeight: '100vh' }}>
+    <div suppressHydrationWarning style={{ background: '#F5F2EE', minHeight: '100vh' }}>
 
       {/* ── Envelope overlay ── */}
       <AnimatePresence>
@@ -205,68 +212,115 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
         {phase === 'card' && (
           <motion.div
             key="card"
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div style={{ display: 'flex', justifyContent: 'center', padding: '40px 24px 60px' }}>
-              <div style={{ width: '100%', maxWidth: '420px', background: '#FAF9F6', textAlign: 'center', padding: '48px 40px 40px', boxShadow: '0 2px 40px rgba(0,0,0,0.08)' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '44px 24px 56px' }}>
+              <div style={{
+                width: '100%',
+                maxWidth: '400px',
+                background: '#FAF8F4',
+                textAlign: 'center',
+                padding: '44px 36px 40px',
+                boxShadow: '0 4px 48px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06)',
+              }}>
 
                 {/* Venue sketch */}
-                <div style={{ marginBottom: '36px' }}>
+                <div style={{ marginBottom: '32px' }}>
                   <ConsulHouseSketch />
                 </div>
 
                 {/* Names */}
-                <p style={{ fontFamily: "'Cormorant SC', serif", fontSize: 'clamp(20px, 5vw, 26px)', fontWeight: 400, color: INK, letterSpacing: '0.18em', lineHeight: 1.3, marginBottom: '20px' }}>
+                <p style={{
+                  fontFamily: "'Cormorant SC', serif",
+                  fontSize: 'clamp(22px, 5vw, 28px)',
+                  fontWeight: 400,
+                  color: INK,
+                  letterSpacing: '0.20em',
+                  lineHeight: 1.2,
+                  marginBottom: '18px',
+                }}>
                   NAOMI &amp; ELI
                 </p>
 
-                {/* Italic subtitle */}
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '15px', fontStyle: 'italic', color: 'rgba(44,40,37,0.65)', lineHeight: 1.8, marginBottom: '24px' }}>
+                {/* Italic invitation copy */}
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '15.5px',
+                  fontStyle: 'italic',
+                  color: 'rgba(44,40,37,0.62)',
+                  lineHeight: 1.85,
+                  marginBottom: '26px',
+                }}>
                   together with their families<br />
                   invite you to celebrate their wedding day
                 </p>
 
-                {/* Divider */}
-                <div style={{ width: '48px', height: '1px', background: 'rgba(44,40,37,0.25)', margin: '0 auto 24px' }} />
+                {/* Thin rule */}
+                <div style={{ width: '44px', height: '1px', background: 'rgba(44,40,37,0.22)', margin: '0 auto 26px' }} />
 
-                {/* Day */}
-                <p style={{ fontFamily: "'Cormorant SC', serif", fontSize: '13px', fontWeight: 400, color: INK, letterSpacing: '0.22em', marginBottom: '6px' }}>
+                {/* Day + date */}
+                <p style={{
+                  fontFamily: "'Cormorant SC', serif",
+                  fontSize: '12.5px',
+                  fontWeight: 400,
+                  color: INK,
+                  letterSpacing: '0.24em',
+                  marginBottom: '5px',
+                }}>
                   MONDAY
                 </p>
-
-                {/* Date */}
-                <p style={{ fontFamily: "'Cormorant SC', serif", fontSize: '13px', fontWeight: 400, color: INK, letterSpacing: '0.22em', marginBottom: '24px' }}>
+                <p style={{
+                  fontFamily: "'Cormorant SC', serif",
+                  fontSize: '12.5px',
+                  fontWeight: 400,
+                  color: INK,
+                  letterSpacing: '0.24em',
+                  marginBottom: '22px',
+                }}>
                   19 OCTOBER 2026
                 </p>
 
                 {/* Ceremony details */}
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '15px', fontStyle: 'italic', color: 'rgba(44,40,37,0.65)', lineHeight: 1.9, marginBottom: '24px' }}>
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '15px',
+                  fontStyle: 'italic',
+                  color: 'rgba(44,40,37,0.62)',
+                  lineHeight: 1.95,
+                  marginBottom: '26px',
+                }}>
                   ceremony at four o&apos;clock in the evening<br />
-                  Consul House, Tel Aviv-Yafo<br />
+                  Consul House · Tel Aviv-Yafo<br />
                   dinner &amp; dancing to follow
                 </p>
 
-                {/* Divider */}
-                <div style={{ width: '48px', height: '1px', background: 'rgba(44,40,37,0.25)', margin: '0 auto 20px' }} />
-
-                {/* Dress code */}
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '13px', fontStyle: 'italic', color: 'rgba(44,40,37,0.45)', letterSpacing: '0.06em' }}>
+                {/* Rule + dress code */}
+                <div style={{ width: '44px', height: '1px', background: 'rgba(44,40,37,0.22)', margin: '0 auto 18px' }} />
+                <p style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '13px',
+                  fontStyle: 'italic',
+                  color: 'rgba(44,40,37,0.42)',
+                  letterSpacing: '0.06em',
+                }}>
                   Fun Formal
                 </p>
 
               </div>
             </div>
 
-            {/* ── Below card: links + RSVP ── */}
-            <div style={{ textAlign: 'center', padding: '0 24px 60px' }}>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', flexWrap: 'wrap', marginBottom: '28px' }}>
+            {/* ── Below-card area: links + RSVP ── */}
+            <div style={{ textAlign: 'center', padding: '0 24px 64px' }}>
+
+              {/* Calendar + Map */}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginBottom: '32px' }}>
                 <a
                   href="https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T140000Z/20261020T000000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
                   target="_blank" rel="noopener noreferrer"
                   className="eyebrow"
-                  style={{ color: INK, fontSize: '0.55rem', borderBottom: `1px solid ${INK}`, textDecoration: 'none', opacity: 0.6 }}
+                  style={{ color: INK, fontSize: '0.55rem', borderBottom: `1px solid ${INK}`, textDecoration: 'none', opacity: 0.55 }}
                 >
                   Add to Calendar
                 </a>
@@ -274,19 +328,22 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
                   href="https://maps.google.com/?q=Consul+House+HaTsorfim+St+15+Tel+Aviv"
                   target="_blank" rel="noopener noreferrer"
                   className="eyebrow"
-                  style={{ color: INK, fontSize: '0.55rem', borderBottom: `1px solid ${INK}`, textDecoration: 'none', opacity: 0.6 }}
+                  style={{ color: INK, fontSize: '0.55rem', borderBottom: `1px solid ${INK}`, textDecoration: 'none', opacity: 0.55 }}
                 >
                   View Map
                 </a>
               </div>
 
+              {/* RSVP */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-                <div style={{ width: '40px', height: '1px', background: 'rgba(44,40,37,0.2)' }} />
-                <p className="eyebrow" style={{ color: 'rgba(44,40,37,0.5)', fontSize: '0.6rem' }}>Please RSVP here</p>
+                <div style={{ width: '40px', height: '1px', background: 'rgba(44,40,37,0.18)' }} />
+                <p className="eyebrow" style={{ color: 'rgba(44,40,37,0.46)', fontSize: '0.58rem' }}>
+                  Please RSVP here
+                </p>
                 <Link href="/rsvp" className="btn-dark">RSVP</Link>
               </div>
-            </div>
 
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
