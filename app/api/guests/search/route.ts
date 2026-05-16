@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   // Search guests whose first or last name match any token
   const { data: guests, error } = await getSupabase()
     .from('guests')
-    .select('id, party_id, first_name, last_name, party:parties(id, invited_events)')
+    .select('id, party_id, first_name, last_name, party:parties(id, name, invited_events)')
     .or(
       tokens
         .flatMap((t) => [

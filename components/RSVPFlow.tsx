@@ -225,6 +225,11 @@ export default function RSVPFlow() {
               <div key={partyGuests[0].party_id} className="py-5" style={{ borderBottom: '1px solid var(--charcoal)' }}>
                 <div style={{ borderTop: '1px solid var(--charcoal)', paddingTop: '1.25rem' }} className="flex items-center justify-between">
                   <div>
+                    {partyGuests[0].party?.name && (
+                      <p className="eyebrow mb-1" style={{ color: 'var(--muted)', fontSize: '0.55rem', letterSpacing: '0.2em' }}>
+                        {partyGuests[0].party.name}
+                      </p>
+                    )}
                     {partyGuests.map((g) => (
                       <p key={g.id} className="font-display" style={{ fontSize: '1.1rem', color: 'var(--charcoal)' }}>
                         {g.first_name} {g.last_name}

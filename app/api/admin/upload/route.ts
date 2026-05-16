@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
 
     const { error: guestErr } = await getSupabaseAdmin()
       .from('guests')
-      .upsert(guestRecords, { onConflict: 'first_name,last_name' });
+      .upsert(guestRecords, { onConflict: 'party_id,first_name,last_name' });
 
     if (guestErr) {
       errors.push(`Guests for "${partyName}": ${guestErr.message}`);
