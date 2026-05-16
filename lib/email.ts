@@ -79,12 +79,30 @@ export async function sendRSVPConfirmation({
 </html>
   `;
 
+  const text = `
+Eli & Naomi — RSVP Confirmed
+
+${guestName},
+
+${attending
+  ? "We're so happy you'll be joining us. We can't wait to celebrate with you on October 19th in Tel Aviv-Yafo."
+  : "We're sorry you won't be able to make it, but we're grateful you let us know. You'll be missed."}
+
+Monday, October 19, 2026
+4:00 PM · Consul House, Tel Aviv-Yafo
+
+If you need to update your RSVP, visit: https://elinaomi.love/rsvp
+
+With love, Eli & Naomi
+`.trim();
+
   return resend.emails.send({
     from: 'Eli & Naomi <hello@elinaomi.love>',
     replyTo: 'eli.naomi.gettingmarried@gmail.com',
     to,
     subject: `Your RSVP is confirmed — Eli & Naomi, October 19`,
     html,
+    text,
   });
 }
 
@@ -241,11 +259,28 @@ export async function sendInviteEmail({
 </html>
   `;
 
+  const text = `
+Eli & Naomi — October 19, 2026
+
+${guestName} is warmly invited.
+
+Monday, October 19, 2026
+4:00 PM · Consul House, Tel Aviv-Yafo, Israel
+
+Please RSVP by August 1, 2026:
+${rsvpUrl}
+
+Add to Calendar: https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T140000Z/20261020T000000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel
+
+With love, Eli & Naomi
+`.trim();
+
   return resend.emails.send({
     from: 'Eli & Naomi <hello@elinaomi.love>',
     replyTo: 'eli.naomi.gettingmarried@gmail.com',
     to,
     subject: `Eli & Naomi — October 19, 2026`,
     html,
+    text,
   });
 }
