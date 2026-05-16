@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import RSVPFlow from '@/components/RSVPFlow';
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function RSVPPage() {
-  return <RSVPFlow />;
+  return (
+    <Suspense>
+      <RSVPFlow />
+    </Suspense>
+  );
 }

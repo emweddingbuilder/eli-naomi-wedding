@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Monogram from './Monogram';
 import type { GuestWithParty, RSVPSubmission } from '@/lib/types';
 
@@ -31,6 +32,7 @@ interface GuestFormState {
 }
 
 export default function RSVPFlow() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState<Step>('search');
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<GuestWithParty[]>([]);
@@ -40,6 +42,20 @@ export default function RSVPFlow() {
   const [guestForms, setGuestForms] = useState<GuestFormState[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  // Auto-load party when arriving from an invite link (?guestId=...)
+  useEffect(() => {
+    const guestId = searchParams.get('guestId');
+    if (!guestId) return;
+    setSearching(true);
+    fetch(`/api/guests/party?guestId=${encodeURIComponent(guestId)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.guests?.length) handleSelectParty(data.guests);
+      })
+      .catch(() => {/* fall through to manual search */})
+      .finally(() => setSearching(false));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const groupedResults = results.reduce<Record<string, GuestWithParty[]>>((acc, guest) => {
     const key = guest.party_id;

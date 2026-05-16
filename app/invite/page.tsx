@@ -26,5 +26,5 @@ export default async function InvitePage({
     }
   }
 
-  return <InvitationCard guestName={guestName} />;
+  return <InvitationCard guestName={guestName} guestId={guestId} />;
 }

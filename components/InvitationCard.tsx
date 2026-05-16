@@ -164,7 +164,7 @@ function ConsulHouseSketch() {
 }
 
 // ── Main component ─────────────────────────────────────────────────────────────
-export default function InvitationCard({ guestName }: { guestName?: string }) {
+export default function InvitationCard({ guestName, guestId }: { guestName?: string; guestId?: string }) {
   const [phase, setPhase] = useState<Phase>('envelope');
 
   useEffect(() => {
@@ -340,7 +340,7 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
                 <p className="eyebrow" style={{ color: 'rgba(44,40,37,0.46)', fontSize: '0.58rem' }}>
                   Please RSVP here
                 </p>
-                <Link href="/rsvp" className="btn-dark">RSVP</Link>
+                <Link href={guestId ? `/rsvp?guestId=${guestId}` : '/rsvp'} className="btn-dark">RSVP</Link>
               </div>
 
             </div>

@@ -55,6 +55,33 @@ export default function AdminDashboard() {
     return { label: parts.join(' · '), color: anyAttending ? '#2d7a4f' : '#c0392b' };
   };
 
+  async function handleSendAllUninvited() {
+    const uninvited = guests.filter((g) => g.email && !g.invited_at);
+    if (uninvited.length === 0) return;
+    if (!window.confirm(`Send invitations to ${uninvited.length} uninvited guest${uninvited.length === 1 ? '' : 's'}?`)) return;
+    for (const g of uninvited) {
+      setInviting(g.id);
+      try {
+        const res = await fetch('/api/admin/invite', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ guestId: g.id }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setGuests((prev) => prev.map((p) => p.id === g.id ? { ...p, invited_at: new Date().toISOString() } : p));
+        } else {
+          console.error(`Failed to invite ${g.first_name} ${g.last_name}: ${data.error}`);
+        }
+      } catch {
+        console.error(`Error inviting ${g.first_name} ${g.last_name}`);
+      }
+      setInviting(null);
+      // Small delay to avoid hammering the email API
+      await new Promise((r) => setTimeout(r, 300));
+    }
+  }
+
   async function handleUpload() {
     if (!csvText.trim()) return;
     setUploading(true);
@@ -168,9 +195,30 @@ export default function AdminDashboard() {
             </div>
 
             <div className="mb-6">
-              <p className="eyebrow mb-4" style={{ color: 'var(--muted)', fontSize: '0.6rem', letterSpacing: '0.25em' }}>
-                Invitations Sent: {invited} / {guests.length}
-              </p>
+              <div className="flex items-center justify-between mb-4">
+                <p className="eyebrow" style={{ color: 'var(--muted)', fontSize: '0.6rem', letterSpacing: '0.25em' }}>
+                  Invitations Sent: {invited} / {guests.length}
+                </p>
+                {guests.filter((g) => g.email && !g.invited_at).length > 0 && (
+                  <button
+                    onClick={handleSendAllUninvited}
+                    className="eyebrow"
+                    disabled={!!inviting}
+                    style={{
+                      fontSize: '0.55rem',
+                      color: 'white',
+                      background: 'var(--charcoal)',
+                      border: 'none',
+                      padding: '0.4rem 1rem',
+                      cursor: 'pointer',
+                      letterSpacing: '0.15em',
+                      opacity: inviting ? 0.5 : 1,
+                    }}
+                  >
+                    Send All Uninvited ({guests.filter((g) => g.email && !g.invited_at).length})
+                  </button>
+                )}
+              </div>
               <div className="w-full h-1 rounded" style={{ background: 'rgba(0,0,0,0.1)' }}>
                 <div
                   className="h-1 rounded"
