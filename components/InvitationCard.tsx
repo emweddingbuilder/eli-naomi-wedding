@@ -305,7 +305,7 @@ export default function InvitationCard({ guestName }: { guestName?: string }) {
                   color: 'rgba(44,40,37,0.42)',
                   letterSpacing: '0.06em',
                 }}>
-                  Fun Formal
+                  Formal Wear
                 </p>
 
               </div>

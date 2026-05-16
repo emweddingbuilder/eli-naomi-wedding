@@ -27,7 +27,7 @@ export const wedding = {
   date: new Date('2026-10-19T16:00:00'),
   venue: 'Consul House',
   venueAddress: 'HaTsorfim St 15, Tel Aviv-Yafo',
-  dressCode: 'Fun Black Tie',
+  dressCode: 'Formal Wear',
   couple: {
     name1: 'Eli Samuel',
     name1Hebrew: 'שמואל יצחק',
@@ -53,7 +53,7 @@ export const wedding = {
       date: 'Monday, October 19, 2026',
       time: '4:00 PM',
       venue: 'Consul House',
-      note: 'Fun Black Tie. Dancing shoes encouraged.',
+      note: 'Formal Wear. Dancing shoes encouraged.',
     },
   ],
   rsvpDeadline: 'August 1, 2026',

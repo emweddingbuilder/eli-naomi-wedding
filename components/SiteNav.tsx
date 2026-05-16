@@ -9,9 +9,8 @@ const NAV_ITEMS = [
   { label: 'Our Story', href: '/#our-story' },
   { label: 'Events', href: '/#events' },
   { label: 'Registry', href: '/registry' },
-  { label: 'Travel', href: '/#travel' },
   { label: 'Things to Do', href: '/things-to-do' },
-  { label: 'Gallery', href: '/gallery' },
+  { label: 'Mood Board', href: '/moodboard' },
   { label: 'FAQ', href: '/faq' },
   { label: 'RSVP', href: '/rsvp', accent: true },
 ];

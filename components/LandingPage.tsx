@@ -117,7 +117,7 @@ const TRAVEL_CARDS = [
 const FAQ_ITEMS = [
   {
     q: 'What is the dress code?',
-    a: 'Fun Formal — suits and nice gowns. Think elegant with personality. Dancing shoes encouraged.',
+    a: 'Formal Wear — suits and nice gowns. Think elegant with personality. Dancing shoes encouraged.',
   },
   {
     q: 'Is there a hotel block?',
