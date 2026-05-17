@@ -30,6 +30,19 @@ const RECEPTION_IMAGES: { src: string; caption?: string }[] = [
   { src: '/moodboard/reception/4.jpg' },
   { src: '/moodboard/reception/5.jpg' },
   { src: '/moodboard/reception/6.jpg' },
+  { src: '/moodboard/reception/7.jpg' },
+  { src: '/moodboard/reception/8.jpg' },
+  { src: '/moodboard/reception/9.jpg' },
+  { src: '/moodboard/reception/10.jpg' },
+  { src: '/moodboard/reception/11.jpg' },
+  { src: '/moodboard/reception/12.jpg' },
+  { src: '/moodboard/reception/13.jpg' },
+  { src: '/moodboard/reception/14.jpg' },
+  { src: '/moodboard/reception/15.jpg' },
+  { src: '/moodboard/reception/16.jpg' },
+  { src: '/moodboard/reception/17.jpg' },
+  { src: '/moodboard/reception/18.jpg' },
+  { src: '/moodboard/reception/19.jpg' },
 ];
 
 const REHEARSAL_IMAGES: { src: string; caption?: string }[] = [
