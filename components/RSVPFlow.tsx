@@ -420,7 +420,7 @@ export default function RSVPFlow() {
               </p>
             )}
             <a href="/" className="btn-dark">
-              Back to Our Website
+              Visit Our Website
             </a>
           </div>
         </div>
