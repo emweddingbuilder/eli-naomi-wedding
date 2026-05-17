@@ -1,29 +1,47 @@
 export default function Monogram({ size = 64 }: { size?: number }) {
   return (
-    <div className="flex items-end justify-center" style={{ height: size, width: size * 1.1 }}>
+    <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', lineHeight: 1 }}>
       <span
-        className="font-display"
         style={{
-          fontSize: size * 0.55,
-          lineHeight: 1,
-          color: 'var(--charcoal)',
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: size * 1.25,
           fontWeight: 300,
-          marginRight: -size * 0.12,
-          zIndex: 1,
+          fontStyle: 'italic',
+          color: 'var(--charcoal)',
+          lineHeight: 1,
           position: 'relative',
+          zIndex: 2,
+          marginRight: `-${size * 0.06}px`,
         }}
       >
         E
       </span>
       <span
-        className="font-script"
         style={{
-          fontSize: size * 0.9,
-          lineHeight: 1,
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: size * 0.72,
+          fontWeight: 300,
+          fontStyle: 'italic',
           color: 'var(--gold)',
+          lineHeight: 1,
+          position: 'relative',
+          zIndex: 1,
+          paddingBottom: `${size * 0.1}px`,
+        }}
+      >
+        &
+      </span>
+      <span
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: size * 1.25,
+          fontWeight: 300,
+          fontStyle: 'italic',
+          color: 'var(--charcoal)',
+          lineHeight: 1,
           position: 'relative',
           zIndex: 2,
-          marginBottom: -size * 0.05,
+          marginLeft: `-${size * 0.06}px`,
         }}
       >
         N

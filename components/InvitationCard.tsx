@@ -229,7 +229,7 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
                 {/* Venue sketch */}
                 <div style={{ marginBottom: '32px' }}>
                   <img
-                    src="/consul-house-sketch.jpg"
+                    src="/Untitled.png"
                     alt="Consul House sketch"
                     style={{ width: '100%', maxWidth: '320px', display: 'block', margin: '0 auto', mixBlendMode: 'multiply' }}
                   />
