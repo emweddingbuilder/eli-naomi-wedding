@@ -42,7 +42,6 @@ const RECEPTION_IMAGES: { src: string; caption?: string }[] = [
   { src: '/moodboard/reception/16.jpg' },
   { src: '/moodboard/reception/17.jpg' },
   { src: '/moodboard/reception/18.jpg' },
-  { src: '/moodboard/reception/19.jpg' },
 ];
 
 const REHEARSAL_IMAGES: { src: string; caption?: string }[] = [

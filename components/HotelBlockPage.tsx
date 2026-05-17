@@ -96,8 +96,8 @@ export default function HotelBlockPage() {
             <div style={{ width: '40px', height: '1px', background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, margin: '0 auto 20px' }} />
             <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9 }}>
               Questions? Reach out at{' '}
-              <a href="mailto:eliandnaomiwedding@gmail.com" style={{ color: C.gold, textDecoration: 'none' }}>
-                eliandnaomiwedding@gmail.com
+              <a href="mailto:eli.naomi.gettingmarried@gmail.com" style={{ color: C.gold, textDecoration: 'none' }}>
+                eli.naomi.gettingmarried@gmail.com
               </a>
             </p>
           </div>
