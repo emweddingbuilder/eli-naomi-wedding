@@ -309,7 +309,7 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
                   color: 'rgba(44,40,37,0.42)',
                   letterSpacing: '0.06em',
                 }}>
-                  Formal Wear
+                  Formal Wear & Cocktail Attire
                 </p>
 
               </div>

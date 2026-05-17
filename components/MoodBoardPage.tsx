@@ -137,7 +137,7 @@ export default function MoodBoardPage() {
               Wedding Ceremony & Reception
             </h2>
             <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9, maxWidth: '420px', margin: '0 auto 48px' }}>
-              Formal Wear — think elegant gowns, suits, and tuxedos. The setting is Consul House at night, and we want the room to feel as beautiful as the occasion. Dancing shoes encouraged.
+              Formal Wear & Cocktail Attire — think elegant gowns, suits, and tuxedos. The setting is Consul House at night, and we want the room to feel as beautiful as the occasion. Dancing shoes encouraged.
             </p>
           </div>
         </FadeIn>
