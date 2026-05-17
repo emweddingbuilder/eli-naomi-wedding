@@ -20,7 +20,7 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 const FAQ_ITEMS = [
   {
     q: 'What is the dress code?',
-    a: 'Formal Wear & Cocktail Attire — suits and elegant gowns. Dancing shoes encouraged.',
+    a: 'Formal Wear & Elevated Cocktail — suits and elegant gowns. Dancing shoes encouraged.',
   },
   {
     q: 'Is there a hotel block?',

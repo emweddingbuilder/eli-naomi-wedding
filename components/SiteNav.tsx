@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: 'Registry', href: '/registry' },
   { label: 'Things to Do', href: '/things-to-do' },
   { label: 'Mood Board', href: '/moodboard' },
-  { label: 'FAQ', href: '/faq' },
+  { label: 'Hotel Block', href: '/hotel' },
   { label: 'RSVP', href: '/rsvp', accent: true },
 ];
 

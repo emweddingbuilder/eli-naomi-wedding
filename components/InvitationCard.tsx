@@ -231,7 +231,7 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
                   <img
                     src="/Untitled.png"
                     alt="Consul House sketch"
-                    style={{ width: '100%', maxWidth: '320px', display: 'block', margin: '0 auto', mixBlendMode: 'multiply' }}
+                    style={{ width: '100%', maxWidth: '240px', display: 'block', margin: '0 auto', mixBlendMode: 'multiply' }}
                   />
                 </div>
 
@@ -295,9 +295,9 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
                   lineHeight: 1.95,
                   marginBottom: '26px',
                 }}>
-                  ceremony at five o&apos;clock in the evening<br />
+                  Ceremony at Five O&apos;Clock in the Evening<br />
                   Consul House · Tel Aviv-Yafo<br />
-                  dinner &amp; dancing to follow
+                  Dinner &amp; Dancing to Follow
                 </p>
 
                 {/* Rule + dress code */}
@@ -309,7 +309,7 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
                   color: 'rgba(44,40,37,0.42)',
                   letterSpacing: '0.06em',
                 }}>
-                  Formal Wear & Cocktail Attire
+                  Formal Wear & Elevated Cocktail
                 </p>
 
               </div>
