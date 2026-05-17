@@ -26,13 +26,11 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 const PLACES = [
   { name: 'Neve Tzedek', tags: ['Neighborhood', 'Charming'], photo: 'neve-tzedek.jpg', mapsQuery: 'Neve Tzedek Tel Aviv' },
-  { name: 'Shabazi Street', tags: ['Shopping', 'Stroll'], photo: 'shabazi.jpg', mapsQuery: 'Shabazi Street Neve Tzedek Tel Aviv' },
   { name: 'Shuk HaCarmel', tags: ['Market', 'Food'], photo: 'shuk-hacarmel.jpg', mapsQuery: 'Shuk HaCarmel Tel Aviv' },
   { name: 'Old Jaffa', tags: ['History', 'Culture', 'Views'], photo: 'old-jaffa.jpg', mapsQuery: 'Old Jaffa Tel Aviv' },
   { name: 'Suzanne Dellal Centre', tags: ['Dance & Theatre'], photo: 'suzanne-dellal.jpg', mapsQuery: 'Suzanne Dellal Centre Tel Aviv' },
   { name: 'ANU Museum', tags: ['Museum', 'Culture'], photo: 'anu-museum.jpg', mapsQuery: 'ANU Museum of the Jewish People Tel Aviv' },
   { name: 'Bialik Square', tags: ['Architecture'], photo: 'bialik-square.jpg', mapsQuery: 'Bialik Square Tel Aviv' },
-  { name: 'Dizengoff Square', tags: ['City Life', 'Shopping'], photo: 'dizengoff.jpg', mapsQuery: 'Dizengoff Square Tel Aviv' },
   { name: 'Gan Meir', tags: ['Park', 'Relaxed'], photo: 'gan-meir.jpg', mapsQuery: 'Gan Meir Park Tel Aviv' },
   { name: 'Frischman Beach', tags: ['Beach', 'Our Neighborhood'], photo: 'frischman-beach.jpg', mapsQuery: 'Frischman Beach Tel Aviv', highlight: true },
 ];
@@ -114,9 +112,8 @@ export default function ThingsToDoPage() {
 
       <SiteNav />
 
-      {/* ── Hero ── */}
-      {/* Drop a wide Tel Aviv photo at /public/tel-aviv/hero.jpg */}
-      <div style={{ width: '100%', height: 'clamp(320px, 45vw, 520px)', position: 'relative', overflow: 'hidden', marginTop: '56px' }}>
+      {/* ── Hero ── uses /public/tel-aviv/hero.jpg if available */}
+      <div style={{ width: '100%', height: 'clamp(280px, 38vw, 420px)', position: 'relative', overflow: 'hidden', marginTop: '56px', background: '#1C1C1C' }}>
         <div style={{
           position: 'absolute', inset: 0,
           backgroundImage: "url('/tel-aviv/hero.jpg')",
@@ -124,12 +121,12 @@ export default function ThingsToDoPage() {
           backgroundPosition: 'center 60%',
           filter: 'brightness(0.72)',
         }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(248,246,241,0.95))' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, rgba(248,246,241,0.97))' }} />
         <div style={{ position: 'absolute', bottom: '48px', left: 0, right: 0, textAlign: 'center' }}>
-          <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginBottom: '10px' }}>
+          <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: GOLD, marginBottom: '10px' }}>
             Tel Aviv-Yafo, Israel
           </p>
-          <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 6vw, 52px)', fontWeight: 300, fontStyle: 'italic', color: '#fff', margin: 0 }}>
+          <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 6vw, 52px)', fontWeight: 300, fontStyle: 'italic', color: CHARCOAL, margin: 0 }}>
             Things to Do
           </h1>
         </div>
