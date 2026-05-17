@@ -32,7 +32,7 @@ const PLACES = [
   { name: 'ANU Museum', tags: ['Museum', 'Culture'], photo: 'anu-museum.jpg', mapsQuery: 'ANU Museum of the Jewish People Tel Aviv' },
   { name: 'Bialik Square', tags: ['Architecture'], photo: 'bialik-square.jpg', mapsQuery: 'Bialik Square Tel Aviv' },
   { name: 'Gan Meir', tags: ['Park', 'Relaxed'], photo: 'gan-meir.jpg', mapsQuery: 'Gan Meir Park Tel Aviv' },
-  { name: 'Frischman Beach', tags: ['Beach', 'Our Neighborhood'], photo: 'frischman-beach.jpg', mapsQuery: 'Frischman Beach Tel Aviv', highlight: true },
+  { name: 'Frishman Beach', tags: ['Beach'], photo: 'frischman-beach.jpg', mapsQuery: 'Frischman Beach Tel Aviv' },
 ];
 
 const RESTAURANTS = [
