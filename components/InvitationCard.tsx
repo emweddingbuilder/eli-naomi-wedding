@@ -228,7 +228,11 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
 
                 {/* Venue sketch */}
                 <div style={{ marginBottom: '32px' }}>
-                  <ConsulHouseSketch />
+                  <img
+                    src="/consul-house-sketch.jpg"
+                    alt="Consul House sketch"
+                    style={{ width: '100%', maxWidth: '320px', display: 'block', margin: '0 auto', mixBlendMode: 'multiply' }}
+                  />
                 </div>
 
                 {/* Names */}
@@ -291,7 +295,7 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
                   lineHeight: 1.95,
                   marginBottom: '26px',
                 }}>
-                  ceremony at four o&apos;clock in the evening<br />
+                  ceremony at five o&apos;clock in the evening<br />
                   Consul House · Tel Aviv-Yafo<br />
                   dinner &amp; dancing to follow
                 </p>
@@ -317,7 +321,7 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
               {/* Calendar + Map */}
               <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginBottom: '32px' }}>
                 <a
-                  href="https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T140000Z/20261020T000000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
+                  href="https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
                   target="_blank" rel="noopener noreferrer"
                   className="eyebrow"
                   style={{ color: INK, fontSize: '0.55rem', borderBottom: `1px solid ${INK}`, textDecoration: 'none', opacity: 0.55 }}

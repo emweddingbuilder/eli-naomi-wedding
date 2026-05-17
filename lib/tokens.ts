@@ -24,7 +24,7 @@ export const fonts = {
 } as const;
 
 export const wedding = {
-  date: new Date('2026-10-19T16:00:00'),
+  date: new Date('2026-10-19T17:00:00'),
   venue: 'Consul House',
   venueAddress: 'HaTsorfim St 15, Tel Aviv-Yafo',
   dressCode: 'Formal Wear',
@@ -51,7 +51,7 @@ export const wedding = {
       key: 'ceremony',
       name: 'Wedding Ceremony & Reception',
       date: 'Monday, October 19, 2026',
-      time: '4:00 PM',
+      time: '5:00 PM',
       venue: 'Consul House',
       note: 'Formal Wear. Dancing shoes encouraged.',
     },

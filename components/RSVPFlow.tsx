@@ -15,7 +15,7 @@ const EVENT_LABELS: Record<string, { name: string; date: string; time: string; v
   ceremony: {
     name: 'Wedding Ceremony & Reception',
     date: 'Monday, October 19, 2026',
-    time: '4:00 PM',
+    time: '5:00 PM',
     venue: 'Consul House',
   },
 };

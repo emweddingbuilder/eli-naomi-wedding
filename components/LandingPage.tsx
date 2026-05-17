@@ -69,17 +69,17 @@ const STORY_SECTIONS = [
   {
     label: 'The Beginning',
     title: 'A Shabbat in Israel',
-    text: 'It was a warm summer night — Shabbat in Israel. Eli had just finished a Birthright trip with his childhood friends from Dallas, and Naomi and her friends offered to host them for a meal at her apartment. On that rooftop in Herzliyah, it was love at first sight — at least for Eli. Feeling this new and fresh connection, both of them separately reached out to the same friend for each other\'s phone numbers. A date was planned, and then another, and then another.',
+    text: 'It was a warm summer night — Shabbat in Israel. Eli had just finished a Birthright trip with his childhood friends from Dallas, and Naomi and her friends offered to host them for a meal at her apartment. On that rooftop in Herzliyah, it was love at first sight. Feeling this new and fresh connection, both of them separately reached out to the same friend for each other\'s phone numbers. A date was planned, and then another, and then another.',
   },
   {
     label: 'The Distance',
     title: 'Oceans Apart',
-    text: 'Before a couple of weeks could go by, Eli was set to travel back to the U.S. and start work in New York. What followed was FaceTime call after FaceTime call — and the connection just grew stronger. Three weeks before his job started, Eli booked a flight back to Israel (refundable within 24 hours, just in case). After a long phone call and Naomi\'s now-famous Pro-Con list, she declared "net positive, you should come back to visit." Only for Eli to tell her the flight was already booked. Those weeks together marked the beginning of an official relationship — and the start of ten months of long-distance dating, made all the more meaningful by October 7th bringing them unexpected time together and a deeper certainty that this was the real deal.',
+    text: 'What followed was FaceTime call after FaceTime call — and the connection just grew stronger. A few weeks before his job started, Eli booked a flight back to Israel (refundable within 24 hours, just in case). After a long phone call and Naomi\'s now-famous Pro-Con list, she declared "net positive, you should come back to visit." Only for Eli to tell her the flight was already booked. Those weeks together marked the beginning of an official relationship — and the start of ten months of long-distance dating, made all the more meaningful by October 7th bringing them unexpected time together and a deeper certainty that this was the real deal.',
   },
   {
     label: 'The Proposal',
     title: 'A Hilltop in Italy',
-    text: 'A year after the war began, Eli made Aliyah and joined Naomi in Israel. And about a year after finally being in the same place, the next big question followed — on a hilltop in Italy, Eli proposed, and Naomi emphatically said yes. Now together in the heart of Tel Aviv, you can find them in their apartment on Rashi Street — hosting Shabbat dinners, spending time at the beach, and building a life together with intention, love, and a desire to never stop exploring.',
+    text: 'A year after the war began, Naomi welcomed Eli to life in Israel. And about a year after finally being in the same place, the next big question followed — on a hilltop in Italy, Eli proposed, and Naomi emphatically said yes. Now together in the heart of Tel Aviv, you can find them in their apartment on Rashi Street — hosting Shabbat dinners, spending time at the beach, and building a life together with intention, love, and a desire to never stop exploring.',
   },
 ];
 

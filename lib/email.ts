@@ -53,7 +53,7 @@ export async function sendRSVPConfirmation({
                 <tr>
                   <td style="border:1px solid rgba(0,0,0,0.12);padding:16px 24px;text-align:center;">
                     <p style="margin:0 0 2px;font-size:14px;color:#1C1C1C;font-family:'Georgia',serif;">Monday, October 19, 2026</p>
-                    <p style="margin:0;font-size:12px;color:#6B6560;font-family:'Georgia',serif;">4:00 PM &nbsp;·&nbsp; Consul House, Tel Aviv-Yafo</p>
+                    <p style="margin:0;font-size:12px;color:#6B6560;font-family:'Georgia',serif;">5:00 PM &nbsp;·&nbsp; Consul House, Tel Aviv-Yafo</p>
                   </td>
                 </tr>
               </table>
@@ -89,7 +89,7 @@ ${attending
   : "We're sorry you won't be able to make it, but we're grateful you let us know. You'll be missed."}
 
 Monday, October 19, 2026
-4:00 PM · Consul House, Tel Aviv-Yafo
+5:00 PM · Consul House, Tel Aviv-Yafo
 
 If you need to update your RSVP, visit: https://elinaomi.love/rsvp
 
@@ -206,13 +206,13 @@ export async function sendInviteEmail({
 
               <!-- Date -->
               <p style="margin:0 0 2px;font-size:15px;color:#1C1C1C;font-family:'Georgia',serif;">Monday, October 19, 2026</p>
-              <p style="margin:0 0 16px;font-size:13px;color:#6B6560;font-family:'Georgia',serif;">4:00 PM &nbsp;·&nbsp; Consul House, Tel Aviv-Yafo</p>
+              <p style="margin:0 0 16px;font-size:13px;color:#6B6560;font-family:'Georgia',serif;">5:00 PM &nbsp;·&nbsp; Consul House, Tel Aviv-Yafo</p>
 
               <!-- Links side by side -->
               <table cellpadding="0" cellspacing="0" style="margin:0 auto;">
                 <tr>
                   <td style="padding-right:20px;">
-                    <a href="https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T140000Z/20261020T000000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
+                    <a href="https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
                       style="font-size:10px;color:#1C1C1C;letter-spacing:0.2em;text-transform:uppercase;text-decoration:underline;font-family:'Georgia',serif;">
                       Add to Calendar
                     </a>
@@ -265,12 +265,12 @@ Eli & Naomi — October 19, 2026
 ${guestName} is warmly invited.
 
 Monday, October 19, 2026
-4:00 PM · Consul House, Tel Aviv-Yafo, Israel
+5:00 PM · Consul House, Tel Aviv-Yafo, Israel
 
 Please RSVP by August 1, 2026:
 ${rsvpUrl}
 
-Add to Calendar: https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T140000Z/20261020T000000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel
+Add to Calendar: https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel
 
 With love, Eli & Naomi
 `.trim();
