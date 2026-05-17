@@ -166,7 +166,7 @@ export default function RSVPFlow() {
         <h1 className="font-display-sc" style={{ fontSize: '0.75rem', letterSpacing: '0.3em', color: 'var(--charcoal)' }}>
           Eli & Naomi's Wedding
         </h1>
-        <p className="eyebrow mt-1" style={{ color: 'var(--muted)' }}>
+        <p className="eyebrow mt-1" style={{ color: 'var(--gold)' }}>
           October 19, 2026 · Tel Aviv-Yafo, Israel
         </p>
       </div>
@@ -251,7 +251,7 @@ export default function RSVPFlow() {
         <div className="w-full max-w-2xl">
           <div className="text-center mb-10">
             <p className="eyebrow" style={{ color: 'var(--muted)', letterSpacing: '0.3em' }}>Your RSVP</p>
-            <div className="divider mt-4" />
+            <div className="divider mt-4" style={{ background: 'var(--gold)' }} />
           </div>
 
           <form onSubmit={handleSubmit}>
@@ -274,14 +274,14 @@ export default function RSVPFlow() {
                         {evt?.date} · {evt?.time} · {evt?.venue}
                       </p>
                       <div className="flex flex-wrap gap-3">
-                        <button
+                                        <button
                           type="button"
                           onClick={() => updateEventResponse(i, eventKey, true)}
                           className="eyebrow px-5 py-2"
                           style={{
-                            border: '1px solid var(--charcoal)',
+                            border: attending === true ? '1px solid var(--gold)' : '1px solid var(--charcoal)',
                             background: attending === true ? 'var(--charcoal)' : 'transparent',
-                            color: attending === true ? 'var(--cream)' : 'var(--charcoal)',
+                            color: attending === true ? 'var(--gold)' : 'var(--charcoal)',
                             cursor: 'pointer',
                             letterSpacing: '0.15em',
                             transition: 'all 0.15s',

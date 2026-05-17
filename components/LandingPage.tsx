@@ -237,22 +237,32 @@ export default function LandingPage() {
           </p>
 
           {/* Countdown */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(20px, 5vw, 40px)', marginTop: '36px' }}>
-            {[
-              { val: countdown.days, label: 'Days' },
-              { val: countdown.hours, label: 'Hours' },
-              { val: countdown.minutes, label: 'Min' },
-              { val: countdown.seconds, label: 'Sec' },
-            ].map(({ val, label }) => (
-              <div key={label} style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: fonts.serif, fontSize: 'clamp(26px, 5vw, 40px)', fontWeight: 300, color: C.gold, lineHeight: 1, animation: 'countPulse 2s ease-in-out infinite' }}>
-                  {String(val).padStart(2, '0')}
+          <div style={{ marginTop: '40px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+              {[
+                { val: countdown.days, label: 'Days' },
+                { val: countdown.hours, label: 'Hours' },
+                { val: countdown.minutes, label: 'Min' },
+                { val: countdown.seconds, label: 'Sec' },
+              ].map(({ val, label }, i) => (
+                <div key={label} style={{ display: 'flex', alignItems: 'flex-start' }}>
+                  <div style={{ textAlign: 'center', padding: '0 clamp(10px, 2.5vw, 24px)' }}>
+                    <div style={{ fontFamily: fonts.serif, fontSize: 'clamp(52px, 9vw, 80px)', fontWeight: 300, color: C.gold, lineHeight: 1 }}>
+                      {String(val).padStart(2, '0')}
+                    </div>
+                    <div style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.textMuted, marginTop: '12px' }}>
+                      {label}
+                    </div>
+                  </div>
+                  {i < 3 && (
+                    <div style={{ fontFamily: fonts.serif, fontSize: 'clamp(36px, 6vw, 60px)', fontWeight: 300, color: 'rgba(201,169,110,0.2)', lineHeight: 1, paddingTop: '6px', userSelect: 'none' }}>·</div>
+                  )}
                 </div>
-                <div style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.textMuted, marginTop: '8px' }}>
-                  {label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <p style={{ fontFamily: fonts.serif, fontSize: '13px', fontWeight: 300, fontStyle: 'italic', color: C.textMuted, marginTop: '20px', letterSpacing: '2px' }}>
+              י״ט תשרי תשפ״ז
+            </p>
           </div>
 
           <div style={{ marginTop: '40px' }}>
@@ -269,6 +279,18 @@ export default function LandingPage() {
           <FadeIn>
             <p style={sectionLabel}>Our Story</p>
             <h2 style={sectionHeading}>How It All Started</h2>
+          </FadeIn>
+
+          {/* Photo strip — drop 3 portrait photos into /public/couple/ named 1.jpg, 2.jpg, 3.jpg */}
+          <FadeIn delay={0.05}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', marginBottom: '80px' }}>
+              {['/couple/1.jpg', '/couple/2.jpg', '/couple/3.jpg'].map((src, i) => (
+                <div key={i} style={{ aspectRatio: '3/4', overflow: 'hidden', background: C.charcoal }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.88)' }} />
+                </div>
+              ))}
+            </div>
           </FadeIn>
 
           {STORY_SECTIONS.map((item, i) => (
@@ -291,6 +313,22 @@ export default function LandingPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
+          FULL-BLEED PHOTO INTERLUDE
+          Drop a wide landscape photo at /public/couple/wide.jpg
+          ══════════════════════════════════════════════════════════════ */}
+      <div style={{ width: '100%', height: 'clamp(260px, 38vw, 460px)', position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: "url('/couple/wide.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 40%',
+          backgroundAttachment: 'fixed',
+          filter: 'brightness(0.6)',
+        }} />
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to bottom, ${C.black}, transparent 20%, transparent 80%, ${C.black})` }} />
+      </div>
+
+      {/* ══════════════════════════════════════════════════════════════
           EVENTS
           ══════════════════════════════════════════════════════════════ */}
       <section id="events" style={{ padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
@@ -303,14 +341,17 @@ export default function LandingPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {wedding.events.map((evt, i) => (
               <FadeIn key={evt.key} delay={i * 0.15}>
-                <div className="event-card-padding" style={{ background: C.charcoal, border: `1px solid ${C.border}`, padding: '36px 32px', textAlign: 'center' }}>
-                  <h3 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4.5vw, 28px)', fontWeight: 400, fontStyle: 'italic', color: C.champagne, marginBottom: '16px' }}>
+                <div className="event-card-padding" style={{ background: C.charcoal, borderLeft: `3px solid ${C.gold}`, padding: '36px 40px' }}>
+                  <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.gold, marginBottom: '14px' }}>
+                    {evt.date}
+                  </p>
+                  <h3 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4.5vw, 28px)', fontWeight: 400, fontStyle: 'italic', color: C.champagne, marginBottom: '10px' }}>
                     {evt.name}
                   </h3>
-                  <p style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 400, letterSpacing: '2px', textTransform: 'uppercase', color: C.textLight, lineHeight: 2, marginBottom: '8px' }}>
-                    {evt.date}<br />{evt.time} · {evt.venue}
+                  <p style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 400, letterSpacing: '1.5px', color: C.textLight, marginBottom: '10px' }}>
+                    {evt.time} · {evt.venue}
                   </p>
-                  <p style={{ fontFamily: fonts.serif, fontSize: '14px', fontStyle: 'italic', color: C.textMuted }}>
+                  <p style={{ fontFamily: fonts.serif, fontSize: '13px', fontStyle: 'italic', color: C.textMuted }}>
                     {evt.note}
                   </p>
                 </div>
