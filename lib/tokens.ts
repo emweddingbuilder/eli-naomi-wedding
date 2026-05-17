@@ -43,7 +43,7 @@ export const wedding = {
       key: 'rehearsal',
       name: 'Rehearsal Dinner',
       date: 'Sunday, October 18, 2026',
-      time: '7:00 PM',
+      time: '6:00 PM',
       venue: 'TBD',
       note: 'By invitation only',
     },

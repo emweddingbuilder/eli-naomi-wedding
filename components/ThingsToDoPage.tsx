@@ -21,13 +21,33 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 const SECTIONS = [
   {
+    label: 'Our Top Spots',
+    heading: 'Places Worth Visiting',
+    description: 'Beyond the tourist trail — the spots we actually spend time in.',
+    items: [
+      { name: 'Neve Tzedek', tags: ['Neighborhood', 'Charming'], mapsQuery: 'Neve Tzedek Tel Aviv' },
+      { name: 'Shabazi Street', tags: ['Shopping', 'Stroll'], mapsQuery: 'Shabazi Street Neve Tzedek Tel Aviv' },
+      { name: 'Shuk HaCarmel', tags: ['Market', 'Food'], mapsQuery: 'Shuk HaCarmel Tel Aviv' },
+      { name: 'Old Jaffa', tags: ['History', 'Culture', 'Views'], mapsQuery: 'Old Jaffa Tel Aviv' },
+      { name: 'Suzanne Dellal Centre', tags: ['Culture', 'Dance & Theatre'], mapsQuery: 'Suzanne Dellal Centre Tel Aviv' },
+      { name: 'ANU Museum of the Jewish People', tags: ['Museum', 'Culture'], mapsQuery: 'ANU Museum of the Jewish People Tel Aviv' },
+      { name: 'Bialik Square', tags: ['Neighborhood', 'Architecture'], mapsQuery: 'Bialik Square Tel Aviv' },
+      { name: 'Dizengoff Square', tags: ['City Life', 'Shopping'], mapsQuery: 'Dizengoff Square Tel Aviv' },
+      { name: 'Gan Meir', tags: ['Park', 'Relaxed'], mapsQuery: 'Gan Meir Park Tel Aviv' },
+      { name: 'Frischman Beach', tags: ['Beach', 'Our Neighborhood'], mapsQuery: 'Frischman Beach Tel Aviv', highlight: true },
+    ],
+  },
+  {
     label: 'Places to Eat',
     heading: 'Restaurants We Love',
     description: 'Some of our favorite spots to sit down, eat well, and enjoy Tel Aviv.',
     items: [
-      { name: 'EatMeat', tags: ['Meat', 'Steakhouse'], mapsQuery: 'EatMeat Tel Aviv' },
+      { name: 'EatMeat', tags: ['Sandwiches'], mapsQuery: 'EatMeat Tel Aviv' },
+      { name: 'Benz Brothers', tags: ['Burgers'], mapsQuery: 'Benz Brothers Tel Aviv' },
+      { name: 'Thai 148', tags: ['Thai'], mapsQuery: 'Thai 148 Tel Aviv' },
+      { name: 'Goshen', tags: ['Israeli', 'Dinner'], mapsQuery: 'Goshen Tel Aviv' },
+      { name: 'Mifgash Rambam', tags: ['Shawarma'], mapsQuery: 'Mifgash Rambam Tel Aviv' },
       { name: 'Jazminos', tags: ['Mediterranean', 'Dinner'], mapsQuery: 'Jazminos Tel Aviv' },
-      { name: 'Benz Brothers', tags: ['Israeli', 'Casual Fine Dining'], mapsQuery: 'Benz Brothers Tel Aviv' },
     ],
   },
   {
@@ -37,19 +57,6 @@ const SECTIONS = [
     items: [
       { name: 'Buckee', tags: ['Coffee', 'Breakfast'], mapsQuery: 'Buckee cafe Tel Aviv' },
       { name: 'Bialik Square Café', tags: ['Coffee', 'Outdoor Seating'], mapsQuery: 'Bialik Square Tel Aviv' },
-    ],
-  },
-  {
-    label: 'Our Top Spots',
-    heading: 'Places Worth Visiting',
-    description: 'Beyond the tourist trail — the spots we actually spend time in.',
-    items: [
-      { name: 'Neve Tzedek', tags: ['Neighborhood', 'Charming'], mapsQuery: 'Neve Tzedek Tel Aviv' },
-      { name: 'Bialik Square', tags: ['Neighborhood', 'Architecture'], mapsQuery: 'Bialik Square Tel Aviv' },
-      { name: 'Old Jaffa', tags: ['History', 'Culture', 'Views'], mapsQuery: 'Old Jaffa Tel Aviv' },
-      { name: 'Dizengoff Square', tags: ['City Life', 'Shopping'], mapsQuery: 'Dizengoff Square Tel Aviv' },
-      { name: 'Gan Meir', tags: ['Park', 'Relaxed'], mapsQuery: 'Gan Meir Park Tel Aviv' },
-      { name: 'Frischman Beach', tags: ['Beach', 'Our Neighborhood'], mapsQuery: 'Frischman Beach Tel Aviv', highlight: true },
     ],
   },
 ];

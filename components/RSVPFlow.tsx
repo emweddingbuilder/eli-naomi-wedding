@@ -9,7 +9,7 @@ const EVENT_LABELS: Record<string, { name: string; date: string; time: string; v
   rehearsal: {
     name: 'Rehearsal Dinner',
     date: 'Sunday, October 18, 2026',
-    time: '7:00 PM',
+    time: '6:00 PM',
     venue: 'TBD',
   },
   ceremony: {

@@ -260,9 +260,6 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
-            <p style={{ fontFamily: fonts.serif, fontSize: '13px', fontWeight: 300, fontStyle: 'italic', color: C.textMuted, marginTop: '20px', letterSpacing: '2px' }}>
-              י״ט תשרי תשפ״ז
-            </p>
           </div>
 
           <div style={{ marginTop: '40px' }}>
@@ -312,23 +309,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          FULL-BLEED PHOTO INTERLUDE
-          Drop a wide landscape photo at /public/couple/wide.jpg
-          ══════════════════════════════════════════════════════════════ */}
-      <div style={{ width: '100%', height: 'clamp(260px, 38vw, 460px)', position: 'relative', overflow: 'hidden' }}>
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: "url('/couple/wide.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 40%',
-          backgroundAttachment: 'fixed',
-          filter: 'brightness(0.6)',
-        }} />
-        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to bottom, ${C.black}, transparent 20%, transparent 80%, ${C.black})` }} />
-      </div>
-
-      {/* ══════════════════════════════════════════════════════════════
+{/* ══════════════════════════════════════════════════════════════
           EVENTS
           ══════════════════════════════════════════════════════════════ */}
       <section id="events" style={{ padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
