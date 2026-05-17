@@ -20,7 +20,7 @@ const EVENT_LABELS: Record<string, { name: string; date: string; time: string; v
   },
 };
 
-type Step = 'search' | 'select' | 'form' | 'done';
+type Step = 'search' | 'select' | 'form' | 'done' | 'loading';
 
 interface GuestFormState {
   guestId: string;
@@ -33,7 +33,7 @@ interface GuestFormState {
 
 export default function RSVPFlow() {
   const searchParams = useSearchParams();
-  const [step, setStep] = useState<Step>('search');
+  const [step, setStep] = useState<Step>(searchParams.get('guestId') ? 'loading' : 'search');
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<GuestWithParty[]>([]);
   const [searching, setSearching] = useState(false);
@@ -47,14 +47,16 @@ export default function RSVPFlow() {
   useEffect(() => {
     const guestId = searchParams.get('guestId');
     if (!guestId) return;
-    setSearching(true);
     fetch(`/api/guests/party?guestId=${encodeURIComponent(guestId)}`)
       .then((r) => r.json())
       .then((data) => {
-        if (data.guests?.length) handleSelectParty(data.guests);
+        if (data.guests?.length) {
+          handleSelectParty(data.guests);
+        } else {
+          setStep('search');
+        }
       })
-      .catch(() => {/* fall through to manual search */})
-      .finally(() => setSearching(false));
+      .catch(() => setStep('search'));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const groupedResults = results.reduce<Record<string, GuestWithParty[]>>((acc, guest) => {
@@ -170,6 +172,13 @@ export default function RSVPFlow() {
           October 19, 2026 · Tel Aviv-Yafo, Israel
         </p>
       </div>
+
+      {/* ── Loading (arriving from invite link) ── */}
+      {step === 'loading' && (
+        <p className="font-display" style={{ fontSize: '1rem', color: 'var(--muted)' }}>
+          Loading your invitation…
+        </p>
+      )}
 
       {/* ── Search ── */}
       {step === 'search' && (
