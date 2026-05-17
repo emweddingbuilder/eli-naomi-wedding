@@ -112,27 +112,20 @@ export default function ThingsToDoPage() {
 
       <SiteNav />
 
-      {/* ── Hero ── uses /public/tel-aviv/hero.jpg if available */}
-      <div style={{ width: '100%', height: 'clamp(280px, 38vw, 420px)', position: 'relative', overflow: 'hidden', marginTop: '56px', background: '#1C1C1C' }}>
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: "url('/tel-aviv/hero.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 60%',
-          filter: 'brightness(0.72)',
-        }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, rgba(248,246,241,0.97))' }} />
-        <div style={{ position: 'absolute', bottom: '48px', left: 0, right: 0, textAlign: 'center' }}>
-          <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: GOLD, marginBottom: '10px' }}>
-            Tel Aviv-Yafo, Israel
-          </p>
-          <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 6vw, 52px)', fontWeight: 300, fontStyle: 'italic', color: CHARCOAL, margin: 0 }}>
-            Things to Do
-          </h1>
-        </div>
-      </div>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '100px 24px 100px' }}>
 
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 24px 100px' }}>
+        {/* Header */}
+        <FadeIn>
+          <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+            <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: MUTED, marginBottom: '16px' }}>
+              Tel Aviv-Yafo, Israel
+            </p>
+            <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 6vw, 52px)', fontWeight: 300, fontStyle: 'italic', color: CHARCOAL, marginBottom: '20px' }}>
+              Things to Do
+            </h1>
+            <div style={{ width: '40px', height: '1px', background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)`, margin: '0 auto 24px' }} />
+          </div>
+        </FadeIn>
 
         {/* Intro */}
         <FadeIn>
@@ -150,7 +143,7 @@ export default function ThingsToDoPage() {
                 Our Top Spots
               </p>
               <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(24px, 4vw, 32px)', fontWeight: 300, fontStyle: 'italic', color: CHARCOAL }}>
-                Places Worth Visiting
+                Our Favorite Spots
               </h2>
             </div>
 
