@@ -103,7 +103,7 @@ export default function LandingPage() {
   const C = colors;
 
   return (
-    <div style={{ fontFamily: fonts.sans, minHeight: '100vh' }}>
+    <div style={{ fontFamily: fonts.sans, minHeight: '100vh', background: colors.black }}>
 
       <SiteNav transparentTop />
 
