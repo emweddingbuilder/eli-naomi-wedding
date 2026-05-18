@@ -10,7 +10,7 @@ const NAV_ITEMS = [
   { label: 'Events', href: '/#events' },
   { label: 'Registry', href: '/registry' },
   { label: 'Things to Do', href: '/things-to-do' },
-  { label: 'Mood Board', href: '/moodboard' },
+  { label: 'Attire Guide', href: '/moodboard' },
   { label: 'Hotel Details', href: '/hotel' },
   { label: 'RSVP', href: '/rsvp', accent: true },
 ];

@@ -163,7 +163,7 @@ export default function ThingsToDoPage() {
           <div style={{ marginBottom: '80px' }}>
             <div style={{ textAlign: 'center', marginBottom: '40px' }}>
               <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: GOLD, marginBottom: '10px' }}>
-                Our Top Spots
+                Explore The City
               </p>
               <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(24px, 4vw, 32px)', fontWeight: 300, fontStyle: 'italic', color: CHARCOAL }}>
                 Our Favorite Spots
