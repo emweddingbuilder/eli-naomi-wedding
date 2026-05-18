@@ -127,7 +127,7 @@ export async function sendInviteEmail({
 
   <!-- Preheader: controls the preview snippet in Gmail/Apple Mail -->
   <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
-    ${guestName} is warmly invited · Naomi &amp; Eli's Wedding · October 19, 2026&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+    You are warmly invited to the wedding of Naomi Alsberg and Eli Minsky on October 19, 2026 in Tel Aviv-Yafo, Israel.
   </div>
 
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#F0EBE3;padding:40px 20px;">
@@ -208,36 +208,10 @@ export async function sendInviteEmail({
               <p style="margin:0 0 2px;font-size:15px;color:#1C1C1C;font-family:'Georgia',serif;">Monday, October 19, 2026</p>
               <p style="margin:0 0 16px;font-size:13px;color:#6B6560;font-family:'Georgia',serif;">5:00 PM &nbsp;·&nbsp; Consul House, Tel Aviv-Yafo</p>
 
-              <!-- Links side by side -->
-              <table cellpadding="0" cellspacing="0" style="margin:0 auto;">
-                <tr>
-                  <td style="padding-right:20px;">
-                    <a href="https://calendar.google.com/calendar/r/eventedit?text=Naomi+%26+Eli%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
-                      style="font-size:10px;color:#1C1C1C;letter-spacing:0.2em;text-transform:uppercase;text-decoration:underline;font-family:'Georgia',serif;">
-                      Add to Calendar
-                    </a>
-                  </td>
-                  <td style="color:#C9A96E;font-size:12px;">·</td>
-                  <td style="padding-left:20px;">
-                    <a href="https://maps.google.com/?q=Consul+House+HaTsorfim+St+15+Tel+Aviv"
-                      style="font-size:10px;color:#1C1C1C;letter-spacing:0.2em;text-transform:uppercase;text-decoration:underline;font-family:'Georgia',serif;">
-                      View Map
-                    </a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- RSVP -->
-          <tr>
-            <td align="center" style="background:#1C1C1C;padding:32px 40px;">
-              <p style="margin:0 0 12px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(250,248,245,0.45);font-family:'Georgia',serif;">
-                Kindly respond by August 1, 2026
-              </p>
-              <a href="${rsvpUrl}"
-                style="color:#FAF8F5;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;text-decoration:underline;font-family:'Georgia',serif;">
-                RSVP
+              <!-- Add to Calendar -->
+              <a href="https://calendar.google.com/calendar/r/eventedit?text=Naomi+%26+Eli%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
+                style="font-size:10px;color:#1C1C1C;letter-spacing:0.2em;text-transform:uppercase;text-decoration:underline;font-family:'Georgia',serif;">
+                Add to Calendar
               </a>
             </td>
           </tr>
@@ -272,7 +246,8 @@ ${rsvpUrl}
 
 Add to Calendar: https://calendar.google.com/calendar/r/eventedit?text=Naomi+%26+Eli%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel
 
-With love, Naomi & Eli
+With love,
+Naomi & Eli
 `.trim();
 
   return resend.emails.send({
