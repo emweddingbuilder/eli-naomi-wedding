@@ -66,10 +66,7 @@ const STORY_SECTIONS = [
   },
 ];
 
-// Light section palette
-const L = { bg: '#F8F6F1', text: '#1C1C1C', muted: '#8a857d', card: '#FFFFFF', border: 'rgba(201,169,110,0.18)' };
-
-function RsvpButton({ href, label, dark = false, style = {} }: { href: string; label: string; dark?: boolean; style?: React.CSSProperties }) {
+function RsvpButton({ href, label, style = {} }: { href: string; label: string; style?: React.CSSProperties }) {
   const [hovered, setHovered] = useState(false);
   return (
     <Link
@@ -81,7 +78,7 @@ function RsvpButton({ href, label, dark = false, style = {} }: { href: string; l
         fontWeight: 500,
         letterSpacing: '4px',
         textTransform: 'uppercase',
-        color: hovered ? (dark ? colors.black : '#fff') : colors.gold,
+        color: hovered ? colors.black : colors.gold,
         background: hovered ? colors.gold : 'transparent',
         border: `1px solid ${colors.gold}`,
         padding: '14px 48px',
@@ -103,12 +100,12 @@ export default function LandingPage() {
   const C = colors;
 
   return (
-    <div style={{ fontFamily: fonts.sans, minHeight: '100vh' }}>
+    <div style={{ background: C.black, color: C.textLight, fontFamily: fonts.sans, minHeight: '100vh' }}>
 
       <SiteNav transparentTop />
 
-      {/* ── HERO — dark ── */}
-      <section id="home" style={{ background: C.black }}>
+      {/* ── HERO ── */}
+      <section id="home">
         <div style={{ width: '100%', height: '95vh', minHeight: '600px', position: 'relative', overflow: 'hidden', marginTop: '56px' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/hero.jpg')", backgroundSize: 'cover', backgroundPosition: 'center 35%', backgroundRepeat: 'no-repeat', filter: 'brightness(0.75)' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
@@ -119,6 +116,7 @@ export default function LandingPage() {
             <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: '#ffffff', textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>Eli Minsky</p>
           </div>
         </div>
+
         <div style={{ textAlign: 'center', padding: '48px 24px 72px' }}>
           <GoldDivider />
           <p style={{ fontFamily: fonts.sans, fontSize: 'clamp(10px, 2vw, 12px)', fontWeight: 400, letterSpacing: '3px', textTransform: 'uppercase', color: C.textMuted, marginTop: '28px', lineHeight: 2.4 }}>
@@ -141,19 +139,19 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── OUR STORY — light ── */}
-      <section id="our-story" style={{ background: L.bg, padding: '100px 24px', borderTop: `1px solid ${L.border}` }}>
+      {/* ── OUR STORY ── */}
+      <section id="our-story" style={{ padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <FadeIn>
-            <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: L.muted, textAlign: 'center', marginBottom: '12px' }}>Our Story</p>
-            <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 6vw, 42px)', fontWeight: 300, fontStyle: 'italic', color: L.text, textAlign: 'center', marginBottom: '48px' }}>How It All Started</h2>
+            <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: C.textMuted, textAlign: 'center', marginBottom: '12px' }}>Our Story</p>
+            <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 6vw, 42px)', fontWeight: 300, fontStyle: 'italic', color: C.champagne, textAlign: 'center', marginBottom: '48px' }}>How It All Started</h2>
           </FadeIn>
           <FadeIn delay={0.05}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', marginBottom: '80px' }}>
               {['/couple/1.jpg', '/couple/2.jpg', '/couple/3.jpg'].map((src, i) => (
-                <div key={i} style={{ aspectRatio: '3/4', overflow: 'hidden', background: '#D8D3CC' }}>
+                <div key={i} style={{ aspectRatio: '3/4', overflow: 'hidden', background: C.charcoal }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.88)' }} />
                 </div>
               ))}
             </div>
@@ -162,8 +160,8 @@ export default function LandingPage() {
             <FadeIn key={i} delay={i * 0.1}>
               <div style={{ textAlign: 'center', padding: '0 clamp(0px, 4vw, 40px)' }}>
                 <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.gold, marginBottom: '10px' }}>{item.label}</p>
-                <h3 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 400, fontStyle: 'italic', color: L.text, marginBottom: '14px' }}>{item.title}</h3>
-                <p style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 400, color: L.text, lineHeight: 2, maxWidth: '560px', margin: '0 auto', opacity: 0.75 }}>{item.text}</p>
+                <h3 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 400, fontStyle: 'italic', color: C.champagne, marginBottom: '14px' }}>{item.title}</h3>
+                <p style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 400, color: C.textLight, lineHeight: 2, maxWidth: '560px', margin: '0 auto', opacity: 0.8 }}>{item.text}</p>
               </div>
               {i < STORY_SECTIONS.length - 1 && <GoldDot />}
             </FadeIn>
@@ -171,8 +169,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── EVENTS — dark ── */}
-      <section id="events" style={{ background: C.black, padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
+      {/* ── EVENTS ── */}
+      <section id="events" style={{ padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <FadeIn>
             <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: C.textMuted, textAlign: 'center', marginBottom: '12px' }}>The Celebration</p>
@@ -193,13 +191,13 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── REGISTRY — light ── */}
-      <section id="registry" style={{ background: L.bg, padding: '100px 24px', textAlign: 'center', borderTop: `1px solid ${L.border}` }}>
+      {/* ── REGISTRY ── */}
+      <section id="registry" style={{ padding: '100px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
         <FadeIn>
           <div style={{ maxWidth: '560px', margin: '0 auto' }}>
-            <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: L.muted, textAlign: 'center', marginBottom: '12px' }}>Registry</p>
-            <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 6vw, 42px)', fontWeight: 300, fontStyle: 'italic', color: L.text, textAlign: 'center', marginBottom: '20px' }}>Gifts & Celebrations</h2>
-            <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: L.muted, lineHeight: 1.9, marginBottom: '36px' }}>
+            <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: C.textMuted, textAlign: 'center', marginBottom: '12px' }}>Registry</p>
+            <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 6vw, 42px)', fontWeight: 300, fontStyle: 'italic', color: C.champagne, textAlign: 'center', marginBottom: '20px' }}>Gifts & Celebrations</h2>
+            <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9, marginBottom: '36px' }}>
               Your presence is the greatest gift. If you'd like to celebrate with something more, we've put together a few ideas.
             </p>
             <Link href="/registry" style={{ display: 'inline-block', fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.gold, border: `1px solid ${C.gold}`, padding: '12px 32px', textDecoration: 'none' }}>
@@ -209,8 +207,8 @@ export default function LandingPage() {
         </FadeIn>
       </section>
 
-      {/* ── RSVP CTA — dark ── */}
-      <section id="rsvp" style={{ background: C.black, padding: '120px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
+      {/* ── RSVP CTA ── */}
+      <section id="rsvp" style={{ padding: '120px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
         <FadeIn>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
             <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 7vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: C.champagne }}>We'd Love to Have You</h2>
@@ -223,8 +221,8 @@ export default function LandingPage() {
         </FadeIn>
       </section>
 
-      {/* ── FOOTER — dark ── */}
-      <footer style={{ padding: '40px 24px', textAlign: 'center', background: C.black, borderTop: `1px solid ${C.border}` }}>
+      {/* ── FOOTER ── */}
+      <footer style={{ padding: '40px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
         <div style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 300, letterSpacing: '4px', color: C.textLight, marginBottom: '12px' }}>
           N <span style={{ color: C.gold, fontStyle: 'italic', fontSize: '18px' }}>&</span> E
         </div>
