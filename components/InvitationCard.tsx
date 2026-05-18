@@ -199,7 +199,7 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '300px', background: '#252525', clipPath: 'polygon(0 0, 100% 0, 50% 52%)', transformOrigin: 'top center', zIndex: 10 }}
               />
               <div style={{ position: 'absolute', top: '16px', right: '16px', border: '2px solid rgba(201,169,110,0.55)', padding: '8px 12px', zIndex: 20, background: '#1C1C1C' }}>
-                <p style={{ margin: 0, color: '#C9A96E', fontSize: '11px', letterSpacing: '2px', fontFamily: "'Cormorant Garamond', serif", textAlign: 'center' }}>E & N</p>
+                <p style={{ margin: 0, color: '#C9A96E', fontSize: '11px', letterSpacing: '2px', fontFamily: "'Cormorant Garamond', serif", textAlign: 'center' }}>N & E</p>
                 <p style={{ margin: '2px 0 0', color: 'rgba(201,169,110,0.55)', fontSize: '8px', letterSpacing: '1px', fontFamily: "'Cormorant Garamond', serif", textAlign: 'center' }}>OCT 2026</p>
               </div>
             </div>
@@ -257,8 +257,8 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
                   lineHeight: 1.85,
                   marginBottom: '26px',
                 }}>
-                  together with their families<br />
-                  invite you to celebrate their wedding day
+                  Together with their families<br />
+                  Invite you to celebrate their wedding day
                 </p>
 
                 {/* Thin rule */}
@@ -321,7 +321,7 @@ export default function InvitationCard({ guestName, guestId }: { guestName?: str
               {/* Calendar + Map */}
               <div style={{ display: 'flex', justifyContent: 'center', gap: '36px', flexWrap: 'wrap', marginBottom: '32px' }}>
                 <a
-                  href="https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
+                  href="https://calendar.google.com/calendar/r/eventedit?text=Naomi+%26+Eli%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
                   target="_blank" rel="noopener noreferrer"
                   className="eyebrow"
                   style={{ color: INK, fontSize: '0.55rem', borderBottom: `1px solid ${INK}`, textDecoration: 'none', opacity: 0.55 }}

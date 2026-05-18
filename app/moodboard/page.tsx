@@ -1,7 +1,7 @@
 import MoodBoardPage from '@/components/MoodBoardPage';
 
 export const metadata = {
-  title: 'Mood Board — Eli & Naomi',
+  title: 'Mood Board — Naomi & Eli',
 };
 
 export default function MoodBoard() {

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Events — Eli & Naomi',
+  title: 'Events — Naomi & Eli',
 };
 
 export default function EventsPage() {

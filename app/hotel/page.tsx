@@ -1,7 +1,7 @@
 import HotelBlockPage from '@/components/HotelBlockPage';
 
 export const metadata = {
-  title: 'Hotel Block — Eli & Naomi',
+  title: 'Hotel Block — Naomi & Eli',
 };
 
 export default function Hotel() {

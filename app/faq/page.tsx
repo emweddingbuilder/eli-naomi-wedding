@@ -1,7 +1,7 @@
 import FAQPage from '@/components/FAQPage';
 
 export const metadata = {
-  title: 'FAQ — Eli & Naomi',
+  title: 'FAQ — Naomi & Eli',
 };
 
 export default function FAQ() {

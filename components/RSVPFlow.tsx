@@ -166,7 +166,7 @@ export default function RSVPFlow() {
           <Monogram size={64} />
         </div>
         <h1 className="font-display-sc" style={{ fontSize: '0.75rem', letterSpacing: '0.3em', color: 'var(--charcoal)' }}>
-          Eli & Naomi's Wedding
+          Naomi & Eli's Wedding
         </h1>
         <p className="eyebrow mt-1" style={{ color: 'var(--gold)' }}>
           October 19, 2026 · Tel Aviv-Yafo, Israel
@@ -349,7 +349,7 @@ export default function RSVPFlow() {
                     </div>
                     <div>
                       <label className="eyebrow block mb-1" style={{ color: 'var(--muted)', fontSize: '0.6rem' }}>
-                        Message to Eli & Naomi (optional)
+                        Message to Naomi & Eli (optional)
                       </label>
                       <textarea
                         value={guestForm.message}

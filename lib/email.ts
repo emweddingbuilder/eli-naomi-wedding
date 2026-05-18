@@ -17,11 +17,11 @@ export async function sendRSVPConfirmation({
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RSVP Confirmed — Eli & Naomi</title>
+  <title>RSVP Confirmed — Naomi & Eli</title>
 </head>
 <body style="margin:0;padding:0;background:#F0EBE3;font-family:'Georgia',serif;">
   <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
-    Your RSVP has been received · Eli &amp; Naomi's Wedding · October 19, 2026&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+    Your RSVP has been received · Naomi &amp; Eli's Wedding · October 19, 2026&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
   </div>
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#F0EBE3;padding:40px 20px;">
     <tr>
@@ -31,7 +31,7 @@ export async function sendRSVPConfirmation({
           <tr>
             <td align="center" style="padding:0 0 24px;">
               <p style="margin:0;font-size:11px;letter-spacing:0.35em;text-transform:uppercase;color:#6B6560;font-family:'Georgia',serif;">
-                Eli &amp; Naomi
+                Naomi &amp; Eli
               </p>
             </td>
           </tr>
@@ -66,7 +66,7 @@ export async function sendRSVPConfirmation({
           <tr>
             <td align="center" style="padding:20px 40px 8px;">
               <p style="margin:0;font-size:10px;color:#B0A89F;letter-spacing:0.1em;font-family:'Georgia',serif;">
-                With love, Eli &amp; Naomi
+                With love, Naomi &amp; Eli
               </p>
             </td>
           </tr>
@@ -80,7 +80,7 @@ export async function sendRSVPConfirmation({
   `;
 
   const text = `
-Eli & Naomi — RSVP Confirmed
+Naomi & Eli — RSVP Confirmed
 
 ${guestName},
 
@@ -93,14 +93,14 @@ Monday, October 19, 2026
 
 If you need to update your RSVP, visit: https://elinaomi.love/rsvp
 
-With love, Eli & Naomi
+With love, Naomi & Eli
 `.trim();
 
   return resend.emails.send({
-    from: 'Eli & Naomi <hello@elinaomi.love>',
+    from: 'Naomi & Eli <hello@elinaomi.love>',
     replyTo: 'eli.naomi.gettingmarried@gmail.com',
     to,
-    subject: `Your RSVP is confirmed — Eli & Naomi, October 19`,
+    subject: `Your RSVP is confirmed — Naomi & Eli, October 19`,
     html,
     text,
   });
@@ -121,13 +121,13 @@ export async function sendInviteEmail({
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eli & Naomi's Wedding</title>
+  <title>Naomi & Eli's Wedding</title>
 </head>
 <body style="margin:0;padding:0;background:#F0EBE3;font-family:'Georgia',serif;">
 
   <!-- Preheader: controls the preview snippet in Gmail/Apple Mail -->
   <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
-    ${guestName} is warmly invited · Eli &amp; Naomi's Wedding · October 19, 2026&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+    ${guestName} is warmly invited · Naomi &amp; Eli's Wedding · October 19, 2026&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
   </div>
 
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#F0EBE3;padding:40px 20px;">
@@ -139,7 +139,7 @@ export async function sendInviteEmail({
           <tr>
             <td align="center" style="padding:0 0 24px;">
               <p style="margin:0;font-size:11px;letter-spacing:0.35em;text-transform:uppercase;color:#6B6560;font-family:'Georgia',serif;">
-                Eli &amp; Naomi
+                Naomi &amp; Eli
               </p>
             </td>
           </tr>
@@ -160,7 +160,7 @@ export async function sendInviteEmail({
                           <table cellpadding="0" cellspacing="0" style="border:1px solid rgba(201,169,110,0.55);padding:7px 10px;">
                             <tr>
                               <td align="center" style="border:1px solid rgba(201,169,110,0.3);padding:5px 10px;">
-                                <p style="margin:0;color:#C9A96E;font-size:10px;letter-spacing:0.2em;font-family:'Georgia',serif;">E &amp; N</p>
+                                <p style="margin:0;color:#C9A96E;font-size:10px;letter-spacing:0.2em;font-family:'Georgia',serif;">N &amp; E</p>
                                 <p style="margin:3px 0 0;color:rgba(201,169,110,0.55);font-size:8px;letter-spacing:0.12em;font-family:'Georgia',serif;">OCT 2026</p>
                               </td>
                             </tr>
@@ -212,7 +212,7 @@ export async function sendInviteEmail({
               <table cellpadding="0" cellspacing="0" style="margin:0 auto;">
                 <tr>
                   <td style="padding-right:20px;">
-                    <a href="https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
+                    <a href="https://calendar.google.com/calendar/r/eventedit?text=Naomi+%26+Eli%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel"
                       style="font-size:10px;color:#1C1C1C;letter-spacing:0.2em;text-transform:uppercase;text-decoration:underline;font-family:'Georgia',serif;">
                       Add to Calendar
                     </a>
@@ -246,7 +246,7 @@ export async function sendInviteEmail({
           <tr>
             <td align="center" style="padding:20px 40px 8px;">
               <p style="margin:0;font-size:10px;color:#B0A89F;letter-spacing:0.1em;font-family:'Georgia',serif;">
-                With love, Eli &amp; Naomi
+                With love, Naomi &amp; Eli
               </p>
             </td>
           </tr>
@@ -260,7 +260,7 @@ export async function sendInviteEmail({
   `;
 
   const text = `
-Eli & Naomi — October 19, 2026
+Naomi & Eli — October 19, 2026
 
 ${guestName} is warmly invited.
 
@@ -270,16 +270,16 @@ Monday, October 19, 2026
 Please RSVP by August 1, 2026:
 ${rsvpUrl}
 
-Add to Calendar: https://calendar.google.com/calendar/r/eventedit?text=Eli+%26+Naomi%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel
+Add to Calendar: https://calendar.google.com/calendar/r/eventedit?text=Naomi+%26+Eli%27s+Wedding&dates=20261019T150000Z/20261020T010000Z&location=Consul+House,+Tel+Aviv-Yafo,+Israel
 
-With love, Eli & Naomi
+With love, Naomi & Eli
 `.trim();
 
   return resend.emails.send({
-    from: 'Eli & Naomi <hello@elinaomi.love>',
+    from: 'Naomi & Eli <hello@elinaomi.love>',
     replyTo: 'eli.naomi.gettingmarried@gmail.com',
     to,
-    subject: `Eli & Naomi — October 19, 2026`,
+    subject: `Naomi & Eli — October 19, 2026`,
     html,
     text,
   });

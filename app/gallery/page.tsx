@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Gallery — Eli & Naomi',
+  title: 'Gallery — Naomi & Eli',
 };
 
 export default function GalleryPage() {

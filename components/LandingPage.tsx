@@ -397,7 +397,7 @@ export default function LandingPage() {
           ══════════════════════════════════════════════════════════════ */}
       <footer style={{ padding: '40px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
         <div style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 300, letterSpacing: '4px', color: C.textLight, marginBottom: '12px' }}>
-          E <span style={{ color: C.gold, fontStyle: 'italic', fontSize: '18px' }}>&</span> N
+          N <span style={{ color: C.gold, fontStyle: 'italic', fontSize: '18px' }}>&</span> E
         </div>
         <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 400, letterSpacing: '2px', textTransform: 'uppercase', color: C.textMuted, opacity: 0.5 }}>
           October 19, 2026 · Tel Aviv-Yafo

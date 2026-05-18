@@ -62,7 +62,7 @@ export default function SiteNav({ transparentTop = false }: { transparentTop?: b
             textDecoration: 'none',
           }}
         >
-          Eli <span style={{ color: C.gold }}>&</span> Naomi
+          Naomi <span style={{ color: C.gold }}>&</span> Eli
         </Link>
 
         {/* Desktop links */}

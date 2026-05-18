@@ -2,7 +2,7 @@ import { getSupabase } from '@/lib/supabase';
 import InvitationCard from '@/components/InvitationCard';
 
 export const metadata = {
-  title: "You're Invited — Eli & Naomi",
+  title: "You're Invited — Naomi & Eli",
 };
 
 export default async function InvitePage({

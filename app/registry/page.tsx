@@ -1,7 +1,7 @@
 import RegistryPage from '@/components/RegistryPage';
 
 export const metadata = {
-  title: 'Registry — Eli & Naomi',
+  title: 'Registry — Naomi & Eli',
 };
 
 export default function Registry() {
