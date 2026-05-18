@@ -25,7 +25,7 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 // For place photos: drop images into /public/tel-aviv/ using the `photo` filename below.
 // For restaurant/cafe photos: drop images into /public/tel-aviv/food/ using the `photo` filename.
 
-type Place = { name: string; tags: string[]; photo?: string; mapsQuery: string };
+type Place = { name: string; tags: string[]; photo?: string; mapsQuery?: string; mapsUrl?: string };
 
 const PLACES: Place[] = [
   { name: 'Neve Tzedek - Shabazi Street', tags: ['Neighborhood', 'Charming'], photo: 'neve-tzedek.jpg', mapsQuery: 'Neve Tzedek Tel Aviv' },
@@ -55,9 +55,9 @@ const CAFES: Place[] = [
   { name: 'Dr. Bagel', tags: ['Bagels', 'Breakfast'], photo: 'drbagel.jpg', mapsQuery: 'Dr. Bagel Tel Aviv' },
   { name: 'Michaeli', tags: ['Coffee', 'Pastries'], photo: 'michaeli.jpg', mapsQuery: 'Michaeli Tel Aviv' },
   { name: 'Norish', tags: ['Coffee', 'Brunch'], photo: 'noresh.jpg', mapsQuery: 'Norish Tel Aviv' },
-  { name: 'Tamuz', tags: ['Coffee', 'Casual'], photo: 'tamuz.jpg', mapsQuery: 'Tamuz Tel Aviv' },
-  { name: 'Coming Soon', tags: ['Coffee'], mapsQuery: 'Tel Aviv' },
-  { name: 'Coming Soon', tags: ['Coffee'], mapsQuery: 'Tel Aviv' },
+  { name: 'Tamuz', tags: ['Coffee', 'Casual'], photo: 'tamuz.jpg', mapsUrl: 'https://maps.app.goo.gl/JznCJkEEFUXBfNEU6' },
+  { name: 'Rothschild Coffee Kiosk', tags: ['Coffee', 'Outdoor'], photo: 'rothschild coffee kiosk.jpg', mapsQuery: 'Rothschild Coffee Kiosk Tel Aviv' },
+  { name: 'Cafe Fiori', tags: ['Coffee', 'Breakfast'], photo: 'cafefiori.jpg', mapsQuery: 'Cafe Fiori Tel Aviv' },
 ];
 
 // ── Sub-components ─────────────────────────────────────────────────────────
@@ -81,10 +81,11 @@ function Tag({ label }: { label: string }) {
 }
 
 function PlaceCard({ place, i, photoDir }: { place: Place; i: number; photoDir: string }) {
+  const href = place.mapsUrl ?? `https://maps.google.com/?q=${encodeURIComponent(place.mapsQuery ?? place.name)}`;
   return (
     <motion.a
       key={place.name}
-      href={`https://maps.google.com/?q=${encodeURIComponent(place.mapsQuery)}`}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, y: 20 }}
