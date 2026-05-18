@@ -102,9 +102,6 @@ With love, Naomi & Eli
     subject: `Your RSVP is confirmed — Naomi & Eli, October 19`,
     html,
     text,
-    headers: {
-      'List-Unsubscribe': '<mailto:hello@elinaomi.love?subject=unsubscribe>',
-    },
   });
 }
 
@@ -221,8 +218,11 @@ export async function sendInviteEmail({
           <!-- Footer -->
           <tr>
             <td align="center" style="padding:20px 40px 8px;">
-              <p style="margin:0;font-size:10px;color:#B0A89F;letter-spacing:0.1em;font-family:'Georgia',serif;">
+              <p style="margin:0 0 8px;font-size:10px;color:#B0A89F;letter-spacing:0.1em;font-family:'Georgia',serif;">
                 With love, Naomi &amp; Eli
+              </p>
+              <p style="margin:0;font-size:10px;color:#C0B8B0;font-family:'Georgia',serif;font-style:italic;">
+                If this landed in Promotions, please move it to your Primary inbox.
               </p>
             </td>
           </tr>
@@ -258,8 +258,5 @@ Naomi & Eli
     subject: `Naomi & Eli — October 19, 2026`,
     html,
     text,
-    headers: {
-      'List-Unsubscribe': '<mailto:hello@elinaomi.love?subject=unsubscribe>',
-    },
   });
 }
