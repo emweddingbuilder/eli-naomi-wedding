@@ -219,11 +219,11 @@ export default function LandingPage() {
           {/* Names + date at bottom of photo */}
           <div style={{ position: 'absolute', bottom: '48px', left: 0, right: 0, textAlign: 'center', zIndex: 3 }}>
             <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)', marginBottom: '6px' }}>
-              Eli Minsky
+              Naomi Alsberg
             </p>
             <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(14px, 2.5vw, 18px)', fontWeight: 300, fontStyle: 'italic', color: C.gold, margin: '4px 0' }}>&</p>
             <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)' }}>
-              Naomi Alsberg
+              Eli Minsky
             </p>
           </div>
         </div>
