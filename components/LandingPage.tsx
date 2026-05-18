@@ -64,7 +64,6 @@ const GoldDot = () => (
 
 // ── Data ───────────────────────────────────────────────────────────────────
 
-
 const STORY_SECTIONS = [
   {
     label: 'The Beginning',
@@ -83,78 +82,19 @@ const STORY_SECTIONS = [
   },
 ];
 
-const TRAVEL_CARDS = [
-  {
-    title: 'The Venue',
-    lines: ['Consul House', 'HaTsorfim St 15', 'Tel Aviv-Yafo, Israel'],
-    link: 'View Map',
-    href: 'https://maps.google.com/?q=Consul+House+HaTsorfim+St+15+Tel+Aviv',
-    external: true,
-  },
-  {
-    title: 'Hotel Block',
-    lines: ["Details coming soon.", "We're securing a room block", 'near the venue.'],
-    link: 'View Hotels',
-    href: '#',
-    external: false,
-  },
-  {
-    title: 'Tel Aviv Life',
-    lines: ['Restaurants, beaches,', 'neighborhoods, nightlife —', 'our guide to the city.'],
-    link: 'Explore',
-    href: '/things-to-do',
-    external: false,
-  },
-  {
-    title: 'Events',
-    lines: ['Rehearsal dinner, ceremony,', 'and reception — everything', 'you need to know.'],
-    link: 'View Schedule',
-    href: '#events',
-    external: false,
-  },
-];
+// ── Light section color constants ──────────────────────────────────────────
 
-const FAQ_ITEMS = [
-  {
-    q: 'What is the dress code?',
-    a: 'Formal Wear & Elevated Cocktail — suits and elegant gowns. Dancing shoes encouraged.',
-  },
-  {
-    q: 'Is there a hotel block?',
-    a: "We're securing a room block near the venue and will share details soon. Stay tuned — we'll update this page as soon as it's confirmed.",
-  },
-  {
-    q: "What's the weather like in October?",
-    a: 'Expect warm, sunny days and pleasant evenings. October in Tel Aviv is beautiful — highs around 80°F (27°C) with low humidity and virtually no rain. Evenings cool down slightly, so a light layer for any outdoor moments is a good idea. It\'s one of the best times of year to be in the city.',
-  },
-];
-
-// ── Typography helpers ─────────────────────────────────────────────────────
-
-const sectionLabel = {
-  fontFamily: fonts.sans,
-  fontSize: '9px',
-  fontWeight: 500,
-  letterSpacing: '4px',
-  textTransform: 'uppercase' as const,
-  color: colors.textMuted,
-  textAlign: 'center' as const,
-  marginBottom: '12px',
-};
-
-const sectionHeading = {
-  fontFamily: fonts.serif,
-  fontSize: 'clamp(28px, 6vw, 42px)',
-  fontWeight: 300,
-  fontStyle: 'italic' as const,
-  color: colors.champagne,
-  textAlign: 'center' as const,
-  marginBottom: '48px',
+const L = {
+  bg: '#F8F6F1',
+  text: '#1C1C1C',
+  muted: '#8a857d',
+  card: '#FFFFFF',
+  border: 'rgba(201,169,110,0.18)',
 };
 
 // ── RsvpButton (inline hover state) ───────────────────────────────────────
 
-function RsvpButton({ href, label, style = {} }: { href: string; label: string; style?: React.CSSProperties }) {
+function RsvpButton({ href, label, style = {}, light = false }: { href: string; label: string; style?: React.CSSProperties; light?: boolean }) {
   const [hovered, setHovered] = useState(false);
   return (
     <Link
@@ -166,7 +106,7 @@ function RsvpButton({ href, label, style = {} }: { href: string; label: string; 
         fontWeight: 500,
         letterSpacing: '4px',
         textTransform: 'uppercase',
-        color: hovered ? colors.black : colors.gold,
+        color: hovered ? (light ? '#fff' : colors.black) : colors.gold,
         background: hovered ? colors.gold : 'transparent',
         border: `1px solid ${colors.gold}`,
         padding: '14px 48px',
@@ -195,12 +135,11 @@ export default function LandingPage() {
       <SiteNav transparentTop />
 
       {/* ══════════════════════════════════════════════════════════════
-          HERO
+          HERO — dark
           ══════════════════════════════════════════════════════════════ */}
       <section id="home">
-        {/* Full-bleed photo with overlay */}
+        {/* Full-bleed photo */}
         <div style={{ width: '100%', height: '95vh', minHeight: '600px', position: 'relative', overflow: 'hidden', marginTop: '56px' }}>
-          {/* Photo */}
           <div
             style={{
               position: 'absolute', inset: 0,
@@ -211,12 +150,9 @@ export default function LandingPage() {
               filter: 'brightness(0.75)',
             }}
           />
-          {/* Subtle dark overlay for readability */}
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
-          {/* Fade to black at bottom */}
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%', background: `linear-gradient(transparent, ${C.black})` }} />
 
-          {/* Names + date at bottom of photo */}
           <div style={{ position: 'absolute', bottom: '48px', left: 0, right: 0, textAlign: 'center', zIndex: 3 }}>
             <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)', marginBottom: '6px' }}>
               Naomi Alsberg
@@ -228,15 +164,12 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Date + countdown + RSVP below photo */}
-        <div style={{ textAlign: 'center', padding: '48px 24px 72px' }}>
+        {/* Date + countdown + RSVP — dark */}
+        <div style={{ textAlign: 'center', padding: '48px 24px 72px', background: C.black }}>
           <GoldDivider />
-
           <p style={{ fontFamily: fonts.sans, fontSize: 'clamp(10px, 2vw, 12px)', fontWeight: 400, letterSpacing: '3px', textTransform: 'uppercase', color: C.textMuted, marginTop: '28px', lineHeight: 2.4 }}>
             October 19, 2026<br />Tel Aviv-Yafo, Israel
           </p>
-
-          {/* Countdown */}
           <div style={{ marginTop: '40px' }}>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
               {[
@@ -261,7 +194,6 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-
           <div style={{ marginTop: '40px' }}>
             <RsvpButton href="/rsvp" label="RSVP" />
           </div>
@@ -269,133 +201,141 @@ export default function LandingPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          OUR STORY
+          LIGHT SECTIONS
           ══════════════════════════════════════════════════════════════ */}
-      <section id="our-story" style={{ padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <FadeIn>
-            <p style={sectionLabel}>Our Story</p>
-            <h2 style={sectionHeading}>How It All Started</h2>
-          </FadeIn>
+      <div style={{ background: L.bg }}>
 
-          {/* Photo strip — drop 3 portrait photos into /public/couple/ named 1.jpg, 2.jpg, 3.jpg */}
-          <FadeIn delay={0.05}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', marginBottom: '80px' }}>
-              {['/couple/1.jpg', '/couple/2.jpg', '/couple/3.jpg'].map((src, i) => (
-                <div key={i} style={{ aspectRatio: '3/4', overflow: 'hidden', background: C.charcoal }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.88)' }} />
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-
-          {STORY_SECTIONS.map((item, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <div style={{ textAlign: 'center', padding: '0 clamp(0px, 4vw, 40px)' }}>
-                <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.gold, marginBottom: '10px' }}>
-                  {item.label}
-                </p>
-                <h3 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 400, fontStyle: 'italic', color: C.champagne, marginBottom: '14px' }}>
-                  {item.title}
-                </h3>
-                <p style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 400, color: C.textLight, lineHeight: 2, maxWidth: '560px', margin: '0 auto', opacity: 0.8 }}>
-                  {item.text}
-                </p>
-              </div>
-              {i < STORY_SECTIONS.length - 1 && <GoldDot />}
+        {/* OUR STORY */}
+        <section id="our-story" style={{ padding: '100px 24px', borderTop: `1px solid ${L.border}` }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <FadeIn>
+              <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: L.muted, textAlign: 'center', marginBottom: '12px' }}>
+                Our Story
+              </p>
+              <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 6vw, 42px)', fontWeight: 300, fontStyle: 'italic', color: L.text, textAlign: 'center', marginBottom: '48px' }}>
+                How It All Started
+              </h2>
             </FadeIn>
-          ))}
-        </div>
-      </section>
 
-{/* ══════════════════════════════════════════════════════════════
-          EVENTS
-          ══════════════════════════════════════════════════════════════ */}
-      <section id="events" style={{ padding: '100px 24px', borderTop: `1px solid ${C.border}` }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <FadeIn>
-            <p style={sectionLabel}>The Celebration</p>
-            <h2 style={sectionHeading}>Wedding Weekend</h2>
-          </FadeIn>
+            <FadeIn delay={0.05}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', marginBottom: '80px' }}>
+                {['/couple/1.jpg', '/couple/2.jpg', '/couple/3.jpg'].map((src, i) => (
+                  <div key={i} style={{ aspectRatio: '3/4', overflow: 'hidden', background: '#D8D3CC' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            {wedding.events.map((evt, i) => (
-              <FadeIn key={evt.key} delay={i * 0.15}>
-                <div className="event-card-padding" style={{ background: C.charcoal, borderLeft: `3px solid ${C.gold}`, padding: '36px 40px' }}>
-                  <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.gold, marginBottom: '14px' }}>
-                    {evt.date}
+            {STORY_SECTIONS.map((item, i) => (
+              <FadeIn key={i} delay={i * 0.1}>
+                <div style={{ textAlign: 'center', padding: '0 clamp(0px, 4vw, 40px)' }}>
+                  <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.gold, marginBottom: '10px' }}>
+                    {item.label}
                   </p>
-                  <h3 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4.5vw, 28px)', fontWeight: 400, fontStyle: 'italic', color: C.champagne, marginBottom: '10px' }}>
-                    {evt.name}
+                  <h3 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4vw, 28px)', fontWeight: 400, fontStyle: 'italic', color: L.text, marginBottom: '14px' }}>
+                    {item.title}
                   </h3>
-                  <p style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 400, letterSpacing: '1.5px', color: C.textLight, marginBottom: '10px' }}>
-                    {evt.time} · {evt.venue}
-                  </p>
-                  <p style={{ fontFamily: fonts.serif, fontSize: '13px', fontStyle: 'italic', color: C.textMuted }}>
-                    {evt.note}
+                  <p style={{ fontFamily: fonts.sans, fontSize: '15px', fontWeight: 400, color: L.text, lineHeight: 2, maxWidth: '560px', margin: '0 auto', opacity: 0.75 }}>
+                    {item.text}
                   </p>
                 </div>
+                {i < STORY_SECTIONS.length - 1 && <GoldDot />}
               </FadeIn>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          REGISTRY
-          ══════════════════════════════════════════════════════════════ */}
-      <section id="registry" style={{ padding: '100px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
-        <FadeIn>
-          <div style={{ maxWidth: '560px', margin: '0 auto' }}>
-            <p style={sectionLabel}>Registry</p>
-            <h2 style={{ ...sectionHeading, marginBottom: '20px' }}>Gifts & Celebrations</h2>
-            <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9, marginBottom: '36px' }}>
-              Your presence is the greatest gift. If you'd like to celebrate with something more, we've put together a few ideas.
-            </p>
-            <Link
-              href="/registry"
-              style={{
-                display: 'inline-block',
-                fontFamily: fonts.sans,
-                fontSize: '9px',
-                fontWeight: 500,
-                letterSpacing: '3px',
-                textTransform: 'uppercase',
-                color: C.gold,
-                border: `1px solid ${C.gold}`,
-                padding: '12px 32px',
-                textDecoration: 'none',
-              }}
-            >
-              View Registry
-            </Link>
+        {/* EVENTS */}
+        <section id="events" style={{ padding: '100px 24px', borderTop: `1px solid ${L.border}` }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <FadeIn>
+              <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: L.muted, textAlign: 'center', marginBottom: '12px' }}>
+                The Celebration
+              </p>
+              <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 6vw, 42px)', fontWeight: 300, fontStyle: 'italic', color: L.text, textAlign: 'center', marginBottom: '48px' }}>
+                Wedding Weekend
+              </h2>
+            </FadeIn>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              {wedding.events.map((evt, i) => (
+                <FadeIn key={evt.key} delay={i * 0.15}>
+                  <div className="event-card-padding" style={{ background: L.card, borderLeft: `3px solid ${C.gold}`, padding: '36px 40px', boxShadow: '0 1px 12px rgba(0,0,0,0.06)' }}>
+                    <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '3px', textTransform: 'uppercase', color: C.gold, marginBottom: '14px' }}>
+                      {evt.date}
+                    </p>
+                    <h3 style={{ fontFamily: fonts.serif, fontSize: 'clamp(22px, 4.5vw, 28px)', fontWeight: 400, fontStyle: 'italic', color: L.text, marginBottom: '10px' }}>
+                      {evt.name}
+                    </h3>
+                    <p style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 400, letterSpacing: '1.5px', color: L.text, marginBottom: '10px' }}>
+                      {evt.time} · {evt.venue}
+                    </p>
+                    <p style={{ fontFamily: fonts.serif, fontSize: '13px', fontStyle: 'italic', color: L.muted }}>
+                      {evt.note}
+                    </p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
           </div>
-        </FadeIn>
-      </section>
+        </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          RSVP CTA
-          ══════════════════════════════════════════════════════════════ */}
-      <section id="rsvp" style={{ padding: '120px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
-        <FadeIn>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
-            <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 7vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: C.champagne }}>
-              We'd Love to Have You
-            </h2>
-            <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.8, maxWidth: '400px' }}>
-              Kindly let us know if you'll be joining us in Tel Aviv.<br />
-              Please respond by {wedding.rsvpDeadline}.
-            </p>
-            <RsvpButton href="/rsvp" label="RSVP Now" style={{ marginTop: '8px' }} />
-          </div>
-        </FadeIn>
-      </section>
+        {/* REGISTRY */}
+        <section id="registry" style={{ padding: '100px 24px', textAlign: 'center', borderTop: `1px solid ${L.border}` }}>
+          <FadeIn>
+            <div style={{ maxWidth: '560px', margin: '0 auto' }}>
+              <p style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '4px', textTransform: 'uppercase', color: L.muted, textAlign: 'center', marginBottom: '12px' }}>
+                Registry
+              </p>
+              <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(28px, 6vw, 42px)', fontWeight: 300, fontStyle: 'italic', color: L.text, textAlign: 'center', marginBottom: '20px' }}>
+                Gifts & Celebrations
+              </h2>
+              <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: L.muted, lineHeight: 1.9, marginBottom: '36px' }}>
+                Your presence is the greatest gift. If you'd like to celebrate with something more, we've put together a few ideas.
+              </p>
+              <Link
+                href="/registry"
+                style={{
+                  display: 'inline-block',
+                  fontFamily: fonts.sans,
+                  fontSize: '9px',
+                  fontWeight: 500,
+                  letterSpacing: '3px',
+                  textTransform: 'uppercase',
+                  color: C.gold,
+                  border: `1px solid ${C.gold}`,
+                  padding: '12px 32px',
+                  textDecoration: 'none',
+                }}
+              >
+                View Registry
+              </Link>
+            </div>
+          </FadeIn>
+        </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          FOOTER
-          ══════════════════════════════════════════════════════════════ */}
-      <footer style={{ padding: '40px 24px', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
+        {/* RSVP CTA */}
+        <section id="rsvp" style={{ padding: '120px 24px', textAlign: 'center', borderTop: `1px solid ${L.border}` }}>
+          <FadeIn>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
+              <h2 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 7vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: L.text }}>
+                We'd Love to Have You
+              </h2>
+              <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: L.muted, lineHeight: 1.8, maxWidth: '400px' }}>
+                Kindly let us know if you'll be joining us in Tel Aviv.<br />
+                Please respond by {wedding.rsvpDeadline}.
+              </p>
+              <RsvpButton href="/rsvp" label="RSVP Now" light style={{ marginTop: '8px' }} />
+            </div>
+          </FadeIn>
+        </section>
+
+      </div>{/* end light wrapper */}
+
+      {/* FOOTER — dark again */}
+      <footer style={{ padding: '40px 24px', textAlign: 'center', background: C.black, borderTop: `1px solid ${C.border}` }}>
         <div style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 300, letterSpacing: '4px', color: C.textLight, marginBottom: '12px' }}>
           N <span style={{ color: C.gold, fontStyle: 'italic', fontSize: '18px' }}>&</span> E
         </div>

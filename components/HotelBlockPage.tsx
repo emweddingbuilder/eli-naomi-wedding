@@ -15,14 +15,6 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   </motion.div>
 );
 
-const HOTELS = [
-  {
-    name: 'Hotel Details Coming Soon',
-    description: "We're finalizing our hotel block arrangements. Check back soon for booking information and our negotiated rates.",
-    tag: 'Coming Soon',
-  },
-];
-
 export default function HotelBlockPage() {
   const C = colors;
 
@@ -38,61 +30,64 @@ export default function HotelBlockPage() {
             Where to Stay
           </p>
           <h1 style={{ fontFamily: fonts.serif, fontSize: 'clamp(32px, 6vw, 48px)', fontWeight: 300, fontStyle: 'italic', color: C.champagne, marginBottom: '24px' }}>
-            Hotel Block
+            Hotel Details
           </h1>
           <div style={{ width: '40px', height: '1px', background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, margin: '0 auto 32px' }} />
           <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: C.textMuted, lineHeight: 2, maxWidth: '520px', margin: '0 auto 56px' }}>
-            We have arranged room blocks at nearby hotels in Tel Aviv-Yafo for our guests. Details and booking links will be available here soon — please check back as we get closer to October.
+            We have arranged a room discount at the hotel Sam and Blondi. As most hotels in Tel Aviv don&apos;t offer a traditional &ldquo;room block&rdquo;, with the following code you will receive a discounted reservation — <span style={{ color: C.gold, fontWeight: 500 }}>ABCD</span>.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div style={{ border: `1px solid ${C.border}`, padding: '40px 36px', marginBottom: '48px', textAlign: 'left' }}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, marginBottom: '10px' }}>
-                  Hotel Block
-                </p>
-                <p style={{ fontFamily: fonts.serif, fontSize: '22px', fontWeight: 300, fontStyle: 'italic', color: C.champagne, marginBottom: '12px' }}>
-                  Coming Soon
-                </p>
-                <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9 }}>
-                  We&apos;re finalizing our hotel block arrangements and rates for guests traveling from abroad. Details including hotel names, booking links, and our group rates will be posted here shortly.
-                </p>
-              </div>
+          <div style={{ border: `1px solid ${C.border}`, overflow: 'hidden', marginBottom: '48px' }}>
+            {/* Hotel photos */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
+              {['/Sam and Blondi/samandblondi.jpg', '/Sam and Blondi/samandblondiroof.jpg'].map((src, i) => (
+                <div key={i} style={{ aspectRatio: '4/3', overflow: 'hidden', background: C.charcoal }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt="Sam and Blondi"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+              ))}
+            </div>
+            <div style={{ padding: '32px 36px', textAlign: 'left' }}>
+              <p style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, marginBottom: '10px' }}>
+                Recommended Hotel
+              </p>
+              <p style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 300, fontStyle: 'italic', color: C.champagne, marginBottom: '12px' }}>
+                Sam and Blondi
+              </p>
+              <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9, marginBottom: '20px' }}>
+                Use discount code <span style={{ color: C.gold, fontWeight: 500 }}>ABCD</span> when booking to receive your discounted rate.
+              </p>
+              <a
+                href="https://maps.google.com/?q=Sam+and+Blondi+Tel+Aviv"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, textDecoration: 'none' }}
+              >
+                View on Map →
+              </a>
             </div>
           </div>
         </FadeIn>
 
         <FadeIn delay={0.15}>
-          <div style={{ border: `1px solid ${C.border}`, padding: '32px 36px', textAlign: 'left' }}>
+          <div style={{ border: `1px solid ${C.border}`, padding: '32px 36px', textAlign: 'left', marginBottom: '48px' }}>
             <p style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: C.gold, marginBottom: '12px' }}>
-              Getting to Tel Aviv
+              A Note from Us
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div>
-                <p style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: C.textLight, marginBottom: '6px' }}>
-                  Airport
-                </p>
-                <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9 }}>
-                  Ben Gurion International Airport (TLV) is approximately 20–30 minutes from central Tel Aviv by taxi or train.
-                </p>
-              </div>
-              <div style={{ width: '100%', height: '1px', background: C.border }} />
-              <div>
-                <p style={{ fontFamily: fonts.sans, fontSize: '11px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: C.textLight, marginBottom: '6px' }}>
-                  Venue
-                </p>
-                <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9 }}>
-                  The wedding will be held at Consul House — HaTsorfim St 15, Tel Aviv-Yafo. We recommend staying in central Tel Aviv or the Neve Tzedek / Jaffa area for easy access.
-                </p>
-              </div>
-            </div>
+            <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: C.textMuted, lineHeight: 2 }}>
+              As many of our guests have visited Tel Aviv before, we encourage everyone to choose an accommodation most comfortable to them — at Sam and Blondi, or wherever feels right!
+            </p>
           </div>
         </FadeIn>
 
         <FadeIn delay={0.2}>
-          <div style={{ marginTop: '48px' }}>
+          <div>
             <div style={{ width: '40px', height: '1px', background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, margin: '0 auto 20px' }} />
             <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: C.textMuted, lineHeight: 1.9 }}>
               Questions? Reach out at{' '}
