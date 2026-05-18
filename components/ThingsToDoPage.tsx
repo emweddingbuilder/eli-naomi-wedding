@@ -39,24 +39,25 @@ const PLACES: Place[] = [
 ];
 
 const RESTAURANTS: Place[] = [
-  { name: 'EatMeat', tags: ['Sandwiches'], mapsQuery: 'EatMeat Tel Aviv' },
-  { name: 'Benz Brothers', tags: ['Burgers'], mapsQuery: 'Benz Brothers Tel Aviv' },
-  { name: 'Thai 148', tags: ['Thai'], mapsQuery: 'Thai 148 Tel Aviv' },
-  { name: 'Goshen', tags: ['Israeli', 'Dinner'], mapsQuery: 'Goshen Tel Aviv' },
-  { name: 'Mifgash Rambam', tags: ['Shawarma'], mapsQuery: 'Mifgash Rambam Tel Aviv' },
-  { name: 'Jazminos', tags: ['Mediterranean', 'Dinner'], mapsQuery: 'Jazminos Tel Aviv' },
-  { name: 'Beina', tags: ['Israeli', 'Casual'], mapsQuery: 'Beina Tel Aviv' },
-  { name: 'Bellboy Bar', tags: ['New Orleans Style Speakeasy'], mapsQuery: 'Bellboy Bar Tel Aviv' },
-  { name: 'Fity and One', tags: ['Dinner'], mapsQuery: 'Fity and One Tel Aviv' },
+  { name: 'Benz Brothers', tags: ['Burgers'], photo: 'benzbrothers.jpg', mapsQuery: 'Benz Brothers Tel Aviv' },
+  { name: 'Thai 148', tags: ['Thai'], photo: 'thai148.jpg', mapsQuery: 'Thai 148 Tel Aviv' },
+  { name: 'Goshen', tags: ['Israeli', 'Dinner'], photo: 'goshen.jpg', mapsQuery: 'Goshen Tel Aviv' },
+  { name: 'Mifgash Rambam', tags: ['Shawarma'], photo: 'mifgashrambamp.jpg', mapsQuery: 'Mifgash Rambam Tel Aviv' },
+  { name: 'Jasmino', tags: ['Mediterranean', 'Dinner'], photo: 'jazminos.jpg', mapsQuery: 'Jasmino Tel Aviv' },
+  { name: 'Beina', tags: ['Israeli', 'Casual'], photo: 'beina.jpg', mapsQuery: 'Beina Tel Aviv' },
+  { name: 'Bellboy Bar', tags: ['New Orleans Style Speakeasy'], photo: 'bellboy.jpg', mapsQuery: 'Bellboy Bar Tel Aviv' },
+  { name: 'Fity and One', tags: ['Dinner'], photo: 'fifty and one.jpg', mapsQuery: 'Fity and One Tel Aviv' },
 ];
 
 const CAFES: Place[] = [
-  { name: 'Buckee', tags: ['Coffee', 'Breakfast'], mapsQuery: 'Buckee cafe Tel Aviv' },
-  { name: 'Bialik Square Café', tags: ['Coffee', 'Outdoor Seating'], mapsQuery: 'Bialik Square Tel Aviv' },
-  { name: 'Dr. Bagel', tags: ['Bagels', 'Breakfast'], mapsQuery: 'Dr. Bagel Tel Aviv' },
-  { name: 'Michaeli', tags: ['Coffee', 'Pastries'], mapsQuery: 'Michaeli Tel Aviv' },
-  { name: 'Norseh', tags: ['Coffee', 'Brunch'], mapsQuery: 'Norseh Tel Aviv' },
-  { name: 'Tamuz', tags: ['Coffee', 'Casual'], mapsQuery: 'Tamuz Tel Aviv' },
+  { name: 'Buckee', tags: ['Coffee', 'Breakfast'], photo: 'buckee.jpg', mapsQuery: 'Buckee cafe Tel Aviv' },
+  { name: 'Bialik Square Café', tags: ['Coffee', 'Outdoor Seating'], photo: 'bialik square cafe.jpg', mapsQuery: 'Bialik Square Tel Aviv' },
+  { name: 'Dr. Bagel', tags: ['Bagels', 'Breakfast'], photo: 'drbagel.jpg', mapsQuery: 'Dr. Bagel Tel Aviv' },
+  { name: 'Michaeli', tags: ['Coffee', 'Pastries'], photo: 'michaeli.jpg', mapsQuery: 'Michaeli Tel Aviv' },
+  { name: 'Norish', tags: ['Coffee', 'Brunch'], photo: 'noresh.jpg', mapsQuery: 'Norish Tel Aviv' },
+  { name: 'Tamuz', tags: ['Coffee', 'Casual'], photo: 'tamuz.jpg', mapsQuery: 'Tamuz Tel Aviv' },
+  { name: 'Coming Soon', tags: ['Coffee'], mapsQuery: 'Tel Aviv' },
+  { name: 'Coming Soon', tags: ['Coffee'], mapsQuery: 'Tel Aviv' },
 ];
 
 // ── Sub-components ─────────────────────────────────────────────────────────
@@ -188,7 +189,7 @@ export default function ThingsToDoPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
               {RESTAURANTS.map((place, i) => (
-                <PlaceCard key={place.name} place={place} i={i} photoDir="/tel-aviv/food/" />
+                <PlaceCard key={place.name} place={place} i={i} photoDir="/Restaurants/" />
               ))}
             </div>
           </div>
@@ -207,7 +208,7 @@ export default function ThingsToDoPage() {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
               {CAFES.map((place, i) => (
-                <PlaceCard key={place.name} place={place} i={i} photoDir="/tel-aviv/cafes/" />
+                <PlaceCard key={place.name} place={place} i={i} photoDir="/Restaurants/" />
               ))}
             </div>
           </div>
