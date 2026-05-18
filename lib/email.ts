@@ -98,11 +98,13 @@ With love, Naomi & Eli
 
   return resend.emails.send({
     from: 'Naomi & Eli <hello@elinaomi.love>',
-    replyTo: 'eli.naomi.gettingmarried@gmail.com',
     to,
     subject: `Your RSVP is confirmed — Naomi & Eli, October 19`,
     html,
     text,
+    headers: {
+      'List-Unsubscribe': '<mailto:hello@elinaomi.love?subject=unsubscribe>',
+    },
   });
 }
 
@@ -252,10 +254,12 @@ Naomi & Eli
 
   return resend.emails.send({
     from: 'Naomi & Eli <hello@elinaomi.love>',
-    replyTo: 'eli.naomi.gettingmarried@gmail.com',
     to,
     subject: `Naomi & Eli — October 19, 2026`,
     html,
     text,
+    headers: {
+      'List-Unsubscribe': '<mailto:hello@elinaomi.love?subject=unsubscribe>',
+    },
   });
 }
