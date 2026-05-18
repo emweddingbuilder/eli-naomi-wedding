@@ -112,11 +112,11 @@ export default function LandingPage() {
         <div style={{ width: '100%', height: '95vh', minHeight: '600px', position: 'relative', overflow: 'hidden', marginTop: '56px' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/hero.jpg')", backgroundSize: 'cover', backgroundPosition: 'center 35%', backgroundRepeat: 'no-repeat', filter: 'brightness(0.75)' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%', background: `linear-gradient(transparent, ${C.black})` }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '55%', background: `linear-gradient(transparent, rgba(0,0,0,0.7) 60%, ${C.black})` }} />
           <div style={{ position: 'absolute', bottom: '48px', left: 0, right: 0, textAlign: 'center', zIndex: 3 }}>
-            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)', marginBottom: '6px' }}>Naomi Alsberg</p>
-            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(14px, 2.5vw, 18px)', fontWeight: 300, fontStyle: 'italic', color: C.gold, margin: '4px 0' }}>&</p>
-            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)' }}>Eli Minsky</p>
+            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: '#ffffff', marginBottom: '6px', textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>Naomi Alsberg</p>
+            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(14px, 2.5vw, 18px)', fontWeight: 300, fontStyle: 'italic', color: C.gold, margin: '4px 0', textShadow: '0 1px 8px rgba(0,0,0,0.4)' }}>&</p>
+            <p style={{ fontFamily: fonts.serif, fontSize: 'clamp(13px, 2.5vw, 17px)', fontWeight: 300, letterSpacing: 'clamp(6px, 2vw, 14px)', textTransform: 'uppercase', color: '#ffffff', textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>Eli Minsky</p>
           </div>
         </div>
         <div style={{ textAlign: 'center', padding: '48px 24px 72px' }}>
