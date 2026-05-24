@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { sendInviteEmail } from '@/lib/email';
+import { buildPartyDisplayName } from '@/lib/partyName';
 import { cookies } from 'next/headers';
 
 async function isAuthed() {
@@ -31,9 +32,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Guest has no email' }, { status: 400 });
   }
 
+  // Fetch all party members in CSV order to build the display name
+  const { data: partyMembers } = await getSupabaseAdmin()
+    .from('guests')
+    .select('first_name, last_name')
+    .eq('party_id', guest.party_id)
+    .order('created_at', { ascending: true });
+
+  const guestName = partyMembers && partyMembers.length > 0
+    ? buildPartyDisplayName(partyMembers)
+    : `${guest.first_name} ${guest.last_name}`;
+
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   const rsvpUrl = `${baseUrl}/invite?guestId=${guestId}`;
-  const guestName = `${guest.first_name} ${guest.last_name}`;
 
   try {
     await sendInviteEmail({ to: guest.email, guestName, rsvpUrl });
