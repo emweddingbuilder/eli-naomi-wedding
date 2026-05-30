@@ -25,11 +25,13 @@ interface GuestRow {
 export default function AdminDashboard() {
   const [guests, setGuests] = useState<GuestRow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<'overview' | 'guests' | 'upload'>('overview');
+  const [tab, setTab] = useState<'overview' | 'guests' | 'songs' | 'upload'>('overview');
   const [csvText, setCsvText] = useState('');
   const [uploadStatus, setUploadStatus] = useState('');
   const [uploading, setUploading] = useState(false);
   const [inviting, setInviting] = useState<string | null>(null);
+  const [rsvpModal, setRsvpModal] = useState<'attending' | 'declined' | null>(null);
+  const [deleting, setDeleting] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/admin/guests')
@@ -108,6 +110,71 @@ export default function AdminDashboard() {
     }
   }
 
+  function handleExportCsv() {
+    // Group guests by party name
+    const parties: Record<string, GuestRow[]> = {};
+    for (const g of guests) {
+      const key = g.party?.name || 'Unknown';
+      if (!parties[key]) parties[key] = [];
+      parties[key].push(g);
+    }
+
+    const rows: string[][] = [
+      ['Party', 'Guest Name', 'Email', 'Ceremony', 'Rehearsal Dinner', 'Dietary Restrictions', 'Song Request', 'Message'],
+    ];
+
+    for (const [partyName, members] of Object.entries(parties)) {
+      for (const g of members) {
+        const ceremony = g.rsvps?.find((r) => r.event === 'ceremony');
+        const rehearsal = g.rsvps?.find((r) => r.event === 'rehearsal');
+        const rsvpFor = (r: RsvpRow | undefined) => !r ? 'Pending' : r.attending ? 'Yes' : 'No';
+        const dietary = g.rsvps?.find((r) => r.dietary_restrictions)?.dietary_restrictions || '';
+        const song = g.rsvps?.find((r) => r.song_request)?.song_request || '';
+        const message = g.rsvps?.find((r) => r.message)?.message || '';
+        rows.push([
+          partyName,
+          `${g.first_name} ${g.last_name}`,
+          g.email || '',
+          rsvpFor(ceremony),
+          rsvpFor(rehearsal),
+          dietary,
+          song,
+          message,
+        ]);
+      }
+      // blank row between parties
+      rows.push(['', '', '', '', '', '', '', '']);
+    }
+
+    const csv = rows.map((r) => r.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'rsvp-export.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  async function handleDelete(guestId: string, name: string) {
+    if (!window.confirm(`Delete ${name}? This cannot be undone.`)) return;
+    setDeleting(guestId);
+    try {
+      const res = await fetch('/api/admin/guests', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ guestId }),
+      });
+      if (res.ok) {
+        setGuests((prev) => prev.filter((g) => g.id !== guestId));
+      } else {
+        alert('Failed to delete guest.');
+      }
+    } finally {
+      setDeleting(null);
+    }
+  }
+
   async function handleSendInvite(guestId: string) {
     setInviting(guestId);
     try {
@@ -139,7 +206,7 @@ export default function AdminDashboard() {
               Admin Dashboard
             </p>
             <p className="eyebrow" style={{ color: 'var(--muted)', fontSize: '0.55rem' }}>
-              Eli & Naomi · October 19, 2026
+              Naomi & Eli · October 19, 2026
             </p>
           </div>
         </div>
@@ -150,7 +217,7 @@ export default function AdminDashboard() {
 
       {/* Tabs */}
       <div className="px-8 pt-6 flex gap-6 border-b" style={{ borderColor: 'rgba(0,0,0,0.1)' }}>
-        {(['overview', 'guests', 'upload'] as const).map((t) => (
+        {(['overview', 'guests', 'songs', 'upload'] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -178,21 +245,79 @@ export default function AdminDashboard() {
           <div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
               {[
-                { label: 'Total Invited', value: guests.length },
-                { label: 'Attending', value: attending },
-                { label: 'Declined', value: declined },
-                { label: 'Awaiting RSVP', value: pending },
+                { label: 'Total Invited', value: guests.length, key: null },
+                { label: 'Attending', value: attending, key: 'attending' as const },
+                { label: 'Declined', value: declined, key: 'declined' as const },
+                { label: 'Awaiting RSVP', value: pending, key: null },
               ].map((stat) => (
-                <div key={stat.label} className="p-6 text-center" style={{ background: 'white', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div
+                  key={stat.label}
+                  className="p-6 text-center"
+                  onClick={() => stat.key && setRsvpModal(stat.key)}
+                  style={{
+                    background: 'white',
+                    border: '1px solid rgba(0,0,0,0.08)',
+                    cursor: stat.key ? 'pointer' : 'default',
+                    transition: 'box-shadow 0.15s',
+                  }}
+                  onMouseEnter={(e) => { if (stat.key) (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 16px rgba(0,0,0,0.1)'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'none'; }}
+                >
                   <p className="font-display" style={{ fontSize: '2.5rem', color: 'var(--charcoal)', lineHeight: 1 }}>
                     {stat.value}
                   </p>
                   <p className="eyebrow mt-2" style={{ color: 'var(--muted)', fontSize: '0.55rem' }}>
-                    {stat.label}
+                    {stat.label}{stat.key ? ' ↗' : ''}
                   </p>
                 </div>
               ))}
             </div>
+
+            {/* Attending / Declined modal */}
+            {rsvpModal && (
+              <div
+                onClick={() => setRsvpModal(null)}
+                style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}
+              >
+                <div
+                  onClick={(e) => e.stopPropagation()}
+                  style={{ background: 'white', maxWidth: '480px', width: '100%', maxHeight: '70vh', overflowY: 'auto', padding: '32px', boxShadow: '0 20px 60px rgba(0,0,0,0.2)' }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                    <p className="eyebrow" style={{ fontSize: '0.65rem', letterSpacing: '0.25em', color: 'var(--charcoal)' }}>
+                      {rsvpModal === 'attending' ? 'Attending' : 'Declined'}
+                    </p>
+                    <button onClick={() => setRsvpModal(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted)', fontSize: '1.2rem', lineHeight: 1 }}>×</button>
+                  </div>
+                  {guests
+                    .filter(rsvpModal === 'attending' ? isAttending : (g) => hasRsvp(g) && !isAttending(g))
+                    .map((g) => {
+                      const ceremony = g.rsvps?.find((r) => r.event === 'ceremony');
+                      const rehearsal = g.rsvps?.find((r) => r.event === 'rehearsal');
+                      return (
+                        <div key={g.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+                          <p className="font-display" style={{ fontSize: '0.95rem', color: 'var(--charcoal)' }}>
+                            {g.first_name} {g.last_name}
+                          </p>
+                          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            {ceremony && (
+                              <span className="eyebrow" style={{ fontSize: '0.5rem', padding: '2px 7px', background: ceremony.attending ? 'rgba(45,122,79,0.1)' : 'rgba(192,57,43,0.08)', color: ceremony.attending ? '#2d7a4f' : '#c0392b' }}>
+                                Ceremony {ceremony.attending ? '✓' : '✗'}
+                              </span>
+                            )}
+                            {rehearsal && (
+                              <span className="eyebrow" style={{ fontSize: '0.5rem', padding: '2px 7px', background: rehearsal.attending ? 'rgba(45,122,79,0.1)' : 'rgba(192,57,43,0.08)', color: rehearsal.attending ? '#2d7a4f' : '#c0392b' }}>
+                                Dinner {rehearsal.attending ? '✓' : '✗'}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })
+                  }
+                </div>
+              </div>
+            )}
 
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
@@ -232,6 +357,23 @@ export default function AdminDashboard() {
         {/* Guests Tab */}
         {tab === 'guests' && (
           <div>
+            <div className="flex justify-end mb-4">
+              <button
+                onClick={handleExportCsv}
+                className="eyebrow"
+                style={{
+                  fontSize: '0.55rem',
+                  color: 'var(--charcoal)',
+                  background: 'none',
+                  border: '1px solid var(--charcoal)',
+                  padding: '0.4rem 1rem',
+                  cursor: 'pointer',
+                  letterSpacing: '0.15em',
+                }}
+              >
+                Export CSV
+              </button>
+            </div>
             {loading ? (
               <p className="font-display" style={{ color: 'var(--muted)' }}>Loading...</p>
             ) : (
@@ -264,31 +406,85 @@ export default function AdminDashboard() {
                         {rsvpStatus(g).label}
                       </td>
                       <td className="py-3">
-                        {g.email && (
+                        <div style={{ display: 'flex', gap: '6px' }}>
+                          {g.email && (
+                            <button
+                              onClick={() => handleSendInvite(g.id)}
+                              className="eyebrow"
+                              disabled={inviting === g.id}
+                              style={{
+                                fontSize: '0.55rem',
+                                color: 'var(--charcoal)',
+                                background: 'none',
+                                border: '1px solid var(--charcoal)',
+                                padding: '0.25rem 0.75rem',
+                                cursor: 'pointer',
+                                letterSpacing: '0.15em',
+                                opacity: inviting === g.id ? 0.5 : 1,
+                              }}
+                            >
+                              {inviting === g.id ? 'Sending...' : g.invited_at ? 'Resend' : 'Invite'}
+                            </button>
+                          )}
                           <button
-                            onClick={() => handleSendInvite(g.id)}
+                            onClick={() => handleDelete(g.id, `${g.first_name} ${g.last_name}`)}
                             className="eyebrow"
-                            disabled={inviting === g.id}
+                            disabled={deleting === g.id}
                             style={{
                               fontSize: '0.55rem',
-                              color: 'var(--charcoal)',
+                              color: '#c0392b',
                               background: 'none',
-                              border: '1px solid var(--charcoal)',
+                              border: '1px solid #c0392b',
                               padding: '0.25rem 0.75rem',
                               cursor: 'pointer',
                               letterSpacing: '0.15em',
-                              opacity: inviting === g.id ? 0.5 : 1,
+                              opacity: deleting === g.id ? 0.5 : 1,
                             }}
                           >
-                            {inviting === g.id ? 'Sending...' : g.invited_at ? 'Resend' : 'Invite'}
+                            {deleting === g.id ? '...' : 'Delete'}
                           </button>
-                        )}
+                        </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             )}
+          </div>
+        )}
+
+        {/* Songs Tab */}
+        {tab === 'songs' && (
+          <div>
+            {loading ? (
+              <p className="font-display" style={{ color: 'var(--muted)' }}>Loading...</p>
+            ) : (() => {
+              const songGuests = guests.filter((g) => g.rsvps?.some((r) => r.song_request));
+              return songGuests.length === 0 ? (
+                <p className="font-display" style={{ color: 'var(--muted)', fontSize: '0.95rem' }}>No song requests yet.</p>
+              ) : (
+                <div>
+                  <p className="eyebrow mb-6" style={{ color: 'var(--muted)', fontSize: '0.6rem', letterSpacing: '0.2em' }}>
+                    {songGuests.length} {songGuests.length === 1 ? 'request' : 'requests'}
+                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                    {songGuests.map((g) => {
+                      const song = g.rsvps.find((r) => r.song_request)?.song_request;
+                      return (
+                        <div key={g.id} style={{ display: 'flex', alignItems: 'baseline', gap: '16px', padding: '12px 0', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+                          <p className="font-display" style={{ fontSize: '0.95rem', color: 'var(--charcoal)', minWidth: '160px' }}>
+                            {g.first_name} {g.last_name}
+                          </p>
+                          <p className="font-display" style={{ fontSize: '0.9rem', color: 'var(--muted)', fontStyle: 'italic' }}>
+                            {song}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         )}
 
@@ -304,8 +500,8 @@ export default function AdminDashboard() {
 
             <div className="mb-6 p-4 rounded" style={{ background: 'rgba(0,0,0,0.04)', fontSize: '0.8rem', fontFamily: 'monospace', color: 'var(--muted)' }}>
               party_name,first_name,last_name,email,invited_events<br />
-              Eli & Naomi,Eli,Minsky,eli@example.com,rehearsal,ceremony<br />
-              Eli & Naomi,Naomi,Alsberg,,rehearsal,ceremony<br />
+              Naomi & Eli,Naomi,Alsberg,,rehearsal,ceremony<br />
+              Naomi & Eli,Eli,Minsky,eli@example.com,rehearsal,ceremony<br />
               Cohen Family,David,Cohen,david@example.com,ceremony
             </div>
 
