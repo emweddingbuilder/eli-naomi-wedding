@@ -39,7 +39,7 @@ export default function HotelBlockPage() {
           </h1>
           <div style={{ width: '40px', height: '1px', background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)`, margin: '0 auto 32px' }} />
           <p style={{ fontFamily: fonts.sans, fontSize: '13px', fontWeight: 300, color: MUTED, lineHeight: 2, maxWidth: '520px', margin: '0 auto 56px' }}>
-            We have arranged a room discount at the hotel Sam and Blondi. As most hotels in Tel Aviv don&apos;t offer a traditional &ldquo;room block&rdquo;, with the following code you will receive a discounted reservation — <span style={{ color: GOLD, fontWeight: 500 }}>ABCD</span>.
+            We&apos;ve arranged a discounted rate at Sam &amp; Blondi through Leonardo Hotels. Follow the steps below to book with our promo code.
           </p>
         </FadeIn>
 
@@ -58,18 +58,34 @@ export default function HotelBlockPage() {
               <p style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: GOLD, marginBottom: '10px' }}>
                 Recommended Hotel
               </p>
-              <p style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 300, fontStyle: 'italic', color: CHARCOAL, marginBottom: '12px' }}>
-                Sam and Blondi
+              <p style={{ fontFamily: fonts.serif, fontSize: '24px', fontWeight: 300, fontStyle: 'italic', color: CHARCOAL, marginBottom: '24px' }}>
+                Sam &amp; Blondi
               </p>
-              <p style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: MUTED, lineHeight: 1.9, marginBottom: '8px' }}>
-                Use discount code <span style={{ color: GOLD, fontWeight: 500 }}>ABCD</span> when booking to receive your discounted rate.
+
+              {/* Booking steps */}
+              <p style={{ fontFamily: fonts.sans, fontSize: '8px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: MUTED, marginBottom: '16px' }}>
+                How to Book
               </p>
-              <p style={{ fontFamily: fonts.sans, fontSize: '11px', fontStyle: 'italic', color: MUTED, lineHeight: 1.8, marginBottom: '24px' }}>
-                If you plan to reserve a room at Sam and Blondi, we highly recommend doing so soon — this is a discounted rate, not a room block.
-              </p>
+              <ol style={{ listStyle: 'none', padding: 0, margin: '0 0 28px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                {[
+                  <>Navigate to{' '}<a href="https://www.leonardo-hotels.com" target="_blank" rel="noopener noreferrer" style={{ color: GOLD, textDecoration: 'none', borderBottom: `1px solid ${GOLD}` }}>leonardo-hotels.com</a></>,
+                  <>Search for hotel name <span style={{ color: CHARCOAL, fontWeight: 500 }}>Sam &amp; Blondi</span> and select it</>,
+                  <>Choose your dates — the promo code is valid for stays within <span style={{ color: CHARCOAL, fontWeight: 500 }}>October 14–22</span></>,
+                  <>Enter promo code <span style={{ color: GOLD, fontWeight: 600, letterSpacing: '1px' }}>Minsky</span> and press <em>OK</em></>,
+                  <>Continue with your booking</>,
+                ].map((step, i) => (
+                  <li key={i} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                    <span style={{ fontFamily: fonts.serif, fontSize: '16px', fontStyle: 'italic', color: GOLD, minWidth: '20px', lineHeight: 1.5 }}>{i + 1}.</span>
+                    <span style={{ fontFamily: fonts.sans, fontSize: '12px', fontWeight: 300, color: MUTED, lineHeight: 1.8 }}>{step}</span>
+                  </li>
+                ))}
+              </ol>
+
               <div style={{ display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
                 <a
-                  href="#"
+                  href="https://www.leonardo-hotels.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{ fontFamily: fonts.sans, fontSize: '9px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: CHARCOAL, background: GOLD, padding: '10px 24px', textDecoration: 'none' }}
                 >
                   Book Now →
