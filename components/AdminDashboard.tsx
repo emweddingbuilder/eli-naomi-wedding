@@ -25,7 +25,7 @@ interface GuestRow {
 export default function AdminDashboard() {
   const [guests, setGuests] = useState<GuestRow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<'overview' | 'guests' | 'songs' | 'upload'>('overview');
+  const [tab, setTab] = useState<'overview' | 'guests' | 'dietary' | 'songs' | 'upload'>('overview');
   const [csvText, setCsvText] = useState('');
   const [uploadStatus, setUploadStatus] = useState('');
   const [uploading, setUploading] = useState(false);
@@ -217,7 +217,7 @@ export default function AdminDashboard() {
 
       {/* Tabs */}
       <div className="px-8 pt-6 flex gap-6 border-b" style={{ borderColor: 'rgba(0,0,0,0.1)' }}>
-        {(['overview', 'guests', 'songs', 'upload'] as const).map((t) => (
+        {(['overview', 'guests', 'dietary', 'songs', 'upload'] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -380,7 +380,7 @@ export default function AdminDashboard() {
               <table className="w-full" style={{ borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.15)' }}>
-                    {['Name', 'Party', 'Email', 'Invited', 'RSVP', 'Action'].map((h) => (
+                    {['Name', 'Party', 'Email', 'Invited', 'RSVP', 'Dietary', 'Action'].map((h) => (
                       <th key={h} className="eyebrow text-left pb-3 pr-4" style={{ color: 'var(--muted)', fontSize: '0.55rem', letterSpacing: '0.2em', fontWeight: 400 }}>
                         {h}
                       </th>
@@ -404,6 +404,9 @@ export default function AdminDashboard() {
                       </td>
                       <td className="eyebrow py-3 pr-4" style={{ fontSize: '0.6rem', color: rsvpStatus(g).color }}>
                         {rsvpStatus(g).label}
+                      </td>
+                      <td className="eyebrow py-3 pr-4" style={{ fontSize: '0.6rem', color: 'var(--muted)', maxWidth: '160px' }}>
+                        {g.rsvps?.find((r) => r.dietary_restrictions)?.dietary_restrictions || '—'}
                       </td>
                       <td className="py-3">
                         <div style={{ display: 'flex', gap: '6px' }}>
@@ -450,6 +453,41 @@ export default function AdminDashboard() {
                 </tbody>
               </table>
             )}
+          </div>
+        )}
+
+        {/* Dietary Tab */}
+        {tab === 'dietary' && (
+          <div>
+            {loading ? (
+              <p className="font-display" style={{ color: 'var(--muted)' }}>Loading...</p>
+            ) : (() => {
+              const dietaryGuests = guests.filter((g) => g.rsvps?.some((r) => r.dietary_restrictions));
+              return dietaryGuests.length === 0 ? (
+                <p className="font-display" style={{ color: 'var(--muted)', fontSize: '0.95rem' }}>No dietary restrictions submitted yet.</p>
+              ) : (
+                <div>
+                  <p className="eyebrow mb-6" style={{ color: 'var(--muted)', fontSize: '0.6rem', letterSpacing: '0.2em' }}>
+                    {dietaryGuests.length} {dietaryGuests.length === 1 ? 'guest' : 'guests'} with restrictions
+                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                    {dietaryGuests.map((g) => {
+                      const dietary = g.rsvps.find((r) => r.dietary_restrictions)?.dietary_restrictions;
+                      return (
+                        <div key={g.id} style={{ display: 'flex', alignItems: 'baseline', gap: '16px', padding: '12px 0', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+                          <p className="font-display" style={{ fontSize: '0.95rem', color: 'var(--charcoal)', minWidth: '160px' }}>
+                            {g.first_name} {g.last_name}
+                          </p>
+                          <p className="eyebrow" style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>
+                            {dietary}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         )}
 
