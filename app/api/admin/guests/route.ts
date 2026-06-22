@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { cookies } from 'next/headers';
 
@@ -15,7 +15,7 @@ export async function GET() {
 
   const { data: guests, error } = await getSupabaseAdmin()
     .from('guests')
-    .select('*, party:parties(name, invited_events), rsvps:rsvp_responses(event, attending, dietary_restrictions, song_request, message)')
+    .select('*, party:parties(name, invited_events), rsvps:rsvp_responses(event, attending, dietary_restrictions, song_request, message, submitted_at)')
     .order('last_name');
 
   if (error) {
@@ -23,4 +23,20 @@ export async function GET() {
   }
 
   return NextResponse.json({ guests: guests || [] });
+}
+
+export async function DELETE(request: NextRequest) {
+  if (!await isAuthed()) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const { guestId } = await request.json();
+  if (!guestId) return NextResponse.json({ error: 'No guestId' }, { status: 400 });
+
+  // Delete RSVPs first, then guest
+  await getSupabaseAdmin().from('rsvp_responses').delete().eq('guest_id', guestId);
+  const { error } = await getSupabaseAdmin().from('guests').delete().eq('id', guestId);
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ success: true });
 }

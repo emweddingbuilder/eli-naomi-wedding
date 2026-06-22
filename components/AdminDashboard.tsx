@@ -9,6 +9,7 @@ interface RsvpRow {
   dietary_restrictions: string | null;
   song_request: string | null;
   message: string | null;
+  submitted_at: string | null;
 }
 
 interface GuestRow {
@@ -318,6 +319,48 @@ export default function AdminDashboard() {
                 </div>
               </div>
             )}
+
+            {/* Recent RSVPs */}
+            {(() => {
+              const recentRsvps = guests
+                .flatMap((g) => (g.rsvps || []).map((r) => ({ guest: g, rsvp: r })))
+                .filter((x) => x.rsvp.submitted_at)
+                .sort((a, b) => new Date(b.rsvp.submitted_at!).getTime() - new Date(a.rsvp.submitted_at!).getTime())
+                .filter((x, i, arr) => arr.findIndex((y) => y.guest.id === x.guest.id) === i)
+                .slice(0, 8);
+              return recentRsvps.length > 0 ? (
+                <div className="mb-10">
+                  <p className="eyebrow mb-4" style={{ color: 'var(--muted)', fontSize: '0.6rem', letterSpacing: '0.25em' }}>
+                    Recent RSVPs
+                  </p>
+                  <div style={{ background: 'white', border: '1px solid rgba(0,0,0,0.08)' }}>
+                    {recentRsvps.map(({ guest: g, rsvp: r }) => {
+                      const submitted = new Date(r.submitted_at!);
+                      const now = new Date();
+                      const diffMs = now.getTime() - submitted.getTime();
+                      const diffDays = Math.floor(diffMs / 86400000);
+                      const diffHours = Math.floor(diffMs / 3600000);
+                      const diffMins = Math.floor(diffMs / 60000);
+                      const timeAgo = diffDays > 0 ? `${diffDays}d ago` : diffHours > 0 ? `${diffHours}h ago` : diffMins > 0 ? `${diffMins}m ago` : 'just now';
+                      const anyAttending = g.rsvps.some((x) => x.attending);
+                      return (
+                        <div key={g.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: anyAttending ? '#2d7a4f' : '#c0392b', flexShrink: 0 }} />
+                            <p className="font-display" style={{ fontSize: '0.9rem', color: 'var(--charcoal)' }}>
+                              {g.first_name} {g.last_name}
+                            </p>
+                          </div>
+                          <p className="eyebrow" style={{ fontSize: '0.55rem', color: 'var(--muted)' }}>
+                            {timeAgo}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null;
+            })()}
 
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
