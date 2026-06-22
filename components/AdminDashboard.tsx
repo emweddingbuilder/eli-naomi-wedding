@@ -327,13 +327,13 @@ export default function AdminDashboard() {
                 .filter((x) => x.rsvp.submitted_at)
                 .sort((a, b) => new Date(b.rsvp.submitted_at!).getTime() - new Date(a.rsvp.submitted_at!).getTime())
                 .filter((x, i, arr) => arr.findIndex((y) => y.guest.id === x.guest.id) === i)
-                .slice(0, 8);
+                ;
               return recentRsvps.length > 0 ? (
                 <div className="mb-10">
                   <p className="eyebrow mb-4" style={{ color: 'var(--muted)', fontSize: '0.6rem', letterSpacing: '0.25em' }}>
                     Recent RSVPs
                   </p>
-                  <div style={{ background: 'white', border: '1px solid rgba(0,0,0,0.08)' }}>
+                  <div style={{ background: 'white', border: '1px solid rgba(0,0,0,0.08)', maxHeight: '320px', overflowY: 'auto' }}>
                     {recentRsvps.map(({ guest: g, rsvp: r }) => {
                       const submitted = new Date(r.submitted_at!);
                       const now = new Date();
