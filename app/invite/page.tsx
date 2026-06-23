@@ -29,7 +29,7 @@ export default async function InvitePage({
         .from('guests')
         .select('first_name, last_name')
         .eq('party_id', guest.party_id)
-        .order('created_at', { ascending: true });
+        .order('first_name', { ascending: true });
 
       guestName = partyMembers && partyMembers.length > 0
         ? buildPartyDisplayName(partyMembers)
